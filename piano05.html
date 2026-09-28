@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NTT DATA</title>
+<style>
+:root {
+    --bg:#f5f5f1;
+    --ink:#111;
+    --muted:#697078;
+    --line:#d5d7d2;
+    --green:#d9e9a4;
+    --blue:#3155ff;
+    --violet:#7657e8;
+    --coral:#ff6b5f;
+    --max:1500px;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body {
+    background:var(--bg);
+    color:var(--ink);
+    background-image:radial-gradient(circle at 88% 12%, rgba(49,85,255,.10), transparent 24%), radial-gradient(circle at 8% 72%, rgba(217,233,164,.22), transparent 25%);
+    font-family:Arial, Helvetica, sans-serif;
+    overflow-x:hidden;
+}
+body::before {
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:
+      linear-gradient(90deg, transparent calc(50% - .5px), rgba(80,80,70,.16) calc(50% - .5px), rgba(80,80,70,.16) calc(50% + .5px), transparent calc(50% + .5px));
+    z-index:20;
+}
+a { color:inherit; text-decoration:none; }
+
+header {
+    position:fixed;
+    top:0; left:0; right:0;
+    height:78px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 6.5vw;
+    z-index:50;
+    mix-blend-mode:multiply;
+}
+.brand {
+    display:flex;
+    align-items:center;
+    gap:18px;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+}
+.brand::after {
+    content:"";
+    width:44px;
+    height:2px;
+    background:linear-gradient(90deg,var(--blue),var(--coral));
+}
+nav { display:flex; gap:34px; }
+nav a {
+    font-size:10px;
+    transition:.25s;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:#5e6364;
+    transition:.25s;
+}
+nav a:hover { color:var(--blue); }
+
+.hero {
+    min-height:100vh;
+    max-width:var(--max);
+    margin:auto;
+    display:grid;
+    grid-template-columns:52% 48%;
+    position:relative;
+}
+.hero-copy {
+    padding:150px 7vw 90px 6.5vw;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+.eyebrow {
+    font-size:11px;
+    position:relative;
+    z-index:2;
+    color:var(--blue);
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    margin-bottom:52px;
+}
+h1 {
+    font-size:clamp(66px,7.5vw,122px);
+    line-height:1;
+    letter-spacing:-.075em;
+    margin-bottom:28px;
+    position:relative;
+    z-index:1;
+}
+h1 span {
+    display:block;
+    color:transparent;
+    -webkit-text-stroke:1.5px var(--blue);
+    text-shadow:8px 8px 0 rgba(118,87,232,.08);
+}
+.intro {
+    max-width:500px;
+    color:#454d59;
+    font-size:15px;
+    line-height:1.8;
+}
+.tech {
+    margin-top:28px;
+    padding-top:18px;
+    border-top:1px solid #8f928e;
+    max-width:410px;
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+}
+.tech span {
+    font-size:9px;
+    color:var(--blue);
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--blue);
+}
+.hero-photo {
+    padding:0 5.5vw 0 0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.hero-photo img {
+    width:100%;
+    height:78vh;
+    object-fit:cover;
+    display:block;
+}
+.hero-copy::after {
+    content:"";
+    position:absolute;
+    left:6.5vw;
+    top:128px;
+    width:9px;
+    height:90px;
+    background:linear-gradient(var(--blue),var(--coral));
+    border-radius:8px;
+}
+.green-block {
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:95px;
+    height:240px;
+    background:rgba(205,229,135,.58);
+    z-index:-1;
+}
+
+.features {
+    max-width:var(--max);
+    margin:auto;
+    display:grid;
+    grid-template-columns:52% 48%;
+    border-top:1px solid var(--line);
+    position:relative;
+}
+.feature-list { padding:0 7vw 0 6.5vw; }
+.feature {
+    min-height:170px;
+    border-bottom:1px solid var(--line);
+    display:grid;
+    grid-template-columns:70px 1fr 30px;
+    align-items:center;
+    gap:10px;
+}
+.feature-no {
+    font-size:11px;
+    letter-spacing:.08em;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+.feature-no::after {
+    content:"";
+    width:24px;
+    height:2px;
+    background:var(--coral);
+}
+.feature h2 {
+    font-size:15px;
+    color:#252d4a;
+    font-weight:500;
+    margin-bottom:10px;
+}
+.feature p {
+    max-width:430px;
+    font-size:12px;
+    line-height:1.7;
+    color:#737a7e;
+}
+.arrow { font-size:22px; font-weight:300; color:var(--blue); }
+.feature-image {
+    border-left:1px solid var(--line);
+    padding:0 0 0 16px;
+}
+.feature-image img {
+    width:100%;
+    height:520px;
+    object-fit:cover;
+    object-position:left center;
+}
+.side-note {
+    position:absolute;
+    right:0;
+    bottom:0;
+    width:18%;
+    min-width:170px;
+    height:520px;
+    border-left:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.side-note span {
+    max-width:100px;
+    font-size:10px;
+    line-height:1.7;
+    letter-spacing:.2em;
+    color:#687074;
+    text-transform:uppercase;
+}
+.side-note::before {
+    content:"";
+    position:absolute;
+    top:60px;
+    left:35px;
+    width:32px;
+    height:1px;
+    background:linear-gradient(90deg,var(--blue),var(--coral));
+}
+
+.footer {
+    max-width:var(--max);
+    margin:auto;
+    min-height:360px;
+    border-top:1px solid var(--line);
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    padding:80px 6.5vw 45px;
+}
+.footer-title {
+    font-size:clamp(55px,8vw,120px);
+    line-height:.8;
+    letter-spacing:-.07em;
+    font-weight:800;
+}
+.footer-title span {
+    color:transparent;
+    -webkit-text-stroke:1px var(--blue);
+}
+.footer-right {
+    display:flex;
+    gap:55px;
+    align-items:flex-end;
+}
+.footer-right p {
+    font-size:9px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:#667075;
+}
+.line { width:42px; height:2px; background:linear-gradient(90deg,var(--blue),var(--coral)); display:inline-block; margin-left:15px; vertical-align:middle; }
+
+@media(max-width:900px) {
+    .hero-copy::after { left:28px; top:115px; }
+    body::before { display:none; }
+    header { padding:0 24px; background:rgba(245,245,241,.88); backdrop-filter:blur(12px); }
+    nav { gap:14px; }
+    nav a:nth-child(n+4) { display:none; }
+    .hero, .features { grid-template-columns:1fr; }
+    .hero-copy { padding:150px 28px 70px; }
+    .hero-photo { padding:0 28px 70px; }
+    .hero-photo img { height:65vh; }
+    .feature-list { padding:0 28px; }
+    .feature-image { border-left:0; border-top:1px solid var(--line); padding:25px 28px; }
+    .feature-image img { height:430px; }
+    .side-note { display:none; }
+    .footer { padding:80px 28px 40px; flex-direction:column; align-items:flex-start; gap:60px; }
+}
+@media(max-width:560px) {
+    .brand::after { display:none; }
+    nav { display:none; }
+    h1 { font-size:19vw; }
+    .feature { grid-template-columns:55px 1fr 20px; min-height:185px; }
+    .feature p { font-size:11px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+    
+    <nav>
+        
+        
+        
+        
+    </nav>
+</header>
+
+<main>
+<section class="hero" id="about">
+    <div class="hero-copy">
+        <div class="eyebrow"> i  Modern web experiences</div>
+        <h1>Front-End<span>Development</span></h1>
+        <p class="intro">
+            Il front-end rappresenta la parte dell’applicazione con cui l’utente
+            interagisce direttamente.<br>
+            NTT DATA trasforma design e idee in interfacce veloci,
+            accessibili e curate nei dettagli.
+        </p>
+        <div class="tech" id="skills">
+            <span>HTML</span><span>/</span>
+            <span>CSS</span><span>/</span>
+            <span>JavaScript</span><span>/</span>
+            <span>React</span>
+        </div>
+    </div>
+
+    <div class="hero-photo">
+        <img src="https://cdn.prod.website-files.com/6324546bc415e15691cecbef/6a745e2cea4ee09962009f3b_057.jpg"
+    </div>
+    <div class="green-block"></div>
+</section>
+
+<section class="features" id="projects">
+    <div class="feature-list">
+        <article class="feature">
+            <div class="feature-no">01</div>
+            <div>
+                <h2>Interfacce moderne</h2>
+                <p>NTT DATA progetta UI pulite, intuitive e responsive, ottimizzate per ogni dispositivo.</p>
+            </div>
+            <div class="arrow">→</div>
+        </article>
+        <article class="feature">
+            <div class="feature-no">02</div>
+            <div>
+                <h2>Performance e accessibilità</h2>
+                <p>Il team adotta codice efficiente e segue le migliori pratiche per un web più inclusivo e veloce.</p>
+            </div>
+            <div class="arrow">→</div>
+        </article>
+        <article class="feature">
+            <div class="feature-no">03</div>
+            <div>
+                <h2>Design to code</h2>
+                <p>Dal layout al codice: soluzioni semantiche, mantenibili e scalabili.</p>
+            </div>
+            <div class="arrow">→</div>
+        </article>
+    </div>
+
+    <div class="feature-image">
+        <img src="https://cdn.prod.website-files.com/6324546bc415e15691cecbef/6a745e37d8c672d81197f22f_054.jpg" alt="Dettaglio architettura">
+    </div>
+</section>
+
+<footer class="footer" id="contact">
+    
+    <div class="footer-right">
+        <p>Let's build something great <span class="line"></span></p>
+    </div>
+</footer>
+</main>
+</body>
+</html>

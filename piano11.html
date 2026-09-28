@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NTT DATA Milano - 11° Piano | Esperienza ITIS Cannizzaro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;600&display=swap%22 rel="stylesheet">
+<style>
+    /* ==========================================================
+       DESIGN SYSTEM - 11° PIANO NTT DATA MILANO (DARK EXECUTIVE)
+       ========================================================== */
+    :root {
+      --bg-primary: #0a0c10;
+      --bg-surface: #12161f;
+      --bg-card: rgba(22, 27, 38, 0.75);
+      --accent-blue: #0066cc;
+      --accent-bronze: #d4af37;
+      --accent-glow: rgba(0, 102, 204, 0.25);
+      --text-main: #f0f4f8;
+      --text-muted: #94a3b8;
+      --text-highlight: #ffffff;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-active: rgba(212, 175, 55, 0.4);
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-display: 'Space Grotesk', sans-serif;
+    }
+ 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+ 
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      line-height: 1.8;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(0, 102, 204, 0.12) 0%, transparent 70%),
+        radial-gradient(circle at 85% 30%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+    }
+ 
+    /* SFONDO DINAMICO ARCHITETTONICO (Ispirato a The Sign Milano) */
+    .floor-grid-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-size: 50px 50px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      pointer-events: none;
+      z-index: 0;
+    }
+ 
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 24px;
+      position: relative;
+      z-index: 1;
+    }
+ 
+    /* HEADER STYLE 11° PIANO */
+    header {
+      margin-bottom: 60px;
+      text-align: center;
+      position: relative;
+    }
+ 
+    .badge-floor {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid var(--accent-bronze);
+      color: var(--accent-bronze);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+ 
+    .badge-floor::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background-color: var(--accent-bronze);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent-bronze);
+    }
+ 
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 600;
+      color: var(--text-highlight);
+      letter-spacing: -1px;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+ 
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      font-weight: 300;
+    }
+ 
+    /* CONTENITORE SCHEDA EXECUTIVE */
+    .executive-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+      margin-bottom: 40px;
+      position: relative;
+      transition: border-color 0.3s ease;
+    }
+ 
+    .executive-card:hover {
+      border-color: rgba(0, 102, 204, 0.3);
+    }
+ 
+    /* SEZIONI TESTO */
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      color: var(--text-highlight);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+ 
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--border-subtle), transparent);
+    }
+ 
+    p {
+      color: var(--text-main);
+      margin-bottom: 20px;
+      font-size: 1.05rem;
+      text-align: justify;
+    }
+ 
+    p:last-child {
+      margin-bottom: 0;
+    }
+ 
+    /* SEZIONE RINGRAZIAMENTI SPECIALE */
+    .thanks-card {
+      background: linear-gradient(135deg, rgba(18, 22, 31, 0.9) 0%, rgba(10, 12, 16, 0.95) 100%);
+      border: 1px solid var(--border-active);
+      position: relative;
+      overflow: hidden;
+    }
+ 
+    .thanks-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--accent-bronze);
+    }
+ 
+    /* GRIGLIA NOMI (TAGS) */
+    .names-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 24px 0;
+    }
+ 
+    .name-tag {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-family: var(--font-display);
+      font-weight: 600;
+      color: var(--accent-bronze);
+      transition: all 0.3s ease;
+    }
+ 
+    .name-tag:hover {
+      background: rgba(212, 175, 55, 0.15);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.15);
+    }
+ 
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 20px 0;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+ 
+    /* RESPONSIVE DESIGN */
+    @media (max-width: 768px) {
+      .container {
+        padding: 30px 16px;
+      }
+      .executive-card {
+        padding: 24px;
+      }
+      p {
+        text-align: left;
+      }
+    }
+</style>
+</head>
+<body>
+ 
+  <div class="floor-grid-overlay"></div>
+ 
+  <div class="container">
+<!-- HEADER ISPIRATO ALL'11° PIANO NTT DATA MILANO -->
+<header>
+<div class="badge-floor">Executive Floor 11 • The Sign Milan</div>
+<h1>ITIS Cannizzaro & NTT DATA</h1>
+<p class="subtitle">Un percorso di crescita tra scuola, innovazione e mondo del lavoro</p>
+</header>
+ 
+    <!-- SCHEDA PRINCIPALE "CHI SIAMO NOI" -->
+<main class="executive-card">
+<h2 class="section-title">Chi siamo noi?</h2>
+<p>
+        Siamo studenti dell’<strong>ITIS Cannizzaro di Rho</strong>, con cui abbiamo avuto una bellissima esperienza lavorativa e formativa sul mondo del lavoro in generale, ma anche con una grande azienda a livello informatico.
+</p>
+ 
+      <p>
+        Durante il nostro percorso abbiamo avuto l'opportunità di conoscere da vicino <strong>NTT DATA Italia</strong>, una delle realtà più importanti nel settore dell’informatica e della consulenza tecnologica. In particolare, abbiamo avuto modo di vivere questa esperienza presso la sede di Milano, un ambiente moderno e professionale sviluppato su diversi piani, dove abbiamo potuto osservare più da vicino come viene organizzato e svolto il lavoro all'interno di una grande azienda.
+</p>
+ 
+      <p>
+        Questa esperienza ci ha permesso di capire che il mondo del lavoro è molto diverso da quello che normalmente conosciamo a scuola. Abbiamo potuto vedere come le conoscenze informatiche che stiamo acquisendo durante il nostro percorso di studi possano essere applicate concretamente in un ambiente professionale, ma soprattutto abbiamo imparato quanto siano importanti la collaborazione, la comunicazione, la responsabilità e la capacità di lavorare in squadra.
+</p>
+ 
+      <p>
+        Una delle cose che ci ha colpito maggiormente è stata la disponibilità delle persone che ci hanno accompagnato durante questa esperienza. Sono state sempre gentili, disponibili e pronte ad aiutarci, rispondendo alle nostre domande e cercando di farci comprendere anche gli aspetti più complessi del lavoro nel settore informatico. Questo ci ha permesso di sentirci accolti e di vivere l'esperienza con maggiore tranquillità e curiosità.
+</p>
+ 
+      <p>
+        L'esperienza in NTT DATA Italia non è stata quindi soltanto un'occasione per conoscere una grande azienda, ma anche un momento di crescita personale e professionale. Ci ha aiutato a comprendere meglio quali potrebbero essere le nostre possibilità future e ci ha dato una visione più concreta di ciò che ci aspetta dopo il percorso scolastico.
+</p>
+</main>
+ 
+    <!-- SCHEDA RINGRAZIAMENTI -->
+<section class="executive-card thanks-card">
+<h2 class="section-title" style="color: var(--accent-bronze);">Ringraziamenti</h2>
+<p>
+        Vogliamo infine ringraziare tutte le persone che hanno reso possibile questa esperienza e che ci hanno accompagnato durante il nostro percorso.
+</p>
+ 
+      <p style="margin-bottom: 8px;">Un ringraziamento speciale va a:</p>
+ 
+      <!-- TAGS CON I NOMI DEGLI ACCOMPAGNATORI -->
+<div class="names-grid">
+<span class="name-tag">Fabio</span>
+<span class="name-tag">Matia</span>
+<span class="name-tag">Matteo</span>
+<span class="name-tag">Michele</span>
+<span class="name-tag">Luca</span>
+</div>
+ 
+      <p>
+        per la loro disponibilità, gentilezza e per il tempo che ci hanno dedicato. Porteremo con noi non solo le conoscenze che abbiamo acquisito, ma anche il ricordo di un'esperienza che ci ha permesso di crescere e di vedere più da vicino il mondo del lavoro.
+</p>
+</section>
+ 
+    <footer>
+<p>© ITIS Cannizzaro Rho • Esperienza Formativa NTT DATA Italia (Milano)</p>
+</footer>
+ 
+  </div>
+ 
+</body>
+</html>

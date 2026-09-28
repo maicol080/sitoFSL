@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>06 — Back-End | NTT DATA</title>
+<style>
+:root {
+    --paper: #f3f0e9;
+    --paper-light: #f8f6f1;
+    --wood: #a67c52;
+    --wood-light: #c7a982;
+    --wood-dark: #725338;
+    --green: #66725d;
+    --green-light: #dfe3d8;
+    --ink: #20211e;
+    --muted: #77766e;
+    --line: rgba(32, 33, 30, .18);
+    --white: #fbfaf7;
+    --header-height: 78px;
+    --side-padding: clamp(32px, 7vw, 120px);
+    --content-width: 1500px;
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html {
+    scroll-behavior: smooth;
+}
+body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+/* HEADER */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--header-height);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--side-padding);
+    border-bottom: 1px solid var(--line);
+    background: rgba(243, 240, 233, .9);
+    backdrop-filter: blur(12px);
+}
+.header-brand {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+.header-brand strong {
+    font-size: 12px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+}
+.header-divider {
+    width: 1px;
+    height: 20px;
+    background: var(--line);
+}
+.header-title {
+    font-size: 10px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+.header-floor {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 10px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+.header-floor-number {
+    font-size: 18px;
+    letter-spacing: -.04em;
+    font-weight: 500;
+}
+/* GENERAL */
+.page {
+    width: min(100%, var(--content-width));
+    margin: 0 auto;
+    padding: 0 var(--side-padding);
+}
+.eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: .18em;
+    color: var(--muted);
+}
+.eyebrow::before {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: var(--wood);
+}
+/* HERO */
+.hero {
+    min-height: 100vh;
+    padding-top: var(--header-height);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    position: relative;
+}
+.hero-content {
+    padding: 100px 0;
+    position: relative;
+    z-index: 2;
+}
+.hero h1 {
+    margin-top: 28px;
+    max-width: 750px;
+    font-size: clamp(72px, 11vw, 170px);
+    line-height: .82;
+    letter-spacing: -.075em;
+    font-weight: 400;
+}
+.hero h1 span {
+    display: block;
+    margin-left: clamp(30px, 8vw, 150px);
+    color: var(--wood-dark);
+}
+.hero-description {
+    max-width: 420px;
+    margin: 48px 0 0 clamp(30px, 8vw, 150px);
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--muted);
+}
+.hero-floor {
+    position: absolute;
+    top: 45%;
+    left: -4vw;
+    font-size: clamp(160px, 27vw, 430px);
+    line-height: .7;
+    letter-spacing: -.12em;
+    color: rgba(166, 124, 82, .08);
+    font-weight: 700;
+    pointer-events: none;
+}
+/* ORGANIC HERO ARCHITECTURE */
+.hero-space {
+    position: relative;
+    height: 650px;
+}
+.organic-wall {
+    position: absolute;
+    width: 390px;
+    height: 570px;
+    right: 8%;
+    top: 40px;
+    border-radius: 48% 52% 46% 54% / 28% 35% 65% 72%;
+    background:
+        linear-gradient(
+            105deg,
+            rgba(255,255,255,.55),
+            rgba(199,169,130,.28)
+        );
+    border: 1px solid rgba(114,83,56,.22);
+    transform: rotate(5deg);
+}
+.organic-wall::before {
+    content: "";
+    position: absolute;
+    inset: 30px;
+    border-radius: inherit;
+    border: 1px solid rgba(114,83,56,.18);
+}
+.wood-panel {
+    position: absolute;
+    width: 270px;
+    height: 390px;
+    right: 28%;
+    top: 150px;
+    border-radius: 130px 130px 12px 12px;
+    background:
+        repeating-linear-gradient(
+            90deg,
+            rgba(95,65,42,.08) 0,
+            rgba(95,65,42,.08) 1px,
+            transparent 1px,
+            transparent 11px
+        ),
+        linear-gradient(
+            100deg,
+            var(--wood-light),
+            #b8946b
+        );
+    box-shadow: 30px 30px 0 rgba(114,83,56,.05);
+}
+.hero-circle {
+    position: absolute;
+    width: 170px;
+    height: 170px;
+    right: 3%;
+    bottom: 45px;
+    border: 1px solid rgba(102,114,93,.45);
+    border-radius: 50%;
+}
+.hero-circle::after {
+    content: "";
+    position: absolute;
+    inset: 22px;
+    border: 1px solid rgba(102,114,93,.25);
+    border-radius: 50%;
+}
+.hero-label {
+    position: absolute;
+    right: 14%;
+    bottom: 90px;
+    writing-mode: vertical-rl;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: .22em;
+    color: var(--green);
+}
+/* INTRO */
+.intro {
+    min-height: 650px;
+    padding: 130px 0;
+    display: grid;
+    grid-template-columns: 1fr 1.25fr;
+    gap: 100px;
+    border-top: 1px solid var(--line);
+}
+.intro-title {
+    position: static;
+    align-self: start;
+    padding-left: 30px;
+}
+.intro-title h2 {
+    margin-top: 25px;
+    max-width: 430px;
+    font-size: clamp(42px, 5vw, 76px);
+    line-height: .95;
+    font-weight: 400;
+    letter-spacing: -.055em;
+}
+.intro-title h2 span {
+    color: var(--wood-dark);
+}
+.intro-copy {
+    max-width: 650px;
+    padding-top: 55px;
+}
+.intro-copy p {
+    font-size: 21px;
+    line-height: 1.65;
+    letter-spacing: -.015em;
+}
+.intro-copy p + p {
+    margin-top: 22px;
+}
+/* FLOOR PHOTO */
+.floor-photo {
+    position: relative;
+    margin: 0 calc(var(--side-padding) * -1);
+    height: min(65vw, 760px);
+    min-height: 500px;
+    overflow: hidden;
+    background:
+        linear-gradient(
+            120deg,
+            rgba(84,64,45,.16),
+            rgba(255,255,255,.1)
+        ),
+        #b7a187;
+}
+.photo-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+        linear-gradient(
+            115deg,
+            #927454 0%,
+            #c5aa88 35%,
+            #e0d7c9 67%,
+            #8e9a81 100%
+        );
+}
+.photo-placeholder::before {
+    content: "";
+    position: absolute;
+    width: 55%;
+    height: 120%;
+    left: 10%;
+    top: -10%;
+    border-radius: 50%;
+    background: rgba(247,243,234,.35);
+    transform: rotate(12deg);
+}
+.photo-placeholder::after {
+    content: "";
+    position: absolute;
+    width: 42%;
+    height: 90%;
+    right: 7%;
+    top: 5%;
+    border-radius: 50% 50% 8px 8px;
+    background: rgba(96,74,51,.25);
+    border-left: 1px solid rgba(255,255,255,.35);
+}
+.photo-caption {
+    position: absolute;
+    z-index: 2;
+    left: calc(var(--side-padding) + 30px);
+    bottom: 35px;
+    color: white;
+    font-size: 9px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+}
+/* SECTIONS */
+.section {
+    padding: 160px 0;
+    border-bottom: 1px solid var(--line);
+}
+.section-grid {
+    display: grid;
+    grid-template-columns: .7fr 1.3fr;
+    gap: 100px;
+}
+.section-number {
+    font-size: 11px;
+    letter-spacing: .15em;
+    color: var(--muted);
+}
+.section-heading {
+    padding-left: 30px;
+}
+.section-heading h2 {
+    margin-top: 20px;
+    font-size: clamp(42px, 5.5vw, 86px);
+    line-height: .9;
+    font-weight: 400;
+    letter-spacing: -.06em;
+}
+.section-heading h2 span {
+    color: var(--wood-dark);
+}
+.section-content {
+    max-width: 720px;
+}
+.section-content p {
+    font-size: 16px;
+    line-height: 1.85;
+    color: #4e4e49;
+}
+.section-content p + p {
+    margin-top: 22px;
+}
+/* SPRING BOOT */
+.spring-visual {
+    margin-top: 70px;
+    min-height: 330px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+.spring-core {
+    width: 210px;
+    height: 210px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--wood-light);
+    color: white;
+    font-size: 12px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 2;
+}
+.spring-orbit {
+    position: absolute;
+    width: 430px;
+    height: 170px;
+    border: 1px solid rgba(114,83,56,.35);
+    border-radius: 50%;
+    transform: rotate(-15deg);
+}
+.spring-orbit.two {
+    transform: rotate(25deg);
+    width: 370px;
+    height: 270px;
+    border-color: rgba(102,114,93,.35);
+}
+.spring-node {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--green);
+}
+.spring-node.one {
+    top: 35px;
+    left: 26%;
+}
+.spring-node.two {
+    bottom: 45px;
+    right: 25%;
+}
+.spring-node.three {
+    top: 50%;
+    right: 12%;
+}
+/* MICROSERVICES */
+.micro-intro {
+    margin-bottom: 80px;
+}
+.micro-intro p {
+    max-width: 600px;
+}
+.services-space {
+    position: relative;
+    padding: 70px 40px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(199,169,130,.15),
+            transparent 65%
+        );
+}
+.service-network {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.service-network::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: rgba(114,83,56,.15);
+}
+.service-row {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 28px;
+    position: relative;
+}
+.service-row + .service-row {
+    margin-top: 120px;
+}
+.service {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(114,83,56,.32);
+    background: rgba(248,246,241,.8);
+    border-radius: 42% 58% 54% 46% / 52% 44% 56% 48%;
+    font-size: 14px;
+    color: var(--wood-dark);
+    transition:
+        transform .3s ease,
+        background .3s ease;
+}
+.service:nth-child(even) {
+    border-radius: 55% 45% 42% 58% / 45% 58% 42% 55%;
+}
+.service:hover {
+    transform: translateY(-5px) rotate(2deg);
+    background: var(--green-light);
+}
+.service-main {
+    position: absolute;
+    left: 50%;
+    top: -60px;
+    transform: translate(-50%, -50%);
+    width: 105px;
+    height: 105px;
+    border-radius: 50%;
+    background: var(--wood-dark);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    text-align: center;
+    z-index: 3;
+}
+.services-note {
+    margin-top: 45px;
+    text-align: center;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: .16em;
+    color: var(--muted);
+}
+/* CLOUD / CONTAINERS */
+.cloud-layout {
+    margin-top: 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: center;
+}
+.cloud-visual {
+    min-height: 390px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cloud {
+    position: relative;
+    width: 330px;
+    height: 160px;
+    background: var(--green-light);
+    border: 1px solid rgba(102,114,93,.45);
+    border-radius: 100px;
+}
+.cloud::before,
+.cloud::after {
+    content: "";
+    position: absolute;
+    background: var(--green-light);
+    border: 1px solid rgba(102,114,93,.45);
+    border-bottom: none;
+    border-radius: 50% 50% 0 0;
+}
+.cloud::before {
+    width: 130px;
+    height: 110px;
+    left: 60px;
+    top: -65px;
+}
+.cloud::after {
+    width: 100px;
+    height: 90px;
+    right: 55px;
+    top: -50px;
+}
+.cloud-label {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .15em;
+    z-index: 2;
+}
+.containers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    position: absolute;
+    bottom: 20px;
+    width: 80%;
+}
+.container {
+    height: 105px;
+    border: 1px solid rgba(32,33,30,.2);
+    background: rgba(255,255,255,.65);
+    display: flex;
+    align-items: flex-end;
+    padding: 13px;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    position: relative;
+}
+.container::before {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 13px;
+    width: 22px;
+    height: 1px;
+    background: var(--wood);
+}
+.cloud-copy {
+    max-width: 520px;
+}
+/* REQUEST DISTRIBUTION */
+.distribution {
+    margin-top: 80px;
+    min-height: 420px;
+    display: grid;
+    grid-template-columns: 150px 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+.request-box {
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--wood);
+    border-radius: 55px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .13em;
+}
+.router {
+    position: relative;
+    width: 190px;
+    height: 190px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid var(--green);
+    background: var(--paper-light);
+}
+.router::before,
+.router::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(102,114,93,.25);
+}
+.router::before {
+    inset: 18px;
+}
+.router::after {
+    inset: 38px;
+}
+.router span {
+    position: relative;
+    z-index: 2;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+}
+.replicas {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+.replica {
+    height: 82px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,.42);
+    border-radius: 14px 40px 14px 40px;
+}
+.replica-name {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+}
+.load {
+    width: 130px;
+    height: 3px;
+    background: rgba(114,83,56,.13);
+    position: relative;
+}
+.load::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background: var(--wood);
+}
+.load.one::after {
+    width: 32%;
+}
+.load.two::after {
+    width: 55%;
+}
+.load.three::after {
+    width: 40%;
+}
+/* SECOND FLOOR PHOTO */
+.wide-photo {
+    margin-top: 100px;
+    height: 520px;
+    position: relative;
+    overflow: hidden;
+    background:
+        linear-gradient(
+            110deg,
+            #d8d0c3,
+            #bba483 42%,
+            #87907d
+        );
+}
+.wide-photo .shape-a {
+    position: absolute;
+    width: 65%;
+    height: 160%;
+    left: -10%;
+    top: -30%;
+    border-radius: 50%;
+    background: rgba(248,246,241,.42);
+    transform: rotate(-10deg);
+}
+.wide-photo .shape-b {
+    position: absolute;
+    width: 260px;
+    height: 420px;
+    right: 16%;
+    top: 50px;
+    border-radius: 150px 150px 15px 15px;
+    background: rgba(101,75,48,.4);
+}
+.wide-photo .caption {
+    position: absolute;
+    left: calc(var(--side-padding) + 30px);
+    bottom: 28px;
+    color: white;
+    font-size: 9px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+}
+/* FOOTER */
+.footer {
+    min-height: 500px;
+    padding: 120px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-top: 1px solid var(--line);
+}
+.footer-title {
+    font-size: clamp(70px, 13vw, 190px);
+    line-height: .78;
+    letter-spacing: -.08em;
+    font-weight: 400;
+}
+.footer-title span {
+    display: block;
+    margin-left: 12vw;
+    color: var(--wood-dark);
+}
+.footer-bottom {
+    margin-top: 100px;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: .15em;
+    color: var(--muted);
+}
+/* REVEAL */
+.reveal {
+    opacity: 0;
+    transform: translateY(35px);
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* RESPONSIVE */
+@media (max-width: 1000px) {
+    .hero {
+        grid-template-columns: 1fr;
+    }
+    .hero-space {
+        height: 450px;
+    }
+    .hero-content {
+        padding-bottom: 30px;
+    }
+    .hero h1 {
+        font-size: clamp(70px, 16vw, 130px);
+    }
+    .intro,
+    .section-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+    .intro-title {
+        position: static;
+    }
+    .intro-copy {
+        padding-top: 0;
+    }
+    .cloud-layout {
+        grid-template-columns: 1fr;
+    }
+    .distribution {
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+    .replicas {
+        width: 100%;
+        max-width: 600px;
+    }
+}
+@media (max-width: 700px) {
+    :root {
+        --header-height: 68px;
+        --side-padding: 20px;
+    }
+    .header-title,
+    .header-divider {
+        display: none;
+    }
+    .hero {
+        min-height: auto;
+        padding-top: 140px;
+    }
+    .hero h1 {
+        font-size: 72px;
+    }
+    .hero-description {
+        margin-left: 30px;
+    }
+    .hero-space {
+        height: 400px;
+    }
+    .organic-wall {
+        width: 260px;
+        height: 390px;
+        right: 3%;
+    }
+    .wood-panel {
+        width: 190px;
+        height: 290px;
+        right: 24%;
+        top: 90px;
+    }
+    .hero-circle {
+        width: 120px;
+        height: 120px;
+    }
+    .intro,
+    .section {
+        padding: 100px 0;
+    }
+    .intro-copy p {
+        font-size: 18px;
+    }
+    .floor-photo {
+        min-height: 380px;
+        height: 90vw;
+    }
+    .photo-caption,
+    .wide-photo .caption {
+        left: 30px;
+    }
+    .section-heading {
+        padding-left: 0;
+    }
+    .service-row {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+    .service-row + .service-row {
+        margin-top: 85px;
+    }
+    .service-main {
+        top: -42.5px;
+        width: 75px;
+        height: 75px;
+        font-size: 8px;
+    }
+    .services-space {
+        padding: 50px 15px;
+    }
+    .cloud {
+        width: 270px;
+    }
+    .wide-photo {
+        height: 380px;
+    }
+    .footer-title {
+        font-size: 72px;
+    }
+    .footer-bottom {
+        padding: 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+}
+</style>
+</head>
+<body>
+<header class="header">
+    <a href="#" class="header-brand">
+        <strong>NTT DATA</strong>
+        <span class="header-divider"></span>
+        <span class="header-title">Internal Guide</span>
+    </a>
+    <div class="header-floor">
+        <span>Floor</span>
+        <span class="header-floor-number">06</span>
+    </div>
+</header>
+<main id="top">
+    <!-- HERO -->
+    <section class="hero page">
+        <div class="hero-floor">06</div>
+        <div class="hero-content reveal">
+            <div class="eyebrow">
+                Floor 06 · Application
+            </div>
+            <h1>
+                Back
+                <span>End.</span>
+            </h1>
+            <p class="hero-description">
+                Il luogo in cui i dati vengono elaborati,
+                le funzionalità prendono forma e i servizi
+                dell'applicazione vengono messi a disposizione.
+            </p>
+        </div>
+        <div class="hero-space reveal">
+            <div class="organic-wall"></div>
+            <div class="wood-panel"></div>
+            <div class="hero-circle"></div>
+            <div class="hero-label">
+                Backend Architecture
+            </div>
+        </div>
+    </section>
+    <!-- INTRO -->
+    <section class="intro page reveal">
+        <div class="intro-title">
+            <div class="eyebrow">
+                The space
+            </div>
+            <h2>
+                Dietro ciò che
+                <span>l'utente vede.</span>
+            </h2>
+        </div>
+        <div class="intro-copy">
+            <p>
+                Il backend è la parte dell'applicazione che si occupa
+                di elaborare le informazioni e fornire al front-end
+                i dati e le funzionalità necessarie.
+            </p>
+            <p>
+                In questo ambiente il lavoro è organizzato attraverso
+                servizi indipendenti, infrastrutture cloud e sistemi
+                che permettono alle richieste di essere gestite
+                in modo distribuito.
+            </p>
+        </div>
+    </section>
+    <!-- FOTO DEL PIANO -->
+    <section class="floor-photo reveal">
+        <div class="photo-placeholder">
+            <!--
+                INSERISCI QUI UNA FOTO REALE DEL PIANO.
+                Esempio:
+                <img
+                    src="img/piano-backend-01.jpg"
+                    alt="Ambiente del piano Back-End"
+                >
+            -->
+        </div>
+        <div class="photo-caption">
+            Floor 06 · Back-End environment
+        </div>
+    </section>
+    <!-- SPRING BOOT -->
+    <section class="section page reveal">
+        <div class="section-grid">
+            <div class="section-heading">
+                <div class="section-number">
+                    01 / 04
+                </div>
+                <h2>
+                    Spring
+                    <span>Boot.</span>
+                </h2>
+            </div>
+            <div class="section-content">
+                <p>
+                    Per lo sviluppo viene utilizzato <strong>Spring Boot</strong>,
+                    un framework dell'ecosistema Spring che permette di sviluppare
+                    applicazioni in modo più rapido e strutturato.
+                </p>
+                <p>
+                    Uno dei suoi compiti principali è permettere all'applicazione
+                    di esporre dei <strong>servizi</strong>, ovvero funzionalità
+                    che possono essere richieste per recuperare o elaborare
+                    i dati necessari.
+                </p>
+                <p>
+                    Il backend sviluppa quindi funzionalità in grado di
+                    recuperare, elaborare e rendere disponibili i dati
+                    all'applicazione.
+                </p>
+                <div class="spring-visual">
+                    <div class="spring-orbit"></div>
+                    <div class="spring-orbit two"></div>
+                    <div class="spring-node one"></div>
+                    <div class="spring-node two"></div>
+                    <div class="spring-node three"></div>
+                    <div class="spring-core">
+                        Spring Boot
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- MICROSERVICES -->
+    <section class="section page reveal">
+        <div class="section-grid">
+            <div class="section-heading">
+                <div class="section-number">
+                    02 / 04
+                </div>
+                <h2>
+                    Micro
+                    <span>services.</span>
+                </h2>
+            </div>
+            <div class="section-content">
+                <div class="micro-intro">
+                    <p>
+                        L'applicazione <strong>Unica</strong> è strutturata
+                        secondo un'architettura a <strong>microservizi</strong>.
+                        Ogni microservizio ha una responsabilità specifica
+                        e indipendente dagli altri.
+                    </p>
+                    <p>
+                        In totale sono presenti <strong>11 microservizi</strong>,
+                        ognuno dedicato a un determinato insieme di funzionalità.
+                    </p>
+                    <p>
+                        Questa organizzazione permette di distribuire il carico
+                        dell'applicazione e di mantenere il progetto più leggero
+                        e gestibile. In caso di problemi è inoltre possibile
+                        intervenire sul singolo microservizio interessato.
+                    </p>
+                </div>
+                <div class="services-space">
+                    <div class="service-network">
+                        <div class="service-row">
+                            <div class="service">01</div>
+                            <div class="service">02</div>
+                            <div class="service">03</div>
+                            <div class="service">04</div>
+                            <div class="service">05</div>
+                            <div class="service">06</div>
+                        </div>
+                        <div class="service-row">
+                            <div class="service">07</div>
+                            <div class="service">08</div>
+                            <div class="service-main">
+                                Unica
+                            </div>
+                            <div class="service">09</div>
+                            <div class="service">10</div>
+                            <div class="service">11</div>
+                        </div>
+                    </div>
+                    <div class="services-note">
+                        11 independent services · distributed architecture
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- CLOUD -->
+    <section class="section page reveal">
+        <div class="section-grid">
+            <div class="section-heading">
+                <div class="section-number">
+                    03 / 04
+                </div>
+                <h2>
+                    Cloud &
+                    <span>containers.</span>
+                </h2>
+            </div>
+            <div class="section-content">
+                <p>
+                    L'infrastruttura utilizza risorse <strong>cloud</strong>,
+                    che possono essere adattate alle esigenze dell'applicazione.
+                    Le risorse disponibili possono quindi aumentare o diminuire
+                    in base alla richiesta, senza modificare fisicamente
+                    l'infrastruttura.
+                </p>
+                <p>
+                    Per la gestione delle applicazioni vengono utilizzati anche
+                    i <strong>container</strong>, che permettono di isolare
+                    e distribuire le diverse componenti del software
+                    in ambienti separati e facilmente gestibili.
+                </p>
+                <div class="cloud-layout">
+                    <div class="cloud-visual">
+                        <div class="cloud">
+                            <div class="cloud-label">
+                                Cloud
+                            </div>
+                        </div>
+                        <div class="containers">
+                            <div class="container">
+                                Container 01
+                            </div>
+                            <div class="container">
+                                Container 02
+                            </div>
+                            <div class="container">
+                                Container 03
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cloud-copy">
+                        <p>
+                            I container rappresentano ambienti separati
+                            all'interno dei quali possono essere eseguite
+                            le diverse componenti dell'applicazione.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FOTO DEL PIANO -->
+    <section class="wide-photo reveal">
+        <div class="shape-a"></div>
+        <div class="shape-b"></div>
+        <div class="caption">
+            Architecture · Floor 06
+        </div>
+    </section>
+    <!-- REQUEST DISTRIBUTION -->
+    <section class="section page reveal">
+        <div class="section-grid">
+            <div class="section-heading">
+                <div class="section-number">
+                    04 / 04
+                </div>
+                <h2>
+                    Request
+                    <span>flow.</span>
+                </h2>
+            </div>
+            <div class="section-content">
+                <p>
+                    Un ulteriore componente si occupa di distribuire
+                    le richieste tra le diverse repliche di un servizio,
+                    indirizzandole verso quella con il minor carico.
+                </p>
+                <p>
+                    In questo modo si evita di concentrare tutte le richieste
+                    su una singola replica e si mantiene più equilibrato
+                    il sistema.
+                </p>
+                <div class="distribution">
+                    <div class="request-box">
+                        Request
+                    </div>
+                    <div class="router">
+                        <span>Router</span>
+                    </div>
+                    <div class="replicas">
+                        <div class="replica">
+                            <span class="replica-name">
+                                Replica 01
+                            </span>
+                            <span class="load one"></span>
+                        </div>
+                        <div class="replica">
+                            <span class="replica-name">
+                                Replica 02
+                            </span>
+                            <span class="load two"></span>
+                        </div>
+                        <div class="replica">
+                            <span class="replica-name">
+                                Replica 03
+                            </span>
+                            <span class="load three"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FOTO FINALE DEL PIANO -->
+    <section class="floor-photo reveal">
+        <div class="photo-placeholder">
+            <!-- EVENTUALE SECONDA FOTO REALE DEL PIANO -->
+        </div>
+        <div class="photo-caption">
+            Floor 06 · Natural architecture
+        </div>
+    </section>
+    <!-- FOOTER -->
+    <footer class="footer page">
+        <div class="footer-title reveal">
+            Back
+            <span>End.</span>
+        </div>
+        <div class="footer-bottom">
+            <span>
+                NTT DATA · Internal Guide
+            </span>
+            <span>
+                Floor 06 / 11
+            </span>
+        </div>
+    </footer>
+</main>
+<script>
+const revealElements = document.querySelectorAll(".reveal");
+const revealObserver = new IntersectionObserver(
+    entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    },
+    {
+        threshold: 0.12
+    }
+);
+revealElements.forEach(element => {
+    revealObserver.observe(element);
+});
+</script>
+</body>
+</html>
