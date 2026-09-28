@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NTT DATA / 11 FLOORS</title>
+    <meta
+        name="description"
+        content="NTT DATA — Internal Guide / 11 Floors"
+    >
+
+    <style>
+        :root {
+            --bg: #f5f5f2;
+            --text: #111;
+            --muted: #777;
+            --line: #cfcfca;
+            --soft: #e8e8e3;
+            --accent: #111;
+
+            --header-height: 78px;
+            --side-padding: clamp(24px, 5vw, 80px);
+            --content-width: 1500px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: Arial, Helvetica, sans-serif;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        header {
+            position: fixed;
+            inset: 0 0 auto 0;
+            height: var(--header-height);
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 var(--side-padding);
+
+            z-index: 100;
+            pointer-events: none;
+
+            mix-blend-mode: multiply;
+        }
+
+        .brand {
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+        }
+
+        .brand span {
+            color: var(--muted);
+            font-weight: 400;
+        }
+
+        .header-info {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+        }
+
+        #current-floor {
+            min-width: 50px;
+            text-align: right;
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .building-nav {
+            position: fixed;
+            right: clamp(20px, 3vw, 50px);
+            top: 50%;
+            transform: translateY(-50%);
+
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+
+            z-index: 90;
+        }
+
+        .building-nav a {
+            position: relative;
+
+            width: 32px;
+            height: 22px;
+
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+
+            font-size: 9px;
+            font-weight: 700;
+            color: #aaa;
+
+            transition:
+                color .25s ease,
+                transform .25s ease;
+        }
+
+        .building-nav a::before {
+            content: "";
+
+            position: absolute;
+            right: 28px;
+
+            width: 0;
+            height: 1px;
+
+            background: var(--text);
+
+            transition: width .25s ease;
+        }
+
+        .building-nav a:hover,
+        .building-nav a.active {
+            color: var(--text);
+            transform: translateX(-2px);
+        }
+
+        .building-nav a.active::before {
+            width: 14px;
+        }
+
+        .hero {
+            min-height: 100svh;
+
+            display: flex;
+            align-items: center;
+
+            padding:
+                calc(var(--header-height) + 50px)
+                var(--side-padding)
+                100px;
+
+            position: relative;
+        }
+
+        .hero-inner {
+            width: min(100%, var(--content-width));
+            margin: 0 auto;
+
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(280px, 32%);
+            gap: 60px;
+
+            align-items: end;
+        }
+
+        .hero-title {
+            line-height: .82;
+            letter-spacing: -0.075em;
+        }
+
+        .hero-title .solid {
+            display: block;
+            font-size: clamp(82px, 15vw, 240px);
+            font-weight: 800;
+        }
+
+        .hero-title .outline {
+            display: block;
+            font-size: clamp(82px, 15vw, 240px);
+            font-weight: 800;
+
+            color: transparent;
+            -webkit-text-stroke: 1.5px var(--text);
+        }
+
+        .hero-side {
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+            padding-bottom: 12px;
+        }
+
+        .hero-description {
+            max-width: 370px;
+
+            font-size: 15px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .hero-index {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+        }
+
+        .hero-index strong {
+            font-size: 64px;
+            line-height: 1;
+            letter-spacing: -.06em;
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 32px;
+            left: var(--side-padding);
+
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+            color: var(--muted);
+        }
+
+        .hero-scroll span {
+            width: 35px;
+            height: 1px;
+            background: var(--line);
+        }
+
+        .building {
+            position: relative;
+            width: min(100%, var(--content-width));
+            margin: 0 auto;
+        }
+
+        .building::before {
+            content: "";
+
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+
+            width: 1px;
+            background: var(--line);
+
+            transform: translateX(-50%);
+        }
+
+        .floor {
+            position: relative;
+
+            min-height: 760px;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            align-items: center;
+
+            padding: 100px var(--side-padding);
+
+            border-top: 1px solid var(--line);
+        }
+
+        .floor:last-child {
+            border-bottom: 1px solid var(--line);
+        }
+
+        .floor-info {
+            position: relative;
+            z-index: 2;
+
+            padding-right: clamp(30px, 7vw, 120px);
+        }
+
+        .floor:nth-child(even) .floor-info {
+            order: 2;
+            padding-right: 0;
+            padding-left: clamp(30px, 7vw, 120px);
+        }
+
+        .floor-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            margin-bottom: 28px;
+
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+            color: var(--muted);
+        }
+
+        .floor-meta span:first-child {
+            color: var(--text);
+        }
+
+        .floor-title {
+            max-width: 650px;
+
+            font-size: clamp(42px, 6vw, 92px);
+            line-height: .9;
+            letter-spacing: -.065em;
+            font-weight: 700;
+        }
+
+        .floor-description {
+            max-width: 440px;
+
+            margin-top: 35px;
+
+            font-size: 14px;
+            line-height: 1.7;
+            color: #666;
+        }
+
+        .floor-type {
+            position: relative;
+
+            height: 500px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .floor:nth-child(even) .floor-type {
+            order: 1;
+        }
+
+        /* ELEVATOR */
+
+        .elevator-link {
+            position: relative;
+
+            width: 280px;
+            height: 445px;
+
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+
+            padding-top: 40px;
+
+            transition: none;
+        }
+
+        .elevator-floor {
+            position: absolute;
+            top: 0;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .12em;
+
+            color: var(--muted);
+
+            transition:
+                color .3s ease,
+                transform .4s ease;
+        }
+
+        .elevator {
+            position: relative;
+
+            width: 240px;
+            height: 390px;
+
+            overflow: hidden;
+
+            border: 1px solid #999;
+
+            background: #d5d5d1;
+
+            box-shadow:
+                inset 0 0 0 9px #e9e9e5,
+                inset 0 0 0 10px #aaa;
+
+            transition:
+                border-color .4s ease,
+                box-shadow .4s ease;
+        }
+
+        .elevator-interior {
+            position: absolute;
+            inset: 11px;
+
+            overflow: hidden;
+
+            background: #222;
+        }
+
+        .elevator-interior img {
+            width: 100%;
+            height: 100%;
+
+            display: block;
+
+            object-fit: cover;
+
+            filter: grayscale(.15) contrast(.95);
+
+            transform: scale(1.03);
+
+            transition:
+                transform .8s cubic-bezier(.2,.7,.2,1);
+        }
+
+        .elevator-interior::after {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(255,255,255,.1),
+                    transparent 35%,
+                    rgba(0,0,0,.2)
+                );
+
+            pointer-events: none;
+        }
+
+        .elevator-doors {
+            position: absolute;
+            inset: 11px;
+
+            display: flex;
+
+            z-index: 5;
+
+            overflow: hidden;
+
+            background: #d0d0cc;
+        }
+
+        .elevator-door {
+            position: relative;
+
+            width: 50%;
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #bcbcb8 0%,
+                    #e1e1dd 48%,
+                    #b9b9b5 100%
+                );
+
+            border: 0;
+
+            transition:
+                transform .65s cubic-bezier(.2,.7,.2,1);
+        }
+
+        .elevator-door.left {
+            border-right: 1px solid #999;
+            transform: translateX(0);
+        }
+
+        .elevator-door.right {
+            border-left: 1px solid #999;
+            transform: translateX(0);
+        }
+
+        .elevator-door::after {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            bottom: 0;
+
+            width: 1px;
+
+            background: rgba(255,255,255,.45);
+        }
+
+        .elevator-door.left::after {
+            right: 22px;
+        }
+
+        .elevator-door.right::after {
+            left: 22px;
+        }
+
+        /* LE PORTE SI APRONO, L'ASCENSORE RESTA FERMO */
+
+        .elevator-link:hover {
+            transform: none;
+        }
+
+        .elevator-link:hover .elevator-floor {
+            color: var(--text);
+            transform: translateX(-50%);
+        }
+
+        .elevator-link:hover .elevator {
+            border-color: #777;
+
+            box-shadow:
+                inset 0 0 0 9px #e9e9e5,
+                inset 0 0 0 10px #777;
+        }
+
+        .elevator-link:hover .elevator-door.left {
+            transform: translateX(-100%);
+        }
+
+        .elevator-link:hover .elevator-door.right {
+            transform: translateX(100%);
+        }
+
+        .elevator-link:hover .elevator-interior img {
+            transform: scale(1);
+        }
+
+        .floor::before {
+            content: "";
+
+            position: absolute;
+            left: 50%;
+            top: 50%;
+
+            width: 10px;
+            height: 10px;
+
+            border: 1px solid var(--text);
+            border-radius: 50%;
+
+            background: var(--bg);
+
+            transform: translate(-50%, -50%);
+            z-index: 4;
+        }
+
+        footer {
+            min-height: 70vh;
+
+            display: flex;
+            align-items: flex-end;
+
+            padding:
+                100px
+                var(--side-padding)
+                45px;
+
+            border-top: 1px solid var(--line);
+        }
+
+        .footer-inner {
+            width: min(100%, var(--content-width));
+            margin: 0 auto;
+
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+
+            gap: 50px;
+        }
+
+        .footer-title {
+            font-size: clamp(58px, 10vw, 160px);
+            line-height: .8;
+            letter-spacing: -.075em;
+            font-weight: 800;
+        }
+
+        .footer-title span {
+            display: block;
+            color: transparent;
+            -webkit-text-stroke: 1px var(--text);
+        }
+
+        .footer-info {
+            max-width: 280px;
+
+            font-size: 11px;
+            line-height: 1.7;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: .05em;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(35px);
+
+            transition:
+                opacity .8s ease,
+                transform .8s cubic-bezier(.2,.7,.2,1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 1100px) {
+            .elevator-link {
+                width: 260px;
+                height: 420px;
+            }
+
+            .elevator {
+                width: 220px;
+                height: 360px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            :root {
+                --header-height: 68px;
+            }
+
+            header {
+                mix-blend-mode: normal;
+                background: rgba(245,245,242,.88);
+                backdrop-filter: blur(12px);
+            }
+
+            .header-info span:first-child {
+                display: none;
+            }
+
+            .building-nav {
+                display: none;
+            }
+
+            .hero {
+                min-height: 90svh;
+                padding-top: 120px;
+            }
+
+            .hero-inner {
+                grid-template-columns: 1fr;
+                gap: 55px;
+            }
+
+            .hero-side {
+                align-items: flex-start;
+            }
+
+            .hero-description {
+                max-width: 500px;
+            }
+
+            .building::before {
+                left: var(--side-padding);
+            }
+
+            .floor {
+                min-height: auto;
+
+                grid-template-columns: 1fr;
+
+                gap: 65px;
+
+                padding:
+                    120px
+                    var(--side-padding);
+            }
+
+            .floor-info,
+            .floor:nth-child(even) .floor-info {
+                order: 1;
+
+                padding:
+                    0 0 0
+                    45px;
+            }
+
+            .floor-type,
+            .floor:nth-child(even) .floor-type {
+                order: 2;
+
+                height: 470px;
+            }
+
+            .floor::before {
+                left: var(--side-padding);
+            }
+
+            .elevator-link {
+                width: 250px;
+                height: 415px;
+            }
+
+            .elevator {
+                width: 215px;
+                height: 350px;
+            }
+
+            footer {
+                min-height: 65vh;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 600px) {
+            :root {
+                --side-padding: 22px;
+            }
+
+            .brand {
+                font-size: 12px;
+            }
+
+            .brand span {
+                display: none;
+            }
+
+            .hero {
+                padding-bottom: 70px;
+            }
+
+            .hero-title .solid,
+            .hero-title .outline {
+                font-size: clamp(65px, 20vw, 110px);
+            }
+
+            .hero-description {
+                font-size: 13px;
+            }
+
+            .hero-index strong {
+                font-size: 48px;
+            }
+
+            .floor {
+                padding-top: 90px;
+                padding-bottom: 90px;
+                gap: 40px;
+            }
+
+            .floor-info,
+            .floor:nth-child(even) .floor-info {
+                padding-left: 32px;
+            }
+
+            .floor-title {
+                font-size: clamp(40px, 13vw, 65px);
+            }
+
+            .floor-description {
+                margin-top: 25px;
+                font-size: 13px;
+            }
+
+            .floor-type,
+            .floor:nth-child(even) .floor-type {
+                height: 380px;
+            }
+
+            .elevator-link {
+                width: 215px;
+                height: 345px;
+            }
+
+            .elevator {
+                width: 185px;
+                height: 300px;
+            }
+
+            .elevator-interior,
+            .elevator-doors {
+                inset: 9px;
+            }
+
+            .elevator-door.left::after {
+                right: 16px;
+            }
+
+            .elevator-door.right::after {
+                left: 16px;
+            }
+
+            footer {
+                min-height: 55vh;
+                padding-top: 80px;
+            }
+
+            .footer-title {
+                font-size: clamp(55px, 18vw, 100px);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition-duration: .01ms !important;
+                animation-duration: .01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="brand">
+            NTT DATA <span>/ 11 FLOORS</span>
+        </div>
+
+        <div class="header-info">
+            <span>Internal Guide</span>
+            <span id="current-floor">01 / 11</span>
+        </div>
+    </header>
+
+    <nav class="building-nav" aria-label="Navigazione piani">
+        <a href="#floor-11" data-floor="11">11</a>
+        <a href="#floor-10" data-floor="10">10</a>
+        <a href="#floor-09" data-floor="09">09</a>
+        <a href="#floor-08" data-floor="08">08</a>
+        <a href="#floor-07" data-floor="07">07</a>
+        <a href="#floor-06" data-floor="06">06</a>
+        <a href="#floor-05" data-floor="05">05</a>
+        <a href="#floor-04" data-floor="04">04</a>
+        <a href="#floor-03" data-floor="03">03</a>
+        <a href="#floor-02" data-floor="02">02</a>
+        <a href="#floor-01" data-floor="01" class="active">01</a>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="hero-inner">
+                <div class="hero-title reveal">
+                    <span class="solid">Eleven</span>
+                    <span class="outline">Floors.</span>
+                </div>
+
+                <div class="hero-side reveal">
+                    <p class="hero-description">
+                        Una guida verticale attraverso gli undici piani
+                        dell'edificio NTT DATA. Ogni livello racconta una
+                        parte diversa dell'esperienza.
+                    </p>
+
+                    <div class="hero-index">
+                        <strong>11</strong>
+                        <span>levels</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-scroll">
+                <span></span>
+                End of Experience
+            </div>
+        </section>
+
+        <section class="building" aria-label="Gli 11 piani">
+
+            <article class="floor reveal" id="floor-11">
+                <div class="floor-info">
+                    <div class="floor-meta">
+                        <span>Floor 11</span>
+                        <span>/</span>
+                        <span>11</span>
+                    </div>
+
+                    <h2 class="floor-title">
+                        Floor 11
+                    </h2>
+
+                    <p class="floor-description">
+                        Contenuto del piano. Questa sezione verrà sostituita
+                        con il tema e le informazioni reali del livello.
+                    </p>
+                </div>
+
+                <div class="floor-type">
+                    <a href="piano11.html" class="elevator-link" aria-label="Vai al Floor 11">
+                        <span class="elevator-floor">11</span>
+
+                        <div class="elevator">
+                            <div class="elevator-interior">
+                                <img src="assets/elevator-interior.jpg" alt="Interno dell'ascensore">
+                            </div>
+
+                            <div class="elevator-doors">
+                                <div class="elevator-door left"></div>
+                                <div class="elevator-door right"></div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </article>
+
+            <article class="floor reveal" id="floor-10">
+                <div class="floor-info">
+                    <div class="floor-meta">
+                        <span>Floor 10</span>
+                        <span>/</span>
+                        <span>10</span>
+                    </div>
+
+                    <h2 class="floor-title">
+                        Floor 10
+                    </h2>
+
+                    <p class="floor-description">
+                        Contenuto del piano. Questa sezione verrà sostituita
+                        con il tema e le informazioni reali del livello.
+                    </p>
+                </div>
+
+                <div class="floor-type">
+                    <a href="piano10.html" class="elevator-link" aria-label="Vai al Floor 10">
+                        <span class="elevator-floor">10</span>
+
+                        <div class="elevator">
+                            <div class="elevator-interior">
+                                <img src="assets/elevator-interior.jpg" alt="Interno dell'ascensore">
+                            </div>
+
+                            <div class="elevator-doors">
+                                <div class="elevator-door left"></div>
+                                <div class="elevator-door right"></div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </article>
+
+            <article class="floor reveal" id="floor-09">
+                <div class="floor-info">
+                    <div class="floor-meta">
+                        <span>Floor 09</span>
+                        <span>/</span>
+                        <span>09</span>
+                    </div>
+
+                    <h2 class="floor-title">
+                        Floor 09
+                    </h2>
+
+                    <p class="floor-description">
+                        Contenuto del piano. Questa sezione verrà sostituita
+                        con il tema e le informazioni reali del livello.
+                    </p>
+                </div>
+
+                <div class="floor-type">
+                    <a href="piano09.html" class="elevator-link" aria-label="Vai al Floor 09">
+                        <span class="elevator-floor">09</span>
+
+                        <div class="elevator">
+                            <div class="elevator-interior">
+                                <img src="assets/elevator-interior.jpg" alt="Interno dell'ascensore">
+                            </div>
+
+                            <div class="elevator-doors">
+                                <div class="elevator-door left"></div>
+                                <div class="elevator-door right"></div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </article>
+
+            <article class="floor reveal" id="floor-08">
+                <div class="floor-info">
+                    <div class="floor-meta">
+                        <span>Floor 08</span>
+                        <span>/</span>
+                        <span>08</span>
+                    </div>
+
+                    <h2 class="floor-title">
+                        Floor 08
+                    </h2>
+
+                    <p class="floor-description">
+                        Contenuto del piano. Questa sezione verrà sostituita
+                        con il tema e le informazioni reali del livello.
+                    </p>
+                </div>
+
+                <div class="floor-type">
+                    <a href="piano08.html" class="elevator-link" aria-label="Vai al Floor 08">
+                        <span class="elevator-floor">08</span>
+
+                        <div class="elevator">
+                            <div class="elevator-interior">
+                                <img src="assets/elevator-interior.jpg" alt="Interno dell'ascensore">
+                            </div>
+
+                            <div class="elevator-doors">
+                                <div class="elevator-door left"></div>
+                                <div class="elevator-door right"></div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </article>
+
+            <article class="floor reveal" id="floor-07">
+                <div class="floor-info">
+                    <div class="floor-meta">
+                        <span>Floor 07</span>
+                        <span>/</span>
+                        <span>07</span>
+                    </div>
+
+                    <h2 class="floor-title">
+                        Floor 07
+                    </h2>
+
+                    <p class="floor-description">
+                        Contenuto del piano. Questa sezione verrà sostituita
+                        con il tema e le informazioni reali del livello.
+                    </p>
+                </div>
+
+                <div class="floor-type">
+                    <a href="piano07.html" class="elevator-link" aria-label="Vai al Floor 07">
+                        <span class="elevator-floor">07</span>
+
+                        <div class="elevator">
+                            <div class="elevator-interior">
+                                <img src="assets/elevator-interior.jpg" alt="Interno dell'ascensore">
+                            </div>
+
+                            <div class="elevator-doors">
+                                <div class="elevator-door left"></div>
+                                <div class="elevator-door right"></div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </article>
+
+            <article class="floor reveal" id="floor-06">
+                <div class="floor-info">
+                    <div class="floor-meta">
+                        <span>Floor 06</span>
+                        <span>/</span>
+                        <span>06</span>
+                    </div>
+
+                    <h2 class="floor-title">
+                        Floor 06
+                    </h2>
+
+                    <p class="floor-description">
+                        Contenuto del piano. Questa sezione verrà sostituita
+                        con il tema e le informazioni reali del livello.
+                    </p>
+                </div>
+
+                <div class="floor-type">
+                    <a href="piano06.html" class="elevator-link" aria-label="Vai al Floor 06">
+                        <span class="elevator-floor">06</span>
+
+                        <div class="elevator">
+                            <div class="elevator-interior">
+                                <img src="assets/elevator-interior.jpg" alt="Interno dell'ascensore">
+                            </div>
+
+                            <div class="elevator-doors">
+                                <div class="elevator-door left"></div>
+                                <div class="elevator-door right"></div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </article>
+
+            <article class="floor reveal" id="floor-05">
+                <div class="floor-info">
+                    <div class="floor-meta">
+                        <span>Floor 05</span>
+                        <span>/</span>
+                        <span>05</span>
+                    </div>
+
+                    <h2 class="floor-title">
+                        Floor 05
+                    </h2>
+
+                    <p class="floor-description">
+                        Contenuto del piano. Questa sezione verrà sostituita
+                        con il tema e le informazioni reali del livello.
+                    </p>
+                </div>
+
+                <div class="floor-type">
+                    <a href="piano05.html" class="elevator-link" aria-label="Vai al Floor 05">
+                        <span class="elevator-floor">05</span>
+
+                        <div class="elevator">
+                            <div class="elevator-interior">
+                                <img src="assets/elevator-interior.jpg" alt="Interno dell'ascensore">
+                            </div>
+
+                            <div class="elevator-doors">
+                                <div class="elevator-door left"></div>
+                                <div class="elevator-door right"></div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </article>
+
+            <article class="floor reveal" id="floor-04">
+                <div class="floor-info">
+                    <div class="floor-meta">
+                        <span>Floor 04</span>
+                        <span>/</span>
+                        <span>04</span>
+                    </div>
+
+                    <h2 class="floor-title">
+                        Floor 04
+                    </h2>
+
+                    <p class="floor-description">
+                        Contenuto del piano. Questa sezione verrà sostituita
+                        con il tema e le informazioni reali del livello.
+                    </p>
+                </div>
+
+                <div class="floor-type">
+                    <a href="piano04.html" class="elevator-link" aria-label="Vai al Floor 04">
+                        <span class="elevator-floor">04</span>
+
+                        <div class="elevator">
+                            <div class="elevator-interior">
+                                <img src="assets/elevator-interior.jpg" alt="Interno dell'ascensore">
+                            </div>
+
+                            <div class="elevator-doors">
+                                <div class="elevator-door left"></div>
+                                <div class="elevator-door right"></div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </article>
+
+            <article class="floor reveal" id="floor-03">
+                <div class="floor-info">
+                    <div class="floor-meta">
+                        <span>Floor 03</span>
+                        <span>/</span>
+                        <span>03</span>
+                    </div>
+
+                    <h2 class="floor-title">
+                        Floor 03
+                    </h2>
+
+                    <p class="floor-description">
+                        Contenuto del piano. Questa sezione verrà sostituita
+                        con il tema e le informazioni reali del livello.
+                    </p>
+                </div>
+
+                <div class="floor-type">
+                    <a href="piano03.html" class="elevator-link" aria-label="Vai al Floor 03">
+                        <span class="elevator-floor">03</span>
+
+                        <div class="elevator">
+                            <div class="elevator-interior">
+                                <img src="assets/elevator-interior.jpg" alt="Interno dell'ascensore">
+                            </div>
+
+                            <div class="elevator-doors">
+                                <div class="elevator-door left"></div>
+                                <div class="elevator-door right"></div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </article>
+
+            <article class="floor reveal" id="floor-02">
+                <div class="floor-info">
+                    <div class="floor-meta">
+                        <span>Floor 02</span>
+                        <span>/</span>
+                        <span>02</span>
+                    </div>
+
+                    <h2 class="floor-title">
+                        Floor 02
+                    </h2>
+
+                    <p class="floor-description">
+                        Contenuto del piano. Questa sezione verrà sostituita
+                        con il tema e le informazioni reali del livello.
+                    </p>
+                </div>
+
+                <div class="floor-type">
+                    <a href="piano02.html" class="elevator-link" aria-label="Vai al Floor 02">
+                        <span class="elevator-floor">02</span>
+
+                        <div class="elevator">
+                            <div class="elevator-interior">
+                                <img src="assets/elevator-interior.jpg" alt="Interno dell'ascensore">
+                            </div>
+
+                            <div class="elevator-doors">
+                                <div class="elevator-door left"></div>
+                                <div class="elevator-door right"></div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </article>
+
+            <article class="floor reveal" id="floor-01">
+                <div class="floor-info">
+                    <div class="floor-meta">
+                        <span>Floor 01</span>
+                        <span>/</span>
+                        <span>Base</span>
+                    </div>
+
+                    <h2 class="floor-title">
+                        Floor 01
+                    </h2>
+
+                    <p class="floor-description">
+                        Contenuto del piano. Questa sezione verrà sostituita
+                        con il tema e le informazioni reali del livello.
+                    </p>
+                </div>
+
+                <div class="floor-type">
+                    <a href="piano01.html" class="elevator-link" aria-label="Vai al Floor 01">
+                        <span class="elevator-floor">01</span>
+
+                        <div class="elevator">
+                            <div class="elevator-interior">
+                                <img src="assets/elevator-interior.jpg" alt="Interno dell'ascensore">
+                            </div>
+
+                            <div class="elevator-doors">
+                                <div class="elevator-door left"></div>
+                                <div class="elevator-door right"></div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </article>
+
+        </section>
+    </main>
+
+    <footer id="footer">
+        <div class="footer-inner">
+
+            <div class="footer-title">
+                Eleven
+                <span>Floors.</span>
+            </div>
+
+            <div class="footer-info">
+                NTT DATA<br>
+                Internal Guide<br><br>
+                Scroll to Explore
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+        const floors = [...document.querySelectorAll(".floor")];
+        const navItems = [...document.querySelectorAll(".building-nav a")];
+        const currentFloor = document.getElementById("current-floor");
+
+        const revealObserver = new IntersectionObserver(
+            entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                    }
+                });
+            },
+            {
+                threshold: 0.12
+            }
+        );
+
+        document
+            .querySelectorAll(".reveal")
+            .forEach(element => revealObserver.observe(element));
+
+        const floorObserver = new IntersectionObserver(
+            entries => {
+                const visibleFloors = entries
+                    .filter(entry => entry.isIntersecting)
+                    .sort(
+                        (a, b) =>
+                            b.intersectionRatio - a.intersectionRatio
+                    );
+
+                if (!visibleFloors.length) return;
+
+                const floor = visibleFloors[0].target;
+                const number = floor.id.replace("floor-", "");
+
+                currentFloor.textContent = `${number} / 11`;
+
+                navItems.forEach(item => {
+                    item.classList.toggle(
+                        "active",
+                        item.dataset.floor === number
+                    );
+                });
+            },
+            {
+                rootMargin: "-35% 0px -35% 0px",
+                threshold: [0.1, 0.25, 0.5, 0.75]
+            }
+        );
+
+        floors.forEach(floor => floorObserver.observe(floor));
+
+        navItems.forEach(item => {
+            item.addEventListener("click", event => {
+                event.preventDefault();
+
+                const target = document.querySelector(
+                    item.getAttribute("href")
+                );
+
+                if (!target) return;
+
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+            });
+        });
+
+        window.addEventListener("load", () => {
+            window.scrollTo(0, document.body.scrollHeight);
+        });
+
+        window.addEventListener("scroll", () => {
+            if (window.scrollY <= 20) {
+                currentFloor.textContent = "11 / 11";
+            }
+        });
+    </script>
+
+</body>
+</html>
