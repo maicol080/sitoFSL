@@ -567,6 +567,81 @@ header{
 
 
 /* =========================================================
+   PHOTO SPACES
+========================================================= */
+
+.photo-section{
+  padding:
+    clamp(70px,9vw,130px)
+    var(--side-padding);
+
+  background:var(--black);
+
+  border-bottom:1px solid var(--line);
+}
+
+.photo-frame{
+  width:min(
+    var(--content-width),
+    calc(100% - var(--side-padding) * 2)
+  );
+
+  margin:0 auto;
+
+  position:relative;
+
+  overflow:hidden;
+
+  border:1px solid rgba(200,206,213,.18);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(89,101,114,.18),
+      rgba(13,16,19,.96)
+    );
+
+  box-shadow:
+    14px 14px 0 rgba(0,0,0,.22);
+}
+
+.photo-frame img{
+  display:block;
+
+  width:100%;
+  height:auto;
+
+  aspect-ratio:16 / 7;
+
+  object-fit:cover;
+
+  filter:
+    grayscale(18%)
+    contrast(1.05)
+    brightness(.82);
+
+  opacity:.9;
+}
+
+.photo-frame::after{
+  content:"";
+
+  position:absolute;
+  inset:0;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(13,16,19,.08),
+      transparent 45%,
+      rgba(181,154,97,.08)
+    );
+
+  pointer-events:none;
+}
+
+
+/* =========================================================
    CONTENT BLOCKS
 ========================================================= */
 
@@ -1455,6 +1530,20 @@ footer{
     font-size:50px;
   }
 
+  .photo-section{
+    padding:
+      70px
+      var(--side-padding);
+  }
+
+  .photo-frame{
+    width:100%;
+  }
+
+  .photo-frame img{
+    aspect-ratio:4 / 3;
+  }
+
   .block-copy{
     padding:90px var(--side-padding);
   }
@@ -1653,6 +1742,24 @@ footer{
       </p>
 
     </div>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     PHOTO 01
+======================================================= -->
+
+<section class="photo-section">
+
+  <div class="photo-frame reveal">
+
+    <img
+      src="https://cdn.prod.website-files.com/6324546bc415e15691cecbef/6a746bc1d8783f8e8975becc_024.jpg"
+      alt="Corporate Governance"
+    >
 
   </div>
 
@@ -1949,6 +2056,24 @@ footer{
   </div>
 
 </article>
+
+</section>
+
+
+<!-- =======================================================
+     PHOTO 02
+======================================================= -->
+
+<section class="photo-section">
+
+  <div class="photo-frame reveal">
+
+    <img
+      src="https://cdn.prod.website-files.com/6324546bc415e15691cecbef/6a7450e99cce97e9852cb11e_02-p-2000.jpg"
+      alt="Corporate Governance"
+    >
+
+  </div>
 
 </section>
 
