@@ -160,7 +160,9 @@
         }
 
 
-        /* TOP BAR */
+        /* =====================================================
+           TOP BAR
+        ===================================================== */
 
         .topbar {
             display: flex;
@@ -194,11 +196,28 @@
         }
 
 
-        /* HERO CONTENT */
+        /* =====================================================
+           HERO CONTENT
+        ===================================================== */
 
         .hero-content {
             width: min(100%, var(--content-width));
             margin: 0 auto;
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1fr)
+                minmax(360px, 600px);
+
+            align-items: center;
+
+            gap: clamp(45px, 7vw, 110px);
+        }
+
+
+        .hero-copy {
+            min-width: 0;
         }
 
 
@@ -215,11 +234,11 @@
 
 
         .hero-title {
-            max-width: 1200px;
+            max-width: 800px;
 
             font-family: var(--display);
 
-            font-size: clamp(65px, 10.5vw, 165px);
+            font-size: clamp(62px, 8vw, 140px);
             font-weight: 400;
 
             line-height: .84;
@@ -234,12 +253,14 @@
 
         .hero-title .soft {
             color: #87989a;
+
             font-weight: 300;
         }
 
 
         .hero-title .serif {
             font-family: var(--serif);
+
             font-weight: 400;
             font-style: italic;
 
@@ -247,7 +268,9 @@
         }
 
 
-        /* HERO DESCRIPTION */
+        /* =====================================================
+           HERO DESCRIPTION
+        ===================================================== */
 
         .hero-description {
             display: flex;
@@ -267,7 +290,68 @@
         }
 
 
-        /* TERRACE FOOT */
+        /* =====================================================
+           HERO PHOTO
+        ===================================================== */
+
+        .hero-photo {
+            width: 100%;
+
+            aspect-ratio: 16 / 9;
+
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #dce9eb,
+                    #c5d7d9
+                );
+
+            border: 1px solid rgba(55, 75, 77, .15);
+        }
+
+
+        .hero-photo img {
+            width: 100%;
+            height: 100%;
+
+            display: block;
+
+            object-fit: cover;
+        }
+
+
+        .hero-photo::before {
+            content: "11 / TERRACE";
+
+            position: absolute;
+
+            left: 20px;
+            bottom: 18px;
+
+            z-index: 2;
+
+            padding: 7px 10px;
+
+            background: rgba(255, 255, 255, .72);
+
+            color: #53605f;
+
+            font-size: 7px;
+
+            text-transform: uppercase;
+            letter-spacing: .16em;
+
+            backdrop-filter: blur(8px);
+        }
+
+
+        /* =====================================================
+           TERRACE FOOT
+        ===================================================== */
 
         .terrace-info {
             width: min(100%, var(--content-width));
@@ -333,6 +417,7 @@
 
         .intro {
             display: grid;
+
             grid-template-columns: 27% 1fr;
 
             background: var(--white);
@@ -427,6 +512,7 @@
 
         .text strong {
             color: var(--text);
+
             font-weight: 600;
         }
 
@@ -508,6 +594,7 @@
 
         .transition-title em {
             font-family: var(--serif);
+
             font-weight: 400;
         }
 
@@ -591,6 +678,7 @@
         .executive-top {
             display: flex;
             align-items: center;
+
             gap: 20px;
 
             margin-bottom: 50px;
@@ -630,6 +718,7 @@
 
         .executive-title span {
             display: block;
+
             color: #777c79;
         }
 
@@ -646,6 +735,7 @@
 
         .executive-bottom {
             display: grid;
+
             grid-template-columns: 1fr 1fr;
 
             max-width: 900px;
@@ -668,6 +758,7 @@
 
         .executive-bottom p strong {
             color: #e5e0d5;
+
             font-weight: 500;
         }
 
@@ -709,6 +800,7 @@
 
         .thanks {
             display: grid;
+
             grid-template-columns: 27% 1fr;
 
             background: var(--sand-light);
@@ -826,12 +918,6 @@
         }
 
 
-        /*
-            Footer volutamente più controllato:
-            niente line-height troppo basso e niente
-            tracking eccessivamente negativo.
-        */
-
         .footer-title {
             font-family: var(--display);
 
@@ -845,9 +931,12 @@
         }
 
 
-        .footer-title span {
+        .footer-title div {
             display: block;
+        }
 
+
+        .footer-title div:last-child {
             margin-top: .08em;
 
             color: transparent;
@@ -877,6 +966,7 @@
 
         .reveal {
             opacity: 0;
+
             transform: translateY(28px);
 
             transition:
@@ -898,7 +988,7 @@
         @media (max-width: 800px) {
 
             .hero {
-                min-height: 92svh;
+                min-height: auto;
 
                 padding:
                     24px
@@ -917,6 +1007,17 @@
             }
 
 
+            .hero-content {
+                grid-template-columns: 1fr;
+
+                gap: 45px;
+
+                padding:
+                    70px 0
+                    55px;
+            }
+
+
             .hero-title {
                 font-size: clamp(58px, 16vw, 105px);
             }
@@ -931,6 +1032,15 @@
 
             .hero-description p {
                 font-size: 12px;
+            }
+
+
+            .hero-photo {
+                width: 100%;
+
+                max-width: 520px;
+
+                aspect-ratio: 16 / 9;
             }
 
 
@@ -960,6 +1070,7 @@
 
             .side-label {
                 writing-mode: initial;
+
                 transform: none;
 
                 margin-top: 14px;
@@ -1041,8 +1152,6 @@
             }
 
 
-            /* FOOTER MOBILE */
-
             footer {
                 min-height: 55vh;
 
@@ -1055,6 +1164,7 @@
 
             .footer-inner {
                 flex-direction: column;
+
                 align-items: flex-start;
 
                 gap: 45px;
@@ -1065,13 +1175,14 @@
                 font-size: clamp(58px, 17vw, 105px);
 
                 line-height: .9;
+
                 letter-spacing: -.05em;
 
                 white-space: normal;
             }
 
 
-            .footer-title span {
+            .footer-title div:last-child {
                 margin-top: .08em;
             }
 
@@ -1079,6 +1190,7 @@
             .footer-meta {
                 max-width: 260px;
             }
+
         }
 
 
@@ -1088,12 +1200,14 @@
                 scroll-behavior: auto;
             }
 
+
             *,
             *::before,
             *::after {
                 transition-duration: .01ms !important;
                 animation-duration: .01ms !important;
             }
+
         }
 
     </style>
@@ -1111,6 +1225,7 @@
     ===================================================== -->
 
     <header class="hero">
+
 
         <div class="topbar">
 
@@ -1134,37 +1249,58 @@
 
         <div class="hero-content">
 
-            <div class="hero-kicker reveal">
-                Esperienza formativa / ITIS Cannizzaro
+
+            <div class="hero-copy">
+
+
+                <div class="hero-kicker reveal">
+                    Esperienza formativa / ITIS Cannizzaro
+                </div>
+
+
+                <h1 class="hero-title reveal">
+
+                    <span>Eleven.</span>
+
+                    <span class="soft">Open.</span>
+
+                    <span class="serif">Above.</span>
+
+                </h1>
+
+
+                <div class="hero-description reveal">
+
+                    <p>
+                        Un'esperienza formativa all'interno di NTT DATA Italia,
+                        vissuta tra gli spazi della sede di Milano e il punto
+                        più alto dell'edificio: un ambiente aperto, luminoso
+                        e dedicato a una dimensione più riservata dell'azienda.
+                    </p>
+
+                </div>
+
+
             </div>
 
 
-            <h1 class="hero-title reveal">
+            <!-- FOTO DI VOI -->
 
-                <span>Eleven.</span>
+            <div class="hero-photo reveal">
 
-                <span class="soft">Open.</span>
-
-                <span class="serif">Above.</span>
-
-            </h1>
-
-
-            <div class="hero-description reveal">
-
-                <p>
-                    Un'esperienza formativa all'interno di NTT DATA Italia,
-                    vissuta tra gli spazi della sede di Milano e il punto
-                    più alto dell'edificio: un ambiente aperto, luminoso
-                    e dedicato a una dimensione più riservata dell'azienda.
-                </p>
+                <img
+                    src="assets/11-floor.jpg"
+                    alt="Foto dell'esperienza all'undicesimo piano"
+                >
 
             </div>
+
 
         </div>
 
 
         <div class="terrace-info">
+
 
             <div class="terrace-number">
 
@@ -1182,7 +1318,9 @@
                 Terrace / Milano
             </div>
 
+
         </div>
+
 
     </header>
 
@@ -1195,6 +1333,7 @@
         ================================================= -->
 
         <section class="intro reveal">
+
 
             <div class="intro-side">
 
@@ -1212,13 +1351,17 @@
 
             <div class="intro-content">
 
+
                 <h2 class="intro-title">
+
                     Un primo sguardo
                     al <span>mondo professionale.</span>
+
                 </h2>
 
 
                 <div class="text">
+
 
                     <p>
                         Siamo studenti dell'<strong>ITIS Cannizzaro di Rho</strong>,
@@ -1278,9 +1421,12 @@
                         percorso scolastico.
                     </p>
 
+
                 </div>
 
+
             </div>
+
 
         </section>
 
@@ -1291,7 +1437,9 @@
 
         <section class="transition reveal">
 
+
             <div class="transition-inner">
+
 
                 <div class="transition-label">
                     11° Piano / Atmosfera
@@ -1303,7 +1451,9 @@
                     e tutto diventa più <em>aperto.</em>
                 </div>
 
+
             </div>
+
 
         </section>
 
@@ -1314,7 +1464,9 @@
 
         <section class="executive reveal">
 
+
             <div class="executive-inner">
+
 
                 <div class="executive-top">
 
@@ -1338,6 +1490,7 @@
 
                 <div class="executive-bottom">
 
+
                     <p>
                         L'undicesimo piano rappresenta una parte particolare
                         della sede di Milano. Qui si trova anche l'area
@@ -1353,7 +1506,9 @@
                         che apre lo sguardo verso Milano.
                     </p>
 
+
                 </div>
+
 
             </div>
 
@@ -1368,6 +1523,7 @@
 
             </div>
 
+
         </section>
 
 
@@ -1377,7 +1533,9 @@
 
         <section class="thanks reveal">
 
+
             <div class="thanks-side">
+
 
                 <div class="section-number">
                     03 / 03
@@ -1388,10 +1546,12 @@
                     Ringraziamenti
                 </div>
 
+
             </div>
 
 
             <div class="thanks-content">
+
 
                 <h2 class="thanks-title">
                     Grazie.
@@ -1399,6 +1559,7 @@
 
 
                 <div class="thanks-text">
+
 
                     <p>
                         Vogliamo infine ringraziare tutte le persone che hanno
@@ -1434,11 +1595,15 @@
                         più concreta del nostro futuro.
                     </div>
 
+
                 </div>
+
 
             </div>
 
+
         </section>
+
 
     </main>
 
@@ -1449,7 +1614,9 @@
 
     <footer>
 
+
         <div class="footer-inner">
+
 
             <div class="footer-title">
 
@@ -1469,7 +1636,9 @@
 
             </div>
 
+
         </div>
+
 
     </footer>
 
@@ -1488,7 +1657,9 @@
             entries.forEach(entry => {
 
                 if (entry.isIntersecting) {
+
                     entry.target.classList.add("visible");
+
                 }
 
             });
@@ -1501,7 +1672,9 @@
 
 
     revealElements.forEach(element => {
+
         revealObserver.observe(element);
+
     });
 
 </script>
