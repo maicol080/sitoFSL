@@ -1,0 +1,1909 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Fase di analisi</title>
+
+
+    <style>
+
+        /* =====================================================
+           PALETTE ISPIRATA DIRETTAMENTE ALLE FOTO
+        ====================================================== */
+
+        :root {
+
+            /* Sfondo */
+
+            --bg: #cec9bf;
+            --bg-light: #d8d3c9;
+            --bg-soft: #e0dcd4;
+
+            /* Bianco caldo */
+
+            --white-warm: #f1efea;
+
+            /* Legno */
+
+            --wood-light: #b19d86;
+            --wood: #98816a;
+            --wood-dark: #776552;
+
+            /* Grigi */
+
+            --grey-light: #c5c1b8;
+            --grey: #98958d;
+            --grey-dark: #66655f;
+
+            /* Verde delle sedute */
+
+            --green: #304844;
+
+            /* Colore principale di titoli e testi */
+
+            --text: #66584b;
+            --text-soft: #665f57;
+
+            /* Linee */
+
+            --line: rgba(45, 47, 43, 0.18);
+
+            /* Layout */
+
+            --side-padding: clamp(24px, 5vw, 80px);
+
+            --content-width: 1500px;
+
+            --header-height: 78px;
+        }
+
+
+
+        /* =====================================================
+           RESET
+        ====================================================== */
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+        }
+
+
+        html {
+
+            scroll-behavior: smooth;
+
+            scroll-padding-top: 110px;
+        }
+
+
+        body {
+
+            background: var(--bg);
+
+            color: var(--text);
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            overflow-x: hidden;
+        }
+
+
+        img {
+
+            display: block;
+
+            max-width: 100%;
+        }
+
+
+        a {
+
+            color: inherit;
+
+            text-decoration: none;
+        }
+
+
+        button {
+
+            font: inherit;
+        }
+
+
+
+        /* =====================================================
+           HEADER
+        ====================================================== */
+
+        header {
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            right: 0;
+
+            height: var(--header-height);
+
+            padding:
+                0
+                var(--side-padding);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            z-index: 100;
+
+            background:
+                rgba(
+                    206,
+                    201,
+                    191,
+                    .84
+                );
+
+            backdrop-filter: blur(14px);
+
+            border-bottom:
+                1px solid
+                rgba(45, 47, 43, .09);
+        }
+
+
+        .brand {
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            letter-spacing: .08em;
+
+            text-transform: uppercase;
+        }
+
+
+        .brand span {
+
+            color: var(--grey-dark);
+
+            font-weight: 400;
+        }
+
+
+        .header-info {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 24px;
+
+            color: var(--grey-dark);
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .12em;
+        }
+
+
+        #current-section {
+
+            color: var(--text);
+
+            font-weight: 700;
+        }
+
+
+
+        /* =====================================================
+           HERO
+        ====================================================== */
+
+        .hero {
+
+            position: relative;
+
+            min-height: 100svh;
+
+            display: flex;
+
+            align-items: center;
+
+            padding:
+
+                calc(var(--header-height) + 55px)
+
+                var(--side-padding)
+
+                110px;
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    rgba(255,255,255,.12),
+                    transparent 50%
+                );
+        }
+
+
+        .hero-inner {
+
+            width:
+                min(
+                    100%,
+                    var(--content-width)
+                );
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1fr)
+                minmax(280px, 30%);
+
+            gap: 70px;
+
+            align-items: end;
+        }
+
+
+        .hero-left {
+
+            max-width: 1000px;
+        }
+
+
+        .hero-label {
+
+            margin-bottom: 30px;
+
+            color: var(--grey-dark);
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: .16em;
+        }
+
+
+        .hero-title {
+
+            color: var(--text);
+
+            font-size:
+                clamp(
+                    70px,
+                    11vw,
+                    175px
+                );
+
+            line-height: .84;
+
+            letter-spacing: -.075em;
+
+            font-weight: 700;
+        }
+
+
+        .hero-title .solid {
+
+            display: block;
+        }
+
+
+        .hero-title .outline {
+
+            display: block;
+
+            color: transparent;
+
+            -webkit-text-stroke:
+                1.3px
+                var(--text);
+        }
+
+
+        .hero-right {
+
+            padding-bottom: 12px;
+        }
+
+
+        .hero-description {
+
+            max-width: 400px;
+
+            color: var(--text-soft);
+
+            font-size: 14px;
+
+            line-height: 1.85;
+        }
+
+
+        .hero-material {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin-top: 38px;
+
+            color: var(--grey-dark);
+
+            font-size: 9px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .14em;
+        }
+
+
+        .hero-material-line {
+
+            width: 42px;
+
+            height: 1px;
+
+            background:
+                var(--wood-dark);
+        }
+
+
+        .hero-scroll {
+
+            position: absolute;
+
+            bottom: 30px;
+
+            left: var(--side-padding);
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            color: var(--grey-dark);
+
+            font-size: 9px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .14em;
+        }
+
+
+        .hero-scroll span {
+
+            width: 38px;
+
+            height: 1px;
+
+            background: var(--line);
+        }
+
+
+
+        /* =====================================================
+           DIVISORE
+        ====================================================== */
+
+        .section-divider {
+
+            width:
+                min(
+                    calc(100% - 2 * var(--side-padding)),
+                    var(--content-width)
+                );
+
+            margin: auto;
+
+            border-top:
+                1px solid
+                var(--line);
+        }
+
+
+
+        /* =====================================================
+           CONTENITORE
+        ====================================================== */
+
+        .spaces {
+
+            width:
+                min(
+                    100%,
+                    var(--content-width)
+                );
+
+            margin: auto;
+        }
+
+
+
+        /* =====================================================
+           SEZIONI
+        ====================================================== */
+
+        .space {
+
+            min-height: 760px;
+
+            display: grid;
+
+            grid-template-columns:
+                1.05fr
+                .95fr;
+
+            gap:
+                clamp(
+                    55px,
+                    8vw,
+                    130px
+                );
+
+            align-items: center;
+
+            padding:
+                120px
+                var(--side-padding);
+
+            border-bottom:
+                1px solid
+                var(--line);
+        }
+
+
+        /*
+            SECONDA SEZIONE
+
+            TESTO A SINISTRA
+            FOTO A DESTRA
+        */
+
+        .space.reverse {
+
+            grid-template-columns:
+                .95fr
+                1.05fr;
+        }
+
+
+        .space.reverse .space-image {
+
+            order: 2;
+        }
+
+
+        .space.reverse .space-text {
+
+            order: 1;
+        }
+
+
+
+        /* =====================================================
+           FOTO
+        ====================================================== */
+
+        .space-image {
+
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+                var(--bg-light);
+
+            border:
+                1px solid
+                rgba(45,47,43,.13);
+
+            cursor: pointer;
+        }
+
+
+        .space-image img {
+
+            width: 100%;
+
+            object-fit: cover;
+
+            aspect-ratio: 4 / 3;
+
+            filter:
+                saturate(.72)
+                contrast(.96)
+                brightness(1.01);
+
+            transition:
+                transform .9s
+                    cubic-bezier(.2,.7,.2,1),
+
+                filter .5s ease;
+        }
+
+
+        /* Prima foto verticale */
+
+        .space:first-child
+        .space-image img {
+
+            aspect-ratio: 4 / 4.5;
+        }
+
+
+        .space-image:hover img {
+
+            transform:
+                scale(1.025);
+
+            filter:
+                saturate(.86)
+                contrast(1);
+        }
+
+
+
+        /* =====================================================
+           SPAZI PER LE NUOVE FOTO
+        ====================================================== */
+
+        .empty-image {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            min-height: 420px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--grey-dark);
+            background: var(--bg-soft);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: .14em;
+        }
+
+
+        /* =====================================================
+           TESTO
+        ====================================================== */
+
+        .space-text {
+
+            max-width: 570px;
+        }
+
+
+        /* SOLO NUMERO */
+
+        .space-number {
+
+            margin-bottom: 28px;
+
+            color:
+                var(--green);
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            letter-spacing: .13em;
+
+            text-transform: uppercase;
+        }
+
+
+        .space-title {
+
+            max-width: 610px;
+
+            color:
+                var(--text);
+
+            font-size:
+                clamp(
+                    45px,
+                    6vw,
+                    86px
+                );
+
+            line-height: .9;
+
+            letter-spacing: -.065em;
+
+            font-weight: 700;
+        }
+
+
+        .space-description {
+
+            max-width: 455px;
+
+            margin-top: 36px;
+
+            color:
+                var(--text-soft);
+
+            font-size: 14px;
+
+            line-height: 1.85;
+        }
+
+
+
+        /* =====================================================
+           BLOCCO MATERICO
+        ====================================================== */
+
+        .material-block {
+
+            width: 100%;
+
+            max-width: 390px;
+
+            height: 6px;
+
+            margin-top: 42px;
+
+            display: flex;
+        }
+
+
+        .material-block span:nth-child(1) {
+
+            width: 36%;
+
+            background:
+                var(--wood-light);
+        }
+
+
+        .material-block span:nth-child(2) {
+
+            width: 24%;
+
+            background:
+                var(--grey-light);
+        }
+
+
+        .material-block span:nth-child(3) {
+
+            width: 18%;
+
+            background:
+                var(--green);
+        }
+
+
+        .material-block span:nth-child(4) {
+
+            width: 22%;
+
+            background:
+                var(--white-warm);
+
+            border:
+                1px solid
+                var(--line);
+        }
+
+
+
+        /* =====================================================
+           FOOTER
+        ====================================================== */
+
+        footer {
+
+            min-height: 65vh;
+
+            padding:
+                100px
+                var(--side-padding)
+                50px;
+
+            display: flex;
+
+            align-items: flex-end;
+
+            justify-content: space-between;
+
+            gap: 50px;
+
+            background:
+                var(--bg-light);
+        }
+
+
+        .footer-title {
+
+            color:
+                var(--text);
+
+            line-height: .82;
+
+            letter-spacing: -.075em;
+
+            font-size:
+                clamp(
+                    60px,
+                    10vw,
+                    155px
+                );
+
+            font-weight: 700;
+        }
+
+
+        .footer-title span {
+
+            display: block;
+        }
+
+
+        .footer-title .outline {
+
+            color: transparent;
+
+            -webkit-text-stroke:
+                1px
+                var(--text);
+        }
+
+
+        .footer-info {
+
+            max-width: 280px;
+
+            color:
+                var(--grey-dark);
+
+            font-size: 10px;
+
+            line-height: 1.8;
+
+            text-transform: uppercase;
+
+            letter-spacing: .08em;
+        }
+
+
+
+        /* =====================================================
+           ANIMAZIONE SCROLL
+        ====================================================== */
+
+        .reveal {
+
+            opacity: 0;
+
+            transform:
+                translateY(35px);
+
+            transition:
+                opacity .9s ease,
+
+                transform .9s
+                cubic-bezier(.2,.7,.2,1);
+        }
+
+
+        .reveal.visible {
+
+            opacity: 1;
+
+            transform:
+                translateY(0);
+        }
+
+
+
+        /* =====================================================
+           LIGHTBOX
+        ====================================================== */
+
+        .lightbox {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 500;
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 30px;
+
+            background:
+                rgba(
+                    35,
+                    36,
+                    33,
+                    .90
+                );
+        }
+
+
+        .lightbox.open {
+
+            display: flex;
+        }
+
+
+        .lightbox img {
+
+            max-width: 94vw;
+
+            max-height: 90vh;
+
+            object-fit: contain;
+        }
+
+
+        .lightbox-close {
+
+            position: absolute;
+
+            top: 20px;
+
+            right: 28px;
+
+            border: none;
+
+            background: transparent;
+
+            color: white;
+
+            font-size: 38px;
+
+            line-height: 1;
+
+            cursor: pointer;
+        }
+
+
+
+        /* =====================================================
+           TABLET
+        ====================================================== */
+
+        @media (max-width: 900px) {
+
+            :root {
+
+                --header-height: 68px;
+
+                --side-padding: 28px;
+            }
+
+
+            .header-info span:first-child {
+
+                display: none;
+            }
+
+
+            .hero {
+
+                min-height: 90svh;
+            }
+
+
+            .hero-inner {
+
+                grid-template-columns: 1fr;
+
+                gap: 55px;
+            }
+
+
+            .space,
+            .space.reverse {
+
+                min-height: auto;
+
+                grid-template-columns: 1fr;
+
+                gap: 50px;
+
+                padding:
+                    90px
+                    var(--side-padding);
+            }
+
+
+            .space.reverse .space-image {
+
+                order: 1;
+            }
+
+
+            .space.reverse .space-text {
+
+                order: 2;
+            }
+
+
+            .space-text {
+
+                max-width: 650px;
+            }
+
+
+            footer {
+
+                min-height: 55vh;
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                justify-content: flex-end;
+            }
+
+        }
+
+
+
+        /* =====================================================
+           MOBILE
+        ====================================================== */
+
+        @media (max-width: 600px) {
+
+            :root {
+
+                --side-padding: 20px;
+            }
+
+
+            .brand {
+
+                font-size: 11px;
+            }
+
+
+            .brand span {
+
+                display: none;
+            }
+
+
+            .hero {
+
+                padding-top: 110px;
+
+                padding-bottom: 90px;
+            }
+
+
+            .hero-title {
+
+                font-size:
+                    clamp(
+                        58px,
+                        17vw,
+                        100px
+                    );
+            }
+
+
+            .hero-description {
+
+                font-size: 13px;
+            }
+
+
+            .space,
+            .space.reverse {
+
+                padding-top: 80px;
+
+                padding-bottom: 80px;
+
+                gap: 40px;
+            }
+
+
+            .space-title {
+
+                font-size:
+                    clamp(
+                        42px,
+                        13vw,
+                        68px
+                    );
+            }
+
+
+            .space-description {
+
+                font-size: 13px;
+            }
+
+
+            footer {
+
+                padding-top: 80px;
+            }
+
+
+            .footer-title {
+
+                font-size:
+                    clamp(
+                        54px,
+                        18vw,
+                        95px
+                    );
+            }
+
+        }
+
+
+
+        /* =====================================================
+           ACCESSIBILITÀ
+        ====================================================== */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            html {
+
+                scroll-behavior: auto;
+            }
+
+
+            *,
+            *::before,
+            *::after {
+
+                transition-duration:
+                    .01ms !important;
+
+                animation-duration:
+                    .01ms !important;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+
+<body>
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header>
+
+        <a
+            href="#top"
+            class="brand"
+        >
+
+            FASE DI ANALISI
+
+            <span>
+                / PIANO 03
+            </span>
+
+        </a>
+
+
+        <div class="header-info">
+
+            <span>
+                
+            </span>
+
+
+            <span id="current-section">
+                01 / 06
+            </span>
+
+        </div>
+
+    </header>
+
+
+
+    <main id="top">
+
+
+        <!-- =================================================
+             HERO
+        ================================================== -->
+
+        <section class="hero reveal">
+
+            <div class="hero-inner">
+
+
+                <div class="hero-left">
+
+                    <p class="hero-label">
+                        Piano 03 / Analisi
+                    </p>
+
+
+                    <h1 class="hero-title">
+
+                        <span class="solid">
+                            Fase di
+                        </span>
+
+
+                        <span class="outline">
+                            analisi.
+                        </span>
+
+                    </h1>
+
+                </div>
+
+
+
+                <div class="hero-right">
+
+                    <p class="hero-description">
+
+                        
+                    </p>
+
+
+                    <div class="hero-material">
+
+                        <span class="hero-material-line"></span>
+
+                       
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-scroll">
+
+                <span></span>
+
+                Scroll to explore
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             DIVISORE
+        ================================================== -->
+
+        <div class="section-divider"></div>
+
+
+
+        <!-- =================================================
+             SPAZI
+        ================================================== -->
+
+        <section class="spaces">
+
+            <!-- SPAZIO 01: FOTO SINISTRA / TESTO DESTRA -->
+            <article
+                class="space reveal"
+                id="space-01"
+                data-number="01"
+            >
+
+                <div class="space-image">
+
+                    <img
+                        src="./img/piano3Foto1.jpg"
+                        alt="Analisi del requisito"
+                    >
+
+                </div>
+
+                <div class="space-text">
+
+                    <div class="space-number">01</div>
+
+                    <h2 class="space-title">
+                        Dal requisito
+                        all’analisi
+                    </h2>
+
+                    <p class="space-description">
+                        Il processo parte dal requisito, cioè dalla necessità che
+                        il progetto deve soddisfare. L’analista studia il problema,
+                        raccoglie le informazioni necessarie e verifica la
+                        fattibilità della soluzione.
+                        <br><br>
+                        Durante questa fase vengono considerate anche la sicurezza,
+                        la privacy, le prestazioni e le esigenze funzionali
+                        dell’applicazione.
+                    </p>
+
+                    <div class="material-block">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- SPAZIO 02: TESTO SINISTRA / FOTO DESTRA -->
+            <article
+                class="space reverse reveal"
+                id="space-02"
+                data-number="02"
+            >
+
+                <div class="space-image">
+
+                    <img
+                        src="./img/piano3Foto2.jpg"
+                        alt="Analisi Back-End e microservizi"
+                    >
+
+                </div>
+
+                <div class="space-text">
+
+                    <div class="space-number">02</div>
+
+                    <h2 class="space-title">
+                        Analisi
+                        Back-End
+                    </h2>
+
+                    <p class="space-description">
+                        Nell’analisi Back-End vengono individuati i servizi e le
+                        componenti necessarie per realizzare le funzionalità
+                        richieste.
+                        <br><br>
+                        L’analista studia le sorgenti dei dati, le interfacce con
+                        sistemi esterni, i servizi disponibili e le operazioni che
+                        dovranno essere eseguite dal Back-End.
+                        <br><br>
+                        Nel progetto basato su microservizi, ogni componente può
+                        avere una responsabilità specifica, rendendo più semplice
+                        gestire e sviluppare le singole funzionalità.
+                    </p>
+
+                    <div class="material-block">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- SPAZIO 03: FOTO SINISTRA / TESTO DESTRA -->
+            <article
+                class="space reveal"
+                id="space-03"
+                data-number="03"
+            >
+
+                <div class="space-image">
+
+                    <img
+                        src="./img/UserStory.png"
+                        alt="User Story e Sprint"
+                    >
+
+                </div>
+
+                <div class="space-text">
+
+                    <div class="space-number">03</div>
+
+                    <h2 class="space-title">
+                        User Story
+                        e Sprint
+                    </h2>
+
+                    <p class="space-description">
+                        Una volta analizzato il requisito, il lavoro viene
+                        organizzato attraverso Epic, Feature e User Story.
+                        <br><br>
+                        L’Epic rappresenta una macrofunzionalità, la Feature
+                        raccoglie funzionalità più dettagliate e la User Story
+                        descrive una specifica azione che il sistema dovrà
+                        permettere di svolgere.
+                        <br><br>
+                        La User Story contiene inoltre descrizione, criteri di
+                        accettazione, informazioni tecniche e altri elementi utili
+                        allo sviluppo e alla verifica.
+                    </p>
+
+                    <div class="material-block">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- SPAZIO 04: TESTO SINISTRA / FOTO DESTRA -->
+            <article
+                class="space reverse reveal"
+                id="space-04"
+                data-number="04"
+            >
+
+                <div class="space-image">
+
+                    <div class="empty-image">
+                         <img
+                        src="./img/Analisi.png"
+                        alt="Analisi Back-End e microservizi"
+                    >
+                    </div>
+
+                </div>
+
+                <div class="space-text">
+
+                    <div class="space-number">04</div>
+
+                    <h2 class="space-title">
+                        Collaborazione
+                        tra i team
+                    </h2>
+
+                    <p class="space-description">
+                        L’analisi non viene svolta in modo isolato. Gli analisti
+                        collaborano con i diversi gruppi che partecipano al
+                        progetto, tra cui Front-End, Back-End, Design e Test.
+                        <br><br>
+                        Le informazioni definite durante l’analisi devono essere
+                        condivise con gli sviluppatori, in modo che tutti abbiano
+                        una visione coerente della funzionalità da realizzare.
+                        <br><br>
+                        Il confronto tra i team permette inoltre di chiarire
+                        eventuali dubbi prima dello sviluppo e di ridurre il
+                        rischio di dover rifare il lavoro.
+                    </p>
+
+                    <div class="material-block">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- SPAZIO 05: FOTO SINISTRA / TESTO DESTRA -->
+            <article
+                class="space reveal"
+                id="space-05"
+                data-number="05"
+            >
+
+                <div class="space-image">
+
+                    <div class="empty-image">
+                       <img
+                        src="./img/piano3Foto3.jpg"
+                        alt="User Story e Sprint"
+                    >
+                    </div>
+
+                </div>
+
+                <div class="space-text">
+
+                    <div class="space-number">05</div>
+
+                    <h2 class="space-title">
+                        Test
+                        e verifica
+                    </h2>
+
+                    <p class="space-description">
+                        Dopo lo sviluppo entra in gioco la fase di test.
+                        Il tester confronta il risultato ottenuto con quanto
+                        previsto dall’analisi e dalle User Story.
+                        <br><br>
+                        Vengono verificati i comportamenti richiesti, i controlli
+                        funzionali, gli accessi ai dati e gli altri criteri di
+                        accettazione definiti durante l’analisi.
+                        <br><br>
+                        L’analista può supportare il team durante questa fase,
+                        fornendo chiarimenti sulla funzionalità prevista.
+                    </p>
+
+                    <div class="material-block">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- SPAZIO 06: TESTO SINISTRA / FOTO DESTRA -->
+            <article
+                class="space reverse reveal"
+                id="space-06"
+                data-number="06"
+            >
+
+                <div class="space-image">
+
+                    <div class="empty-image">
+                        <img
+                        src="./img/Screenshot.png"
+                        alt="User Story e Sprint"
+                        >
+                    </div>
+
+                </div>
+
+                <div class="space-text">
+
+                    <div class="space-number">06</div>
+
+                    <h2 class="space-title">
+                        Dal test
+                        al rilascio
+                    </h2>
+
+                    <p class="space-description">
+                        Una volta completato lo sviluppo, il progetto passa
+                        attraverso le fasi di test e collaudo prima del rilascio.
+                        <br><br>
+                        Il flusso di lavoro collega quindi requisito, analisi,
+                        sviluppo, test, collaudo, rilascio e successiva assistenza.
+                        <br><br>
+                        L’analista continua a collaborare con gli altri team anche
+                        nelle fasi finali, contribuendo alla verifica della
+                        funzionalità e alla risoluzione degli eventuali problemi.
+                    </p>
+
+                    <div class="material-block">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                </div>
+
+            </article>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer>
+
+
+        <div class="footer-title">
+
+            <span>
+                Fase di
+            </span>
+
+
+            <span class="outline">
+                analisi.
+            </span>
+
+        </div>
+
+
+
+        <div class="footer-info">
+
+            Piano 03
+
+            <br>
+
+           
+
+            <br>
+            <br>
+
+            
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         LIGHTBOX
+    ====================================================== -->
+
+    <div
+        class="lightbox"
+        id="lightbox"
+        aria-hidden="true"
+    >
+
+        <button
+            class="lightbox-close"
+            id="closeLightbox"
+            type="button"
+            aria-label="Chiudi immagine"
+        >
+            ×
+        </button>
+
+
+        <img
+            id="lightboxImage"
+            src=""
+            alt=""
+        >
+
+    </div>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script>
+
+
+        /* =================================================
+           SEZIONI
+        ================================================= */
+
+        const sections =
+            document.querySelectorAll(".space");
+
+
+        const currentSection =
+            document.getElementById(
+                "current-section"
+            );
+
+
+
+        /* =================================================
+           ANIMAZIONE ALLO SCROLL
+        ================================================= */
+
+        const revealObserver =
+            new IntersectionObserver(
+
+                (entries) => {
+
+                    entries.forEach(
+                        (entry) => {
+
+                            if (
+                                entry.isIntersecting
+                            ) {
+
+                                entry.target.classList.add(
+                                    "visible"
+                                );
+
+                            }
+
+                        }
+                    );
+
+                },
+
+                {
+                    threshold: 0.12
+                }
+
+            );
+
+
+        document
+            .querySelectorAll(".reveal")
+            .forEach(
+                (element) => {
+
+                    revealObserver.observe(
+                        element
+                    );
+
+                }
+            );
+
+
+
+        /* =================================================
+           AGGIORNAMENTO NUMERO HEADER
+        ================================================= */
+
+        const sectionObserver =
+            new IntersectionObserver(
+
+                (entries) => {
+
+                    const visibleSections =
+                        entries
+
+                            .filter(
+                                entry =>
+                                    entry.isIntersecting
+                            )
+
+                            .sort(
+                                (a, b) =>
+                                    b.intersectionRatio -
+                                    a.intersectionRatio
+                            );
+
+
+                    if (
+                        visibleSections.length === 0
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    const number =
+                        visibleSections[0]
+                            .target
+                            .dataset
+                            .number;
+
+
+                    currentSection.textContent =
+                        `${number} / 06`;
+
+                },
+
+                {
+
+                    rootMargin:
+                        "-35% 0px -35% 0px",
+
+                    threshold: [
+                        0.1,
+                        0.25,
+                        0.5,
+                        0.75
+                    ]
+
+                }
+
+            );
+
+
+        sections.forEach(
+            section => {
+
+                sectionObserver.observe(
+                    section
+                );
+
+            }
+        );
+
+
+
+        /* =================================================
+           LIGHTBOX
+        ================================================= */
+
+        const lightbox =
+            document.getElementById(
+                "lightbox"
+            );
+
+
+        const lightboxImage =
+            document.getElementById(
+                "lightboxImage"
+            );
+
+
+        const closeLightboxButton =
+            document.getElementById(
+                "closeLightbox"
+            );
+
+
+
+        /* =================================================
+           APERTURA FOTO
+        ================================================= */
+
+        document
+            .querySelectorAll(".space-image")
+            .forEach(
+                (container) => {
+
+                    container.addEventListener(
+                        "click",
+                        () => {
+
+                            const image =
+                                container.querySelector("img");
+
+                            if (!image) {
+                                return;
+                            }
+
+                            lightboxImage.src =
+                                image.src;
+
+                            lightboxImage.alt =
+                                image.alt;
+
+                            lightbox.classList.add(
+                                "open"
+                            );
+
+                            lightbox.setAttribute(
+                                "aria-hidden",
+                                "false"
+                            );
+
+                            document.body.style.overflow =
+                                "hidden";
+
+                        }
+                    );
+
+                }
+            );
+
+
+
+        /* =================================================
+           CHIUSURA LIGHTBOX
+        ================================================= */
+
+        function closeLightbox() {
+
+            lightbox.classList.remove(
+                "open"
+            );
+
+
+            lightbox.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+
+            lightboxImage.src = "";
+
+
+            document.body.style.overflow =
+                "";
+
+        }
+
+
+        closeLightboxButton.addEventListener(
+            "click",
+            closeLightbox
+        );
+
+
+
+        /* =================================================
+           CLICK SULLO SFONDO
+        ================================================= */
+
+        lightbox.addEventListener(
+            "click",
+            (event) => {
+
+                if (
+                    event.target === lightbox
+                ) {
+
+                    closeLightbox();
+
+                }
+
+            }
+        );
+
+
+
+        /* =================================================
+           TASTO ESC
+        ================================================= */
+
+        document.addEventListener(
+            "keydown",
+            (event) => {
+
+                if (
+                    event.key === "Escape" &&
+                    lightbox.classList.contains(
+                        "open"
+                    )
+                ) {
+
+                    closeLightbox();
+
+                }
+
+            }
+        );
+
+
+    </script>
+
+</body>
+
+</html>
