@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Floor 01 — NTT DATA Stage Experience</title>
+
+<style>
+:root {
+    --bg: #ffffff;
+    --bg-alt: #f4f4f6;
+    --bg-card: #fafafa;
+    --ink: #111111;
+    --muted: #666666;
+    --line: #e0e0e4;
+    --accent: #222222;
+    --max: 1500px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+
+header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 78px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6.5vw;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+.brand-badge {
+    background: var(--ink);
+    color: #ffffff;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 900;
+}
+
+.brand-divider {
+    width: 32px;
+    height: 2px;
+    background: var(--muted);
+}
+
+nav { display: flex; gap: 28px; }
+
+nav a {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    transition: color .25s ease;
+}
+
+nav a:hover { color: var(--ink); }
+
+.hero {
+    min-height: 90vh;
+    max-width: var(--max);
+    margin: auto;
+    display: grid;
+    grid-template-columns: 54% 46%;
+    position: relative;
+    padding-top: 78px;
+}
+
+.hero-copy {
+    padding: 100px 6vw 80px 6.5vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.hero-copy::after {
+    content: "";
+    position: absolute;
+    left: 4vw;
+    top: 120px;
+    width: 4px;
+    height: 90px;
+    background: var(--ink);
+    border-radius: 2px;
+}
+
+.eyebrow {
+    font-size: 11px;
+    font-weight: 800;
+    position: relative;
+    z-index: 2;
+    color: var(--muted);
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.eyebrow::before {
+    content: "■";
+    color: var(--ink);
+    font-size: 10px;
+}
+
+h1 {
+    font-size: clamp(44px, 5.8vw, 86px);
+    line-height: 0.95;
+    letter-spacing: -.05em;
+    margin-bottom: 28px;
+    position: relative;
+    z-index: 1;
+    font-weight: 900;
+    color: var(--ink);
+}
+
+h1 span {
+    display: block;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--ink);
+}
+
+.intro {
+    max-width: 520px;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.intro strong {
+    color: var(--ink);
+    font-weight: 700;
+}
+
+.tech {
+    margin-top: 36px;
+    padding-top: 20px;
+    border-top: 2px solid var(--ink);
+    max-width: 500px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.tech-tag {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: var(--bg-alt);
+    padding: 7px 14px;
+    border-radius: 4px;
+    border: 1px solid var(--line);
+    transition: all .25s ease;
+}
+
+.tech-tag:hover {
+    background: var(--ink);
+    color: #ffffff;
+    border-color: var(--ink);
+    transform: translateY(-2px);
+}
+
+.image-link {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all .35s ease;
+    border: 1px solid var(--line);
+}
+
+.image-link img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .5s ease, filter .5s ease;
+    filter: grayscale(100%) contrast(105%);
+}
+
+.image-link:hover img {
+    transform: scale(1.05);
+    filter: grayscale(0%) contrast(100%);
+}
+
+.image-link::after {
+    content: "APRI FOTO ↗";
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(17, 17, 17, 0.88);
+    color: #ffffff;
+    padding: 8px 14px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .15em;
+    border-radius: 4px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all .3s ease;
+    backdrop-filter: blur(4px);
+}
+
+.image-link:hover::after {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hero-photo {
+    padding: 40px 6.5vw 40px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-photo .image-link {
+    width: 100%;
+    height: 65vh;
+    max-height: 580px;
+    box-shadow: 16px 16px 0 var(--bg-alt);
+}
+
+.expectations-header {
+    max-width: var(--max);
+    margin: auto;
+    padding: 90px 6.5vw 30px;
+    border-top: 1px solid var(--line);
+}
+
+.section-label {
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--muted);
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.section-title {
+    font-size: clamp(30px, 3.8vw, 50px);
+    font-weight: 900;
+    letter-spacing: -.04em;
+    color: var(--ink);
+}
+
+.features {
+    max-width: var(--max);
+    margin: auto;
+    display: grid;
+    grid-template-columns: 58% 42%;
+    border-top: 1px solid var(--line);
+    background: var(--bg);
+}
+
+.feature-list { padding: 0 5vw 0 6.5vw; }
+
+.feature {
+    padding: 32px 0;
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 45px 1fr;
+    align-items: flex-start;
+    gap: 16px;
+    transition: background .3s ease, padding-left .3s ease;
+}
+
+.feature:hover {
+    background: var(--bg-alt);
+    padding-left: 16px;
+}
+
+.feature-no {
+    font-size: 13px;
+    font-weight: 900;
+    color: var(--ink);
+    letter-spacing: .08em;
+    padding-top: 4px;
+}
+
+.feature-content h3 {
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    font-weight: 800;
+    color: var(--muted);
+}
+
+.feature h2 {
+    font-size: 19px;
+    color: var(--ink);
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.feature p {
+    max-width: 560px;
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--muted);
+}
+
+.feature-image {
+    border-left: 1px solid var(--line);
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    background: var(--bg-alt);
+}
+
+.feature-image .image-link {
+    width: 100%;
+    height: 580px;
+    box-shadow: -12px 12px 0 var(--line);
+}
+
+.process-info {
+    max-width: var(--max);
+    margin: auto;
+    padding: 100px 6.5vw;
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 42% 58%;
+    gap: 40px;
+    background: var(--bg-alt);
+}
+
+.process-label {
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+.process-heading {
+    font-size: clamp(28px, 3.2vw, 44px);
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -.03em;
+    color: var(--ink);
+}
+
+.process-text {
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--muted);
+}
+
+.process-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 36px;
+}
+
+.p-card {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    padding: 24px;
+    border-radius: 8px;
+    transition: transform .25s ease, border-color .25s ease;
+}
+
+.p-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--ink);
+}
+
+.p-card h4 {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--ink);
+    margin-bottom: 8px;
+}
+
+.p-card p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--muted);
+}
+
+.footer {
+    max-width: var(--max);
+    margin: auto;
+    border-top: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 80px 6.5vw 45px;
+    background: var(--bg);
+}
+
+.footer-top {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.footer-title {
+    font-size: clamp(40px, 6.5vw, 90px);
+    line-height: .85;
+    letter-spacing: -.06em;
+    font-weight: 900;
+}
+
+.footer-title span {
+    color: transparent;
+    -webkit-text-stroke: 2px var(--ink);
+}
+
+.footer-right p {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.line {
+    width: 40px;
+    height: 2px;
+    background: var(--ink);
+    display: inline-block;
+    margin-left: 12px;
+    vertical-align: middle;
+}
+
+.footer-bottom {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: .05em;
+}
+
+@media (max-width: 1024px) {
+    .hero, .features, .process-info { grid-template-columns: 1fr; }
+    .hero-copy { padding: 80px 28px 40px; }
+    .hero-photo { padding: 0 28px 60px; }
+    .hero-photo .image-link { height: 48vh; }
+    .feature-list { padding: 0 28px; }
+    .feature-image { border-left: 0; border-top: 1px solid var(--line); padding: 40px 28px; }
+    .feature-image .image-link { height: 380px; }
+    .process-info { padding: 60px 28px; }
+    .process-cards { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+    header { padding: 0 20px; }
+    nav { display: none; }
+    h1 { font-size: 13vw; }
+    .feature { grid-template-columns: 35px 1fr; }
+    .footer { padding: 60px 20px 30px; }
+    .footer-top { flex-direction: column; align-items: flex-start; }
+    .footer-bottom { flex-direction: column; gap: 10px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="brand">
+        <span class="brand-badge">FLOOR 01</span>
+        <span>NTT DATA / Stage Experience</span>
+        <div class="brand-divider"></div>
+    </div>
+
+    <nav>
+        <a href="#about">Il Nostro Gruppo</a>
+        <a href="#ipotesi">I Nostri 5 Ruoli</a>
+        <a href="#supposizioni">Le Nostre Ipotesi</a>
+    </nav>
+</header>
+
+<main>
+
+<section class="hero" id="about">
+
+    <div class="hero-copy">
+
+        <div class="eyebrow">
+            01 — Il Nostro Percorso in NTT DATA
+        </div>
+
+        <h1>
+            Siamo in 5
+            <span>Le Nostre Ipotesi</span>
+        </h1>
+
+        <p class="intro">
+            Siamo in <strong>5 studenti</strong> alle prese con l'inizio di
+            questo percorso in <strong>NTT DATA</strong>.
+            Pensiamo che questa esperienza potrebbe darci l'opportunità
+            di confrontarci con progetti complessi. Ipotizziamo che la vita
+            aziendale ci aiuterà a capire meglio le dinamiche di un team
+            strutturato.
+        </p>
+
+        <div class="tech" id="skills">
+            <span class="tech-tag">Frontend</span>
+            <span class="tech-tag">Backend</span>
+            <span class="tech-tag">DevOps</span>
+            <span class="tech-tag">Data & AI</span>
+            <span class="tech-tag">UX/UI Design</span>
+        </div>
+
+    </div>
+
+    <div class="hero-photo">
+
+        <a
+            href="https://cdn.prod.website-files.com/6324546bc415e15691cecbef/6a744acc43eee2d143891f6c_2-p-1600.jpg"
+            target="_blank"
+            class="image-link"
+            title="Apri foto del nostro gruppo in alta risoluzione"
+        >
+            <img
+                src="https://cdn.prod.website-files.com/6324546bc415e15691cecbef/6a744acc43eee2d143891f6c_2-p-1600.jpg"
+                alt="Foto del nostro gruppo di 5 studenti in stage NTT DATA"
+            >
+        </a>
+
+    </div>
+
+</section>
+
+<div class="expectations-header" id="ipotesi">
+
+    <div class="section-label">
+        01 / Le Nostre Supposizioni
+    </div>
+
+    <h2 class="section-title">
+        Cosa immaginiamo noi 5 per questo stage
+    </h2>
+
+</div>
+
+<section class="features">
+
+    <div class="feature-list">
+
+        <article class="feature">
+            <div class="feature-no">01</div>
+
+            <div class="feature-content">
+                <h3>Studente 1 • Frontend Development</h3>
+
+                <h2>
+                    Interfacce Web & Componenti React
+                </h2>
+
+                <p>
+                    Ipotizziamo che lavorare sul Frontend ci permetterà
+                    di capire come si progettano interfacce davvero scalabili.
+                    Pensiamo che approfondire TypeScript e React con il
+                    supporto del team potrebbe farci comprendere come
+                    gestire lo stato di un'applicazione reale.
+                </p>
+            </div>
+        </article>
+
+        <article class="feature">
+            <div class="feature-no">02</div>
+
+            <div class="feature-content">
+                <h3>Studente 2 • Backend Development</h3>
+
+                <h2>
+                    Architetture API & Database
+                </h2>
+
+                <p>
+                    Riteniamo che la parte Backend ci porterà a scoprire
+                    come si collegando grandi volumi di dati con il client.
+                    Supponiamo che progettare API e lavorare sui database
+                    ci farà comprendere gli standard di sicurezza e di
+                    efficienza usati in azienda.
+                </p>
+            </div>
+        </article>
+
+        <article class="feature">
+            <div class="feature-no">03</div>
+
+            <div class="feature-content">
+                <h3>Studente 3 • DevOps & Cloud Infrastructure</h3>
+
+                <h2>
+                    Automazione Pipeline & Container
+                </h2>
+
+                <p>
+                    Immaginiamo che il percorso DevOps ci offrirà una visione
+                    chiara di come il codice passa dall'ambiente locale
+                    alla produzione. Pensiamo che acquisire confidenza
+                    con la CI/CD e l'infrastruttura Cloud potrebbe essere
+                    un tassello fondamentale per noi.
+                </p>
+            </div>
+        </article>
+
+        <article class="feature">
+            <div class="feature-no">04</div>
+
+            <div class="feature-content">
+                <h3>Studente 4 • Data Science & Artificial Intelligence</h3>
+
+                <h2>
+                    Analisi Dati & Modelli di Machine Learning
+                </h2>
+
+                <p>
+                    Ipotizziamo che l'area Dati e Intelligenza Artificiale
+                    ci consentirà di mettere alla prova algoritmi su scenari
+                    concreti. Riteniamo che analizzare dati aziendali ci
+                    farà capire come trasformare le informazioni grezze
+                    in decisioni strategiche.
+                </p>
+            </div>
+        </article>
+
+        <article class="feature">
+            <div class="feature-no">05</div>
+
+            <div class="feature-content">
+                <h3>Studente 5 • UX/UI & Product Design</h3>
+
+                <h2>
+                    Prototipazione & User Research
+                </h2>
+
+                <p>
+                    Supponiamo che la parte UX/UI ci permetterà di valutare
+                    l'impatto visivo e d'uso di un prodotto prima dello
+                    sviluppo. Pensiamo che effettuare test con gli utenti
+                    e creare wireframe ci aiuterà a capire come fondere
+                    estetica e usabilità.
+                </p>
+            </div>
+        </article>
+
+    </div>
+
+    <div class="feature-image">
+
+        <a
+            href="https://cdn.prod.website-files.com/6324546bc415e15691cecbef/6a7594ed158facb17ad699ef_1-p-1600.jpg"
+            target="_blank"
+            class="image-link"
+            title="Apri foto collaborazione in alta risoluzione"
+        >
+            <img
+                src="https://cdn.prod.website-files.com/6324546bc415e15691cecbef/6a7594ed158facb17ad699ef_1-p-1600.jpg"
+                alt="Foto della collaborazione tra i 5 studenti in NTT DATA"
+            >
+        </a>
+
+    </div>
+
+</section>
+
+<section class="process-info" id="supposizioni">
+
+    <div>
+
+        <div class="process-label">
+            02 / Le Nostre Aspettative Comuni
+        </div>
+
+        <h2 class="process-heading">
+            Come immaginiamo che sarà la nostra crescita
+        </h2>
+
+    </div>
+
+    <div>
+
+        <p class="process-text">
+            Secondo noi questo tirocinio potrebbe rappresentare il ponte
+            tra le nostre conoscenze teoriche e il mondo professionale.
+            Non abbiamo certezze assolute, ma crediamo che la combinazione
+            di supporto e pratica ci permetterà di valutare le nostre capacità.
+        </p>
+
+        <div class="process-cards">
+
+            <div class="p-card">
+                <h4>1. Affiancamento dei Mentor</h4>
+                <p>
+                    Ipotizziamo che il dialogo quotidiano con i tutor possa
+                    aiutarci a correggere gli errori e indirizzare meglio
+                    il nostro studio.
+                </p>
+            </div>
+
+            <div class="p-card">
+                <h4>2. Attività di Progetto</h4>
+                <p>
+                    Pensiamo che metterci alla prova su task reali possa
+                    farci comprendere cosa significa lavorare con scadenze
+                    trasparenti.
+                </p>
+            </div>
+
+            <div class="p-card">
+                <h4>3. Sinergia di Squadra</h4>
+                <p>
+                    Riteniamo che essere in 5 ci permetterà di scambiarci
+                    idee e aiutarci a vicenda quando incontreremo difficoltà
+                    tecniche.
+                </p>
+            </div>
+
+            <div class="p-card">
+                <h4>4. Metodologia Agile</h4>
+                <p>
+                    Supponiamo che partecipare agli stand-up meeting e agli
+                    sprint ci farà vivere da vicino l'organizzazione del
+                    lavoro moderno.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer class="footer" id="footer">
+
+    <div class="footer-top">
+
+        <div class="footer-title">
+            FLOOR 01 <span>STAGE 2026</span>
+        </div>
+
+        <div class="footer-right">
+            <p>
+                Pensiamo al nostro futuro
+                <span class="line"></span>
+            </p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+
+        <span>
+            &copy; 2026 NTT DATA Internship Experience
+        </span>
+
+        <span>
+            Floor 01 · Siamo 5 Studenti in Stage
+        </span>
+
+    </div>
+
+</footer>
+
+</main>
+
+</body>
+</html>
