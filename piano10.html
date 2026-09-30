@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+
+<html lang="it">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>10 — Innovation center | NTT DATA</title>
+
+<style>
+:root{
+  --paper:#f2efe9;
+  --paper-light:#fbfaf7;
+  --sky:#d3e3ea;
+  --sage:#b7c6bb;
+  --ochre:#d1a112;
+  --terra:#a4402e;
+  --accent:#a4402e;
+  --accent2:#c9990e;
+  --ink:#22262a;
+  --muted:#626862;
+  --line:rgba(34,38,42,.14);
+  --dark:#22262a;
+  --hh:78px;
+  --side:clamp(28px,7vw,120px);
+  --cw:1500px;
+}
+
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#1c2125;
+    --paper-light:#252b30;
+    --sky:#2c3a40;
+    --ink:#f2efe9;
+    --muted:#a3aaa5;
+    --line:rgba(242,239,233,.15);
+    --accent:#e08a6f;
+    --accent2:#d4ad3d;
+    --dark:#111519;
+  }
+}
+
+:root[data-theme="dark"]{
+  --paper:#1c2125;
+  --paper-light:#252b30;
+  --sky:#2c3a40;
+  --ink:#f2efe9;
+  --muted:#a3aaa5;
+  --line:rgba(242,239,233,.15);
+  --accent:#e08a6f;
+  --accent2:#d4ad3d;
+  --dark:#111519;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top:var(--hh);
+}
+
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+h1,h2,.footer-title,.hero-floor{
+  font-family:Georgia,"Times New Roman",serif;
+}
+
+.header{
+  position:fixed;
+  inset:0 0 auto;
+  height:var(--hh);
+  z-index:100;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:env(safe-area-inset-top,0) var(--side) 0;
+  border-bottom:1px solid var(--line);
+  background:color-mix(in srgb,var(--paper) 88%,transparent);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+}
+
+.header strong{
+  font-size:11px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--accent);
+  font-weight:700;
+}
+
+.header strong span{
+  color:var(--muted);
+  font-weight:500;
+}
+
+.header-info{
+  display:flex;
+  align-items:center;
+}
+
+.header-info b{
+  font-size:18px;
+  color:var(--accent2);
+  margin-right:11px;
+  font-weight:500;
+}
+
+.header-info span{
+  font-size:9px;
+  letter-spacing:.17em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+.page{
+  width:min(100%,var(--cw));
+  margin:0 auto;
+  padding-left:var(--side);
+  padding-right:var(--side);
+}
+
+.eyebrow{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.2em;
+  color:var(--muted);
+  white-space:nowrap;
+}
+
+.eyebrow::before{
+  content:"";
+  width:30px;
+  height:2px;
+  flex:none;
+  background:var(--ochre);
+}
+
+
+/* HERO */
+
+.hero{
+  min-height:100svh;
+  min-height:100vh;
+  padding-top:var(--hh);
+  display:grid;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero .page{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(420px,1fr);
+  align-items:center;
+  gap:40px;
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  padding:110px 0;
+}
+
+.hero h1{
+  margin-top:30px;
+  font-size:clamp(58px,9.2vw,138px);
+  line-height:.84;
+  letter-spacing:-.06em;
+  font-weight:400;
+}
+
+.hero h1 span{
+  display:block;
+  margin-left:clamp(25px,6vw,110px);
+  color:var(--accent);
+}
+
+.hero-description{
+  max-width:430px;
+  margin:48px 0 0 clamp(25px,6vw,110px);
+  font-size:14px;
+  line-height:1.85;
+  color:var(--muted);
+}
+
+.hero-floor{
+  position:absolute;
+  left:-2vw;
+  top:43%;
+  font-size:clamp(150px,26vw,420px);
+  line-height:.65;
+  letter-spacing:-.12em;
+  color:var(--ink);
+  opacity:.045;
+  font-weight:700;
+  pointer-events:none;
+}
+
+.hero-space{
+  height:610px;
+  position:relative;
+}
+
+.hero-space .s{
+  position:absolute;
+}
+
+.s.sky{
+  width:260px;
+  height:470px;
+  right:35%;
+  top:75px;
+  background:var(--sky);
+}
+
+.s.ochre{
+  width:230px;
+  height:300px;
+  right:7%;
+  top:48px;
+  background:var(--ochre);
+}
+
+.s.red{
+  width:170px;
+  height:250px;
+  right:2%;
+  bottom:25px;
+  background:var(--terra);
+}
+
+.hero-space::before{
+  content:"";
+  position:absolute;
+  width:160px;
+  height:160px;
+  left:5%;
+  bottom:28px;
+  border:1px solid var(--ink);
+  opacity:.25;
+  border-radius:50%;
+}
+
+.hero-space::after{
+  content:"";
+  position:absolute;
+  width:230px;
+  height:1px;
+  left:0;
+  bottom:108px;
+  background:var(--ink);
+  opacity:.25;
+}
+
+.hero-space img{
+  position:absolute;
+  width:290px;
+  height:470px;
+  right:19%;
+  top:105px;
+  object-fit:cover;
+  z-index:3;
+  box-shadow:18px 18px 0 rgba(34,38,42,.08);
+}
+
+.hero-label{
+  position:absolute;
+  z-index:5;
+  right:0;
+  bottom:300px;
+  writing-mode:vertical-rl;
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.23em;
+  color:var(--terra);
+  font-weight:700;
+}
+
+
+/* INTRO */
+
+.intro{
+  padding-top:125px;
+  padding-bottom:135px;
+  display:grid;
+  grid-template-columns:minmax(0,38%) minmax(0,62%);
+  border-top:1px solid var(--line);
+}
+
+.intro h2{
+  margin-top:30px;
+  max-width:430px;
+  font-size:clamp(38px,4.5vw,64px);
+  line-height:.95;
+  font-weight:400;
+  letter-spacing:-.055em;
+}
+
+.intro h2 span,
+.section h2 span,
+.footer-title span{
+  color:var(--accent);
+}
+
+.intro-copy{
+  max-width:650px;
+  padding:8px 0 0 30px;
+}
+
+.intro-copy p{
+  max-width:620px;
+  font-size:15px;
+  line-height:1.9;
+  color:var(--muted);
+}
+
+.intro-copy p + p{
+  margin-top:34px;
+  padding-top:30px;
+  border-top:1px solid var(--line);
+}
+
+
+/* SECTIONS */
+
+.section{
+  padding-top:125px;
+  padding-bottom:125px;
+  border-top:1px solid var(--line);
+}
+
+/*
+   Struttura fissa:
+   colonna 1 = numero + titolo + disegno
+   colonna 2 = contenuto testuale
+*/
+
+.section-grid{
+  display:grid;
+  grid-template-columns:minmax(0,38%) minmax(0,62%);
+  align-items:start;
+  width:100%;
+}
+
+.section-heading{
+  grid-column:1;
+  min-width:0;
+  padding:0 35px 0 5px;
+}
+
+.section-copy{
+  grid-column:2;
+  min-width:0;
+  max-width:650px;
+  padding:5px 0 0 30px;
+}
+
+.num{
+  font-size:9px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+.section h2{
+  margin-top:26px;
+  max-width:380px;
+  font-size:clamp(32px,4vw,50px);
+  line-height:.94;
+  font-weight:400;
+  letter-spacing:-.05em;
+}
+
+.section-copy p{
+  max-width:570px;
+  padding-right:25px;
+  font-size:14.5px;
+  line-height:1.92;
+  color:var(--muted);
+}
+
+.section-copy p:first-child{
+  color:var(--ink);
+  font-size:15px;
+  line-height:1.86;
+}
+
+.section-copy p + p{
+  margin-top:30px;
+  padding-top:28px;
+  border-top:1px solid var(--line);
+}
+
+.section-meta{
+  display:flex;
+  align-items:center;
+  gap:24px;
+  margin-top:34px;
+}
+
+.section-meta .tag{
+  flex:none;
+}
+
+.meta-line{
+  width:55px;
+  height:1px;
+  background:var(--line);
+}
+
+.tag{
+  display:inline-block;
+  padding:7px 12px;
+  border:1.5px solid var(--terra);
+  border-radius:2px;
+  color:var(--terra);
+  font-size:9px;
+  letter-spacing:.17em;
+  text-transform:uppercase;
+  font-weight:700;
+}
+
+
+/* DISEGNI */
+
+.section-heading .icon{
+  margin-top:40px;
+}
+
+.icon{
+  position:relative;
+  width:96px;
+  height:96px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:var(--sky);
+}
+
+.icon::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(90deg,transparent 49.5%,rgba(34,38,42,.11) 50%,transparent 50.5%),
+    linear-gradient(0deg,transparent 49.5%,rgba(34,38,42,.11) 50%,transparent 50.5%);
+  background-size:24px 24px;
+}
+
+.icon::after{
+  content:"";
+  position:absolute;
+  width:67px;
+  height:67px;
+  border:1px solid rgba(34,38,42,.16);
+  transform:rotate(45deg);
+}
+
+.icon svg{
+  position:relative;
+  z-index:2;
+  width:66px;
+  height:66px;
+  fill:none;
+  stroke:var(--ink);
+  stroke-width:1.1;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.icon svg .soft{
+  stroke:rgba(34,38,42,.42);
+}
+
+.icon.scouting svg .field{
+  stroke:var(--ink);
+}
+
+.icon.scouting svg .signal{
+  stroke:var(--terra);
+}
+
+.icon.scouting svg .point{
+  fill:var(--ochre);
+  stroke:none;
+}
+
+.icon.network svg .node{
+  fill:var(--paper);
+  stroke:var(--ink);
+}
+
+.icon.network svg .node-main{
+  fill:var(--terra);
+  stroke:none;
+}
+
+.icon.network svg .connection{
+  stroke:var(--ink);
+}
+
+.icon.network svg .connection-accent{
+  stroke:var(--ochre);
+}
+
+.icon.prototype svg .frame{
+  stroke:var(--ink);
+}
+
+.icon.prototype svg .step{
+  stroke:var(--terra);
+}
+
+.icon.prototype svg .small{
+  stroke:var(--ochre);
+}
+
+.icon.system svg .module{
+  stroke:var(--ink);
+}
+
+.icon.system svg .active{
+  fill:var(--terra);
+  stroke:none;
+}
+
+.icon.system svg .secondary{
+  fill:var(--ochre);
+  stroke:none;
+}
+
+.icon.people svg .shape{
+  stroke:var(--ink);
+}
+
+.icon.people svg .overlap{
+  fill:var(--terra);
+  stroke:none;
+  opacity:.9;
+}
+
+.icon.people svg .line{
+  stroke:var(--ochre);
+}
+
+.icon.scale svg .bar{
+  fill:var(--ink);
+  stroke:none;
+}
+
+.icon.scale svg .highlight{
+  fill:var(--terra);
+  stroke:none;
+}
+
+.icon.scale svg .growth{
+  stroke:var(--ochre);
+}
+
+
+/* WIDE */
+
+.wide{
+  position:relative;
+  height:62vh;
+  min-height:360px;
+  overflow:hidden;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  background:var(--dark);
+}
+
+.wide::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(rgba(255,255,255,.07) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px);
+  background-size:90px 90px;
+  opacity:.5;
+}
+
+.wide .a{
+  position:absolute;
+  width:70vh;
+  height:70vh;
+  left:9%;
+  top:-11%;
+  background:var(--accent);
+  border-radius:50%;
+}
+
+.wide .b{
+  position:absolute;
+  width:15%;
+  height:155%;
+  right:15%;
+  top:-27%;
+  background:var(--accent2);
+  transform:rotate(20deg);
+  opacity:.92;
+}
+
+.wide .cap{
+  position:absolute;
+  z-index:3;
+  left:var(--side);
+  bottom:24px;
+  padding:8px 14px;
+  background:rgba(34,38,42,.72);
+  color:#fff;
+  font-size:9px;
+  letter-spacing:.17em;
+  text-transform:uppercase;
+}
+
+
+/* DUO */
+
+.duo{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  min-height:520px;
+  height:68vh;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+
+.duo div{
+  background-color:var(--paper-light);
+  background-size:cover;
+  background-position:center;
+}
+
+.duo div:first-child{
+  border-right:1px solid var(--line);
+}
+
+
+/* FOOTER */
+
+.blocks{
+  display:flex;
+  height:13px;
+}
+
+.blocks i{
+  flex:1;
+}
+
+.footer{
+  padding-top:115px;
+  padding-bottom:65px;
+}
+
+.footer-title{
+  font-size:clamp(50px,7vw,100px);
+  font-weight:400;
+  letter-spacing:-.065em;
+  line-height:.86;
+}
+
+.footer-bottom{
+  margin-top:75px;
+  padding-top:24px;
+  border-top:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  font-size:9px;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+
+/* REVEAL */
+
+.reveal{
+  opacity:0;
+  transform:translateY(26px);
+  transition:
+    opacity .75s ease,
+    transform .75s cubic-bezier(.2,.7,.2,1);
+}
+
+.reveal.visible{
+  opacity:1;
+  transform:none;
+}
+
+
+/* TABLET */
+
+@media(max-width:1000px){
+
+  :root{
+    --side:clamp(28px,5vw,70px);
+  }
+
+  .hero .page{
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+  }
+
+  .hero-space{
+    transform:scale(.88);
+    transform-origin:center;
+  }
+
+  .intro{
+    grid-template-columns:38% 62%;
+  }
+
+  .section-grid{
+    grid-template-columns:38% 62%;
+  }
+
+  .section-heading{
+    padding-right:25px;
+  }
+
+  .section-copy{
+    padding-left:20px;
+  }
+}
+
+
+/* MOBILE */
+
+@media(max-width:760px){
+
+  :root{
+    --hh:68px;
+    --side:24px;
+  }
+
+  .header{
+    padding-left:var(--side);
+    padding-right:var(--side);
+  }
+
+  .header strong{
+    font-size:9px;
+    letter-spacing:.13em;
+  }
+
+  .header-info span{
+    display:none;
+  }
+
+  .header-info b{
+    margin-right:0;
+    font-size:17px;
+  }
+
+  .hero{
+    min-height:auto;
+  }
+
+  .hero .page{
+    display:block;
+  }
+
+  .hero-content{
+    min-height:calc(100svh - var(--hh));
+    min-height:calc(100vh - var(--hh));
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:80px 0;
+  }
+
+  .hero h1{
+    margin-top:27px;
+    font-size:clamp(56px,17vw,94px);
+  }
+
+  .hero h1 span{
+    margin-left:22px;
+  }
+
+  .hero-description{
+    margin:36px 0 0 22px;
+    max-width:350px;
+    font-size:13.5px;
+  }
+
+  .hero-floor{
+    top:48%;
+    left:-4vw;
+    font-size:55vw;
+  }
+
+  .hero-space{
+    display:none;
+  }
+
+
+  /* INTRO MOBILE */
+
+  .intro{
+    display:block;
+    padding-top:90px;
+    padding-bottom:95px;
+  }
+
+  .intro-copy{
+    margin-top:38px;
+    padding:0;
+  }
+
+  .intro-copy p{
+    font-size:14px;
+  }
+
+  .intro-copy p + p{
+    margin-top:27px;
+    padding-top:24px;
+  }
+
+  .intro h2{
+    font-size:47px;
+  }
+
+
+  /* SECTIONS MOBILE */
+
+  .section{
+    padding-top:92px;
+    padding-bottom:92px;
+  }
+
+  .section-grid{
+    display:flex;
+    flex-direction:column;
+    width:100%;
+  }
+
+  .section-heading{
+    order:1;
+    width:100%;
+    padding:0;
+    margin-bottom:42px;
+  }
+
+  .section-copy{
+    order:2;
+    width:100%;
+    max-width:none;
+    padding:0;
+  }
+
+  .section h2{
+    max-width:440px;
+    padding:0;
+    font-size:39px;
+  }
+
+  .section-copy p{
+    max-width:100%;
+    padding:0;
+    font-size:14px;
+    line-height:1.88;
+  }
+
+  .section-copy p:first-child{
+    font-size:14.5px;
+    line-height:1.86;
+  }
+
+  .section-copy p + p{
+    margin-top:27px;
+    padding-top:24px;
+  }
+
+  .section-meta{
+    margin-top:30px;
+    gap:18px;
+  }
+
+  .section-heading .icon{
+    margin-top:32px;
+  }
+
+  .icon{
+    width:84px;
+    height:84px;
+  }
+
+  .icon svg{
+    width:59px;
+    height:59px;
+  }
+
+
+  .wide{
+    height:48vh;
+    min-height:300px;
+  }
+
+  .wide .a{
+    width:58vh;
+    height:58vh;
+    left:-18%;
+  }
+
+  .wide .b{
+    width:25%;
+    right:2%;
+  }
+
+  .wide .cap{
+    left:24px;
+    bottom:20px;
+  }
+
+  .duo{
+    grid-template-columns:1fr;
+    height:auto;
+    min-height:0;
+  }
+
+  .duo div{
+    height:48vh;
+    min-height:280px;
+  }
+
+  .duo div:first-child{
+    border-right:0;
+    border-bottom:1px solid var(--line);
+  }
+
+  .footer{
+    padding-top:90px;
+    padding-bottom:45px;
+  }
+
+  .footer-title{
+    font-size:58px;
+  }
+
+  .footer-bottom{
+    margin-top:55px;
+    flex-wrap:wrap;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+
+  html{
+    scroll-behavior:auto;
+  }
+
+  .reveal{
+    opacity:1;
+    transform:none;
+    transition:none;
+  }
+}
+</style>
+
+</head>
+
+<body>
+
+<header class="header">
+
+  <strong>
+    NTT DATA <span>· Internal Guide</span>
+  </strong>
+
+  <div class="header-info">
+    <b>10</b>
+    <span>Innovation center</span>
+  </div>
+
+</header>
+
+<main>
+
+<section class="hero">
+
+  <div class="hero-floor">10</div>
+
+  <div class="page">
+
+```
+<div class="hero-content">
+
+  <div class="eyebrow">
+    Floor 10 / 11
+  </div>
+
+  <h1>
+    Innovation
+    <span>center</span>
+  </h1>
+
+  <p class="hero-description">
+    Il piano dove le idee vengono messe alla prova:
+    si osserva, si sperimenta e si trasformano intuizioni
+    ancora astratte in soluzioni concrete.
+  </p>
+
+</div>
+
+<div class="hero-space">
+
+  <div class="s sky"></div>
+  <div class="s ochre"></div>
+  <div class="s red"></div>
+
+  <img src="https://cdn.prod.website-files.com/6324546bc415e15691cecbef/6a746eb3b80da3e9c6532539_102.jpg" alt="Spazi colorati del piano 10">
+
+  <div class="hero-label">
+    Explore · Experiment · Scale
+  </div>
+
+</div>
+```
+
+  </div>
+
+</section>
+
+<section class="intro page reveal">
+
+  <div>
+
+```
+<div class="eyebrow">
+  Il percorso
+</div>
+
+<h2>
+  Dall'idea
+  <span>alla scala.</span>
+</h2>
+```
+
+  </div>
+
+  <div class="intro-copy">
+
+```
+<p>
+  L'innovazione non nasce da un singolo momento, ma da un percorso
+  continuo: si osservano bisogni e cambiamenti, si esplorano nuove
+  tecnologie, si costruiscono prove concrete e si verifica sul campo
+  ciò che può davvero generare valore.
+</p>
+
+<p>
+  Il confronto è parte integrante del processo. Persone, clienti,
+  startup, università e partner portano competenze e punti di vista
+  differenti, creando le condizioni per trasformare intuizioni iniziali
+  in soluzioni che possano entrare nei progetti reali.
+</p>
+```
+
+  </div>
+
+</section>
+
+<!-- 01 -->
+
+<section class="section page reveal">
+
+  <div class="section-grid">
+
+```
+<div class="section-heading">
+
+  <div class="num">01 / 06</div>
+
+  <h2>
+    Ascolto &
+    <span>scouting.</span>
+  </h2>
+
+  <div class="icon scouting">
+    <svg viewBox="0 0 64 64" aria-hidden="true">
+
+      <path class="field soft" d="M9 18h46"/>
+      <path class="field soft" d="M9 32h46"/>
+      <path class="field soft" d="M9 46h46"/>
+
+      <path class="field soft" d="M18 9v46"/>
+      <path class="field soft" d="M32 9v46"/>
+      <path class="field soft" d="M46 9v46"/>
+
+      <circle cx="32" cy="32" r="18"/>
+      <circle cx="32" cy="32" r="9"/>
+
+      <path class="signal" d="M32 32L47 20"/>
+
+      <circle class="point" cx="47" cy="20" r="3"/>
+      <circle class="point" cx="19" cy="41" r="2"/>
+
+    </svg>
+  </div>
+
+</div>
+
+<div class="section-copy">
+
+  <p>
+    Il punto di partenza è capire cosa sta cambiando: bisogni dei clienti,
+    nuove abitudini, tecnologie emergenti e segnali provenienti dal mercato.
+    Osservare questi fenomeni permette di individuare le direzioni che
+    meritano di essere approfondite.
+  </p>
+
+  <p>
+    Non ogni idea deve diventare un progetto. La fase di scouting serve
+    a distinguere le opportunità più interessanti e a concentrare
+    la sperimentazione dove può avere un impatto concreto.
+  </p>
+
+</div>
+```
+
+  </div>
+
+</section>
+
+<!-- 02 -->
+
+<section class="section page reveal">
+
+  <div class="section-grid">
+
+```
+<div class="section-heading">
+
+  <div class="num">02 / 06</div>
+
+  <h2>
+    Open
+    <span>innovation.</span>
+  </h2>
+
+  <div class="icon network">
+
+    <svg viewBox="0 0 64 64" aria-hidden="true">
+
+      <path class="connection" d="M17 32L32 17L48 32L32 47Z"/>
+
+      <path class="connection-accent" d="M17 32h31"/>
+      <path class="connection-accent" d="M32 17v30"/>
+
+      <circle class="node" cx="17" cy="32" r="5"/>
+      <circle class="node" cx="32" cy="17" r="5"/>
+      <circle class="node-main" cx="48" cy="32" r="5"/>
+      <circle class="node" cx="32" cy="47" r="5"/>
+
+    </svg>
+
+  </div>
+
+</div>
+
+<div class="section-copy">
+
+  <p>
+    L'innovazione si rafforza quando competenze diverse entrano in contatto.
+    Startup, università, partner e clienti possono confrontarsi sullo stesso
+    problema, condividendo esperienze e prospettive che difficilmente
+    emergerebbero lavorando separatamente.
+  </p>
+
+  <p>
+    Il valore non sta soltanto nelle singole idee, ma nelle connessioni
+    che nascono tra persone e organizzazioni diverse: è da questi incontri
+    che possono emergere approcci nuovi e possibilità inattese.
+  </p>
+
+  <div class="section-meta">
+
+    <span class="tag">
+      Partner · Startup · Ricerca
+    </span>
+
+    <span class="meta-line"></span>
+
+  </div>
+
+</div>
+```
+
+  </div>
+
+</section>
+
+<!-- 03 -->
+
+<section class="section page reveal">
+
+  <div class="section-grid">
+
+```
+<div class="section-heading">
+
+  <div class="num">03 / 06</div>
+
+  <h2>
+    Prototipi &
+    <span>PoC.</span>
+  </h2>
+
+  <div class="icon prototype">
+
+    <svg viewBox="0 0 64 64" aria-hidden="true">
+
+      <path class="frame" d="M12 14h40v36H12z"/>
+
+      <path
+        class="frame"
+        d="M19 42V25h9v9h9V19h8"
+      />
+
+      <path class="step" d="M19 42h29"/>
+      <path class="step" d="M39 34h9"/>
+
+      <circle class="small" cx="28" cy="25" r="2.5"/>
+      <circle class="small" cx="37" cy="34" r="2.5"/>
+
+    </svg>
+
+  </div>
+
+</div>
+
+<div class="section-copy">
+
+  <p>
+    Un'idea diventa più utile quando può essere osservata e messa alla prova.
+    Prototipi e proof of concept permettono di costruire rapidamente una
+    prima versione, raccogliere feedback e capire quali elementi funzionano
+    prima di investire in una soluzione completa.
+  </p>
+
+  <p>
+    Il prototipo non deve essere perfetto: deve essere abbastanza concreto
+    da permettere di imparare. Ogni test produce informazioni che aiutano
+    a confermare, modificare o abbandonare un'ipotesi.
+  </p>
+
+  <div class="section-meta">
+
+    <span class="tag">
+      Test · Learn · Iterate
+    </span>
+
+    <span class="meta-line"></span>
+
+  </div>
+
+</div>
+```
+
+  </div>
+
+</section>
+
+<section class="wide reveal">
+
+  <div class="a"></div>
+  <div class="b"></div>
+
+  <div class="cap">
+    Innovation · Floor 10
+  </div>
+
+</section>
+
+<!-- 04 -->
+
+<section class="section page reveal">
+
+  <div class="section-grid">
+
+```
+<div class="section-heading">
+
+  <div class="num">04 / 06</div>
+
+  <h2>
+    Tecnologie
+    <span>emergenti.</span>
+  </h2>
+
+  <div class="icon system">
+
+    <svg viewBox="0 0 64 64" aria-hidden="true">
+
+      <rect class="module" x="10" y="10" width="12" height="12"/>
+      <rect class="module" x="26" y="10" width="12" height="12"/>
+      <rect class="active" x="42" y="10" width="12" height="12"/>
+
+      <rect class="module" x="10" y="26" width="12" height="12"/>
+      <rect class="secondary" x="26" y="26" width="12" height="12"/>
+      <rect class="module" x="42" y="26" width="12" height="12"/>
+
+      <rect class="module" x="10" y="42" width="12" height="12"/>
+      <rect class="module" x="26" y="42" width="12" height="12"/>
+      <rect class="active" x="42" y="42" width="12" height="12"/>
+
+      <path
+        class="module"
+        d="M22 16h4M38 16h4M22 32h4M38 32h4M22 48h4M38 48h4"
+      />
+
+    </svg>
+
+  </div>
+
+</div>
+
+<div class="section-copy">
+
+  <p>
+    AI, cloud, dati e automazione vengono sperimentati in contesti concreti
+    per capire non solo cosa una tecnologia può fare, ma soprattutto dove
+    possa creare valore e migliorare realmente un processo o un'esperienza.
+  </p>
+
+  <p>
+    Ogni sperimentazione deve tenere insieme possibilità e responsabilità:
+    sicurezza, affidabilità, sostenibilità e impatto sulle persone fanno
+    parte della valutazione tanto quanto le prestazioni tecniche.
+  </p>
+
+</div>
+```
+
+  </div>
+
+</section>
+
+<section class="duo reveal">
+
+  <div style="background-image:url(https://cdn.prod.website-files.com/6324546bc415e15691cecbef/6a746ed827dd2591207944cd_10-p-2000.jpg);"></div>
+  <div style="background-image:url(https://cdn.prod.website-files.com/6324546bc415e15691cecbef/6a746eafbac8eef224a688e7_101-p-2000.jpg);"></div>
+
+</section>
+
+<!-- 05 -->
+
+<section class="section page reveal">
+
+  <div class="section-grid">
+
+```
+<div class="section-heading">
+
+  <div class="num">05 / 06</div>
+
+  <h2>
+    Persone &
+    <span>cultura.</span>
+  </h2>
+
+  <div class="icon people">
+
+    <svg viewBox="0 0 64 64" aria-hidden="true">
+
+      <circle class="shape" cx="23" cy="28" r="12"/>
+      <circle class="shape" cx="41" cy="28" r="12"/>
+
+      <path
+        class="overlap"
+        d="M32 18
+           C36 20 38 24 38 28
+           C38 32 36 36 32 38
+           C28 36 26 32 26 28
+           C26 24 28 20 32 18Z"
+      />
+
+      <path class="line" d="M14 48h36"/>
+      <path class="line" d="M20 44v8M32 40v12M44 44v8"/>
+
+    </svg>
+
+  </div>
+
+</div>
+
+<div class="section-copy">
+
+  <p>
+    La tecnologia, da sola, non produce innovazione. Servono persone
+    disponibili a confrontarsi, mettere in discussione le proprie idee
+    e collaborare per trovare soluzioni che non sarebbero emerse
+    individualmente.
+  </p>
+
+  <p>
+    Workshop, momenti di confronto e spazi flessibili aiutano a rendere
+    questa attitudine parte del lavoro quotidiano, creando un ambiente
+    in cui sperimentare, condividere e imparare dagli altri diventa
+    naturale.
+  </p>
+
+</div>
+```
+
+  </div>
+
+</section>
+
+<!-- 06 -->
+
+<section class="section page reveal">
+
+  <div class="section-grid">
+
+```
+<div class="section-heading">
+
+  <div class="num">06 / 06</div>
+
+  <h2>
+    Dal prototipo
+    <span>alla scala.</span>
+  </h2>
+
+  <div class="icon scale">
+
+    <svg viewBox="0 0 64 64" aria-hidden="true">
+
+      <rect class="bar" x="10" y="39" width="8" height="15"/>
+      <rect class="bar" x="22" y="32" width="8" height="22"/>
+      <rect class="bar" x="34" y="23" width="8" height="31"/>
+      <rect class="highlight" x="46" y="13" width="8" height="41"/>
+
+      <path
+        class="growth"
+        d="M11 35L26 28L38 20L52 10"
+      />
+
+      <path
+        class="growth"
+        d="M46 10h6v6"
+      />
+
+    </svg>
+
+  </div>
+
+</div>
+
+<div class="section-copy">
+
+  <p>
+    Quando una soluzione dimostra di avere valore, il lavoro non termina
+    con il prototipo. Inizia la fase in cui viene adattata ai progetti
+    reali, resa più solida e preparata per poter crescere senza perdere
+    ciò che l'ha resa efficace.
+  </p>
+
+  <p>
+    I risultati vengono misurati rispetto agli obiettivi iniziali:
+    ciò che funziona viene consolidato, ciò che può essere migliorato
+    torna nel ciclo di sperimentazione. In questo modo l'innovazione
+    diventa un processo continuo, non un punto di arrivo.
+  </p>
+
+  <div class="section-meta">
+
+    <span class="tag">
+      Measure · Scale · Repeat
+    </span>
+
+    <span class="meta-line"></span>
+
+  </div>
+
+</div>
+```
+
+  </div>
+
+</section>
+
+<div class="blocks">
+  <i style="background:#d3e3ea"></i>
+  <i style="background:#d1a112"></i>
+  <i style="background:#a4402e"></i>
+  <i style="background:#b7c6bb"></i>
+</div>
+
+<footer class="footer page">
+
+  <div class="footer-title reveal">
+    Inno<span>vation.</span>
+  </div>
+
+  <div class="footer-bottom">
+    <span>NTT DATA · Internal Guide</span>
+    <span>Floor 10 / 11</span>
+  </div>
+
+</footer>
+
+</main>
+
+<script>
+const io = new IntersectionObserver(
+  entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add("visible");
+        io.unobserve(entry.target);
+      }
+    });
+  },
+  {threshold:.12}
+);
+
+document
+  .querySelectorAll(".reveal")
+  .forEach(element => io.observe(element));
+</script>
+
+</body>
+</html>
