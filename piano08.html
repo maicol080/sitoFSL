@@ -1,0 +1,1789 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Introduzione alle Basi Dati</title>
+
+    <style>
+
+        :root {
+            --bg: #e2d4bd;
+            --bg-light: #eee3cf;
+            --bg-dark: #cdb997;
+
+            --terracotta: #a94f3c;
+            --terracotta-dark: #7d382c;
+
+            --orange: #c47d3d;
+
+            --wood: #936b48;
+            --wood-dark: #60432f;
+
+            --green: #65704e;
+            --green-dark: #465239;
+
+            --text: #503b2e;
+            --text-soft: #715d4b;
+
+            --line: rgba(80, 59, 46, .18);
+        }
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: Arial, Helvetica, sans-serif;
+            overflow-x: hidden;
+        }
+
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+
+        /* ==============================
+           HEADER
+        ============================== */
+
+        header {
+            position: fixed;
+
+            top: 0;
+            left: 0;
+            right: 0;
+
+            height: 75px;
+            padding: 0 6vw;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            z-index: 100;
+
+            background: rgba(226, 212, 189, .88);
+
+            backdrop-filter: blur(12px);
+
+            border-bottom: 1px solid var(--line);
+        }
+
+
+        .brand {
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+
+
+        .brand span {
+            color: var(--terracotta);
+            font-weight: normal;
+        }
+
+
+        .header-info {
+            display: flex;
+            gap: 25px;
+
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: .15em;
+
+            color: var(--wood-dark);
+        }
+
+
+        #current-section {
+            color: var(--terracotta);
+            font-weight: bold;
+        }
+
+
+
+        /* ==============================
+           HERO
+        ============================== */
+
+        .hero {
+            min-height: 100vh;
+
+            padding:
+                120px
+                7vw
+                90px;
+
+            display: flex;
+            align-items: center;
+
+            position: relative;
+        }
+
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 480px;
+            height: 480px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(169, 79, 60, .08);
+
+            right: -170px;
+            top: -180px;
+        }
+
+
+        .hero-inner {
+            width: 100%;
+            max-width: 1500px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr
+                360px;
+
+            gap: 80px;
+
+            align-items: end;
+
+            position: relative;
+            z-index: 1;
+        }
+
+
+        .hero-label {
+            margin-bottom: 28px;
+
+            font-size: 10px;
+            font-weight: bold;
+
+            text-transform: uppercase;
+
+            letter-spacing: .18em;
+
+            color: var(--terracotta);
+        }
+
+
+        .hero-title {
+            font-size:
+                clamp(70px, 11vw, 170px);
+
+            line-height: .83;
+
+            letter-spacing: -.075em;
+
+            color: var(--text);
+        }
+
+
+        .hero-title .outline {
+            color: transparent;
+
+            -webkit-text-stroke:
+                1.5px
+                var(--terracotta);
+        }
+
+
+        .hero-description {
+            font-size: 14px;
+
+            line-height: 1.9;
+
+            color: var(--text-soft);
+        }
+
+
+        .hero-description strong {
+            color: var(--terracotta-dark);
+        }
+
+
+        .hero-line {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin-top: 35px;
+
+            font-size: 9px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .15em;
+
+            color: var(--wood-dark);
+        }
+
+
+        .hero-line span {
+            width: 40px;
+            height: 1px;
+
+            background: var(--terracotta);
+        }
+
+
+        .hero-scroll {
+            position: absolute;
+
+            left: 7vw;
+            bottom: 30px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            font-size: 9px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .14em;
+
+            color: var(--wood-dark);
+        }
+
+
+        .hero-scroll span {
+            width: 40px;
+            height: 1px;
+
+            background: var(--line);
+        }
+
+
+
+        /* ==============================
+           SECTIONS
+        ============================== */
+
+        .spaces {
+            width: 100%;
+        }
+
+
+        .space {
+            min-height: 760px;
+
+            padding:
+                110px
+                7vw;
+
+            display: grid;
+
+            grid-template-columns:
+                1.05fr
+                .95fr;
+
+            gap: 8vw;
+
+            align-items: center;
+
+            border-top:
+                1px solid
+                var(--line);
+        }
+
+
+        .space.reverse {
+            grid-template-columns:
+                .95fr
+                1.05fr;
+        }
+
+
+        .space.reverse .space-image {
+            order: 2;
+        }
+
+
+        .space.reverse .space-text {
+            order: 1;
+        }
+
+
+
+        /* ==============================
+           FOTO
+        ============================== */
+
+        .space-image {
+            overflow: hidden;
+
+            border:
+                1px solid
+                rgba(80, 59, 46, .15);
+
+            background:
+                var(--bg-light);
+
+            cursor: pointer;
+
+            /*
+             * AGGIUNTO:
+             * il box mantiene sempre le stesse proporzioni
+             */
+
+            aspect-ratio: 4 / 3;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .space-image img {
+            width: 100%;
+            height: 100%;
+
+            /*
+             * MODIFICA:
+             * l'immagine viene mantenuta interamente
+             * dentro il box e centrata
+             */
+
+            object-fit: contain;
+            object-position: center center;
+
+            transition:
+                transform .7s ease,
+                filter .5s ease;
+
+            filter:
+                saturate(.88)
+                contrast(.96);
+        }
+
+
+        .space-image:hover img {
+            transform: scale(1.035);
+
+            filter:
+                saturate(1)
+                contrast(1);
+        }
+
+
+        /*
+         * ADATTAMENTO SPECIFICO
+         * DELLE ULTIME TRE FOTO
+         */
+
+        #space-05 .space-image img {
+            object-fit: contain;
+            object-position: center center;
+        }
+
+
+        #space-06 .space-image img {
+            object-fit: contain;
+            object-position: center center;
+        }
+
+
+        #space-07 .space-image img {
+            object-fit: contain;
+            object-position: center center;
+        }
+
+
+
+        /* ==============================
+           TESTO
+        ============================== */
+
+        .space-text {
+            max-width: 570px;
+        }
+
+
+        .space-number {
+            margin-bottom: 25px;
+
+            font-size: 10px;
+
+            font-weight: bold;
+
+            color: var(--terracotta);
+
+            letter-spacing: .15em;
+
+            text-transform: uppercase;
+        }
+
+
+        .space-title {
+            font-size:
+                clamp(45px, 6vw, 82px);
+
+            line-height: .9;
+
+            letter-spacing: -.065em;
+
+            color: var(--text);
+        }
+
+
+        .space:nth-child(2) .space-title {
+            color: var(--terracotta-dark);
+        }
+
+
+        .space:nth-child(3) .space-title {
+            color: var(--green-dark);
+        }
+
+
+        .space:nth-child(4) .space-title {
+            color: var(--wood-dark);
+        }
+
+
+        .space:nth-child(5) .space-title {
+            color: var(--terracotta);
+        }
+
+
+        .space:nth-child(6) .space-title {
+            color: var(--green-dark);
+        }
+
+
+        .space-description {
+            margin-top: 35px;
+
+            max-width: 520px;
+
+            font-size: 14px;
+
+            line-height: 1.9;
+
+            color: var(--text-soft);
+        }
+
+
+        .space-description strong {
+            color: var(--text);
+        }
+
+
+
+        /* ==============================
+           DECORAZIONE
+        ============================== */
+
+        .color-line {
+            display: flex;
+
+            width: 300px;
+
+            height: 6px;
+
+            margin-top: 40px;
+        }
+
+
+        .color-line span:nth-child(1) {
+            width: 35%;
+            background: var(--terracotta);
+        }
+
+
+        .color-line span:nth-child(2) {
+            width: 25%;
+            background: var(--orange);
+        }
+
+
+        .color-line span:nth-child(3) {
+            width: 20%;
+            background: var(--green);
+        }
+
+
+        .color-line span:nth-child(4) {
+            width: 20%;
+            background: var(--wood-dark);
+        }
+
+
+
+        /* ==============================
+           FOOTER
+        ============================== */
+
+        footer {
+            min-height: 60vh;
+
+            padding:
+                100px
+                7vw
+                50px;
+
+            display: flex;
+
+            align-items: flex-end;
+            justify-content: space-between;
+
+            gap: 50px;
+
+            background:
+                var(--bg-light);
+
+            border-top:
+                1px solid
+                var(--line);
+        }
+
+
+        .footer-title {
+            font-size:
+                clamp(60px, 10vw, 150px);
+
+            line-height: .82;
+
+            letter-spacing: -.075em;
+        }
+
+
+        .footer-title .outline {
+            color: transparent;
+
+            -webkit-text-stroke:
+                1px
+                var(--terracotta);
+        }
+
+
+        .footer-info {
+            max-width: 300px;
+
+            font-size: 10px;
+
+            line-height: 1.8;
+
+            text-transform: uppercase;
+
+            letter-spacing: .08em;
+
+            color: var(--wood-dark);
+        }
+
+
+
+        /* ==============================
+           ANIMAZIONI
+        ============================== */
+
+        .reveal {
+            opacity: 0;
+
+            transform:
+                translateY(35px);
+
+            transition:
+                opacity .8s ease,
+                transform .8s ease;
+        }
+
+
+        .reveal.visible {
+            opacity: 1;
+
+            transform:
+                translateY(0);
+        }
+
+
+
+        /* ==============================
+           LIGHTBOX
+        ============================== */
+
+        .lightbox {
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 500;
+
+            display: none;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 30px;
+
+            background:
+                rgba(30, 24, 20, .93);
+        }
+
+
+        .lightbox.open {
+            display: flex;
+        }
+
+
+        .lightbox img {
+            max-width: 94vw;
+            max-height: 90vh;
+
+            object-fit: contain;
+        }
+
+
+        .lightbox-close {
+            position: absolute;
+
+            top: 20px;
+            right: 30px;
+
+            border: none;
+
+            background: none;
+
+            color: white;
+
+            font-size: 40px;
+
+            cursor: pointer;
+        }
+
+
+
+        /* ==============================
+           MOBILE
+        ============================== */
+
+        @media (max-width: 900px) {
+
+            .hero-inner {
+                grid-template-columns: 1fr;
+
+                gap: 50px;
+            }
+
+
+            .space,
+            .space.reverse {
+
+                min-height: auto;
+
+                grid-template-columns: 1fr;
+
+                gap: 50px;
+
+                padding:
+                    90px
+                    7vw;
+            }
+
+
+            .space.reverse .space-image {
+                order: 1;
+            }
+
+
+            .space.reverse .space-text {
+                order: 2;
+            }
+
+
+            footer {
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                justify-content: flex-end;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .header-info {
+                display: none;
+            }
+
+
+            .hero-title {
+                font-size: 65px;
+            }
+
+
+            .space-title {
+                font-size: 48px;
+            }
+
+
+            .space-description {
+                font-size: 15px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header>
+
+        <div class="brand">
+
+            PCTO
+            <span>/ Basi Dati</span>
+
+        </div>
+
+
+        <div class="header-info">
+
+            <span>
+                NTT DATA
+            </span>
+
+
+            <span id="current-section">
+                01
+            </span>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <section class="hero">
+
+        <div class="hero-inner">
+
+
+            <div>
+
+                <div class="hero-label">
+
+                    PCTO · NTT DATA · BASI DATI · PIANO 8
+
+                </div>
+
+
+                <h1 class="hero-title">
+
+                    Introduzione<br>
+
+                    <span class="outline">
+
+                        alle basi dati.
+
+                    </span>
+
+                </h1>
+
+            </div>
+
+
+
+            <div>
+
+                <p class="hero-description">
+
+                    I dati sono presenti in ogni attività
+                    digitale: social network, streaming,
+                    e-commerce e applicazioni.
+
+                    <br><br>
+
+                    Una <strong>base dati</strong> è una raccolta
+                    organizzata di informazioni, pensata per
+                    essere cercata, aggiornata e condivisa
+                    in modo controllato.
+
+                    <br><br>
+
+                    Il percorso porta dalla comprensione dei
+                    dati alla progettazione di un modello
+                    relazionale attraverso
+                    <strong>Oracle SQL Developer Data Modeler</strong>.
+
+                </p>
+
+
+                <div class="hero-line">
+
+                    <span></span>
+
+                    DATI · DATABASE · MODELLO RELAZIONALE
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-scroll">
+
+            <span></span>
+
+            SCROLL TO EXPLORE
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         SEZIONI
+    ====================================================== -->
+
+    <main class="spaces">
+
+
+        <!-- =================================================
+             SEZIONE 01
+        ================================================== -->
+
+        <article
+            class="space reveal"
+            id="space-01"
+            data-number="01"
+        >
+
+            <div class="space-image">
+
+                <img
+                    src="./img/sudamericaFoto1.jpg"
+                    alt="Dati e database"
+                >
+
+            </div>
+
+
+            <div class="space-text">
+
+                <div class="space-number">
+
+                    01 · I DATI
+
+                </div>
+
+
+                <h2 class="space-title">
+
+                    Perché
+                    esistono
+                    i database
+
+                </h2>
+
+
+                <p class="space-description">
+
+                    I dati sono ovunque.
+
+                    <br><br>
+
+                    Nei social network troviamo profili,
+                    post, like, commenti, follower e messaggi.
+                    Nei servizi di streaming vengono memorizzati
+                    utenti, film visti preferenze e cronologia.
+                    Nell’e-commerce troviamo prodotti, carrelli,
+                    pagamenti, ordini e spedizioni.
+
+                    <br><br>
+
+                    Ogni azione digitale lascia una traccia:
+                    un dato che deve essere
+                    <strong>memorizzato, protetto e recuperato</strong>
+                    quando serve.
+
+                </p>
+
+
+                <div class="color-line">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- =================================================
+             SEZIONE 02
+        ================================================== -->
+
+        <article
+            class="space reverse reveal"
+            id="space-02"
+            data-number="02"
+        >
+
+            <div class="space-image">
+
+                <img
+                    src="./img/sudamericaFoto2.jpg"
+                    alt="Database e DBMS"
+                >
+
+            </div>
+
+
+            <div class="space-text">
+
+                <div class="space-number">
+
+                    02 · DATABASE E DBMS
+
+                </div>
+
+
+                <h2 class="space-title">
+
+                    Database
+                    e DBMS
+
+                </h2>
+
+
+                <p class="space-description">
+
+                    Una base dati è una raccolta 
+                    di informazioni pensata per essere
+                    cercata, aggiornata e condivisa.
+
+                    <br><br>
+
+                    È importante distinguere
+                    <strong>Database</strong> e <strong>DBMS</strong>:
+
+                    <br><br>
+
+                    Il database è l’insieme organizzato
+                    delle informazioni memorizzate.
+
+                    <br><br>
+
+                    Il DBMS è il software che crea, legge,
+                    aggiorna e protegge i dati. Gestisce inoltre
+                    utenti, permessi, sicurezza, backup,
+                    ripristino e interrogazioni tramite
+                    linguaggi come SQL.
+
+                    <br><br>
+
+                    In sintesi:
+                    <strong>
+                        il database contiene i dati,
+                        il DBMS li gestisce.
+                    </strong>
+
+                </p>
+
+
+                <div class="color-line">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- =================================================
+             SEZIONE 03
+        ================================================== -->
+
+        <article
+            class="space reveal"
+            id="space-03"
+            data-number="03"
+        >
+
+            <div class="space-image">
+
+                <img
+                    src="./img/sudamericaFoto3.jpg"
+                    alt="Modello relazionale"
+                >
+
+            </div>
+
+
+            <div class="space-text">
+
+                <div class="space-number">
+
+                    03 · MODELLO RELAZIONALE
+
+                </div>
+
+
+                <h2 class="space-title">
+
+                    Il modello
+                    relazionale
+
+                </h2>
+
+
+                <p class="space-description">
+
+                    Il modello relazionale rappresenta
+                    il mondo reale attraverso
+                    <strong>tabelle collegate tra loro</strong>.
+
+                    <br><br>
+
+                    Ogni tabella descrive un tipo di oggetto.
+
+                    <br>
+
+                    Ogni riga rappresenta un oggetto specifico.
+
+                    <br>
+
+                    Ogni colonna descrive una caratteristica.
+
+                    <br>
+
+                    Le relazioni collegano informazioni
+                    distribuite in tabelle diverse.
+
+                    <br><br>
+
+                    L'obiettivo è separare i concetti
+                    e collegarli in modo controllato.
+
+                </p>
+
+
+                <div class="color-line">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- =================================================
+             SEZIONE 04
+        ================================================== -->
+
+        <article
+            class="space reverse reveal"
+            id="space-04"
+            data-number="04"
+        >
+
+            <div class="space-image">
+
+                <img
+                    src="./img/sudamericaFoto4.jpg"
+                    alt="Chiavi e relazioni"
+                >
+
+            </div>
+
+
+            <div class="space-text">
+
+                <div class="space-number">
+
+                    04 · CHIAVI E RELAZIONI
+
+                </div>
+
+
+                <h2 class="space-title">
+
+                    Chiavi,
+                    relazioni
+                    e cardinalità
+
+                </h2>
+
+
+                <p class="space-description">
+
+                    La <strong>Primary Key</strong> permette
+                    di identificare in modo univoco le righe
+                    di una tabella.
+
+                    <br><br>
+
+                    La <strong>Foreign Key</strong> collega
+                    una tabella a un’altra e garantisce
+                    l’integrità referenziale.
+
+                    <br><br>
+
+                    Le relazioni possono avere cardinalità
+                    diverse:
+
+                    <br><br>
+
+                    <strong>1:1</strong> · un elemento
+                    corrisponde a uno solo.
+
+                    <br>
+
+                    <strong>1:N</strong> · un elemento può
+                    essere collegato a molti elementi.
+
+                    <br>
+
+                    <strong>N:M</strong> · molti elementi
+                    possono essere collegati a molti altri.
+
+                    <br><br>
+
+                    Nel caso N:M viene utilizzata
+                    una <strong>tabella ponte</strong>.
+
+                </p>
+
+
+                <div class="color-line">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- =================================================
+             SEZIONE 05
+        ================================================== -->
+
+        <article
+            class="space reveal"
+            id="space-05"
+            data-number="05"
+        >
+
+            <div class="space-image">
+
+                <img
+                    src="./img/sudamericaFoto5.jpg"
+                    alt="Progettazione del modello dati"
+                >
+
+            </div>
+
+
+            <div class="space-text">
+
+                <div class="space-number">
+
+                    05 · PROGETTAZIONE
+
+                </div>
+
+
+                <h2 class="space-title">
+
+                    Dalla realtà
+                    al modello
+
+                </h2>
+
+
+                <p class="space-description">
+
+                    La progettazione di un modello dati
+                    parte dalla comprensione del dominio.
+
+                    <br><br>
+
+                    Il percorso prevede cinque passaggi:
+
+                    <br><br>
+
+                    <strong>
+                        01 · Capire il dominio
+                    </strong>
+
+                    <br>
+
+                    <strong>
+                        02 · Individuare le entità
+                    </strong>
+
+                    <br>
+
+                    <strong>
+                        03 · Definire gli attributi
+                    </strong>
+
+                    <br>
+
+                    <strong>
+                        04 · Stabilire le relazioni
+                    </strong>
+
+                    <br>
+
+                    <strong>
+                        05 · Aggiungere le regole
+                    </strong>
+
+                    <br><br>
+
+                    Nel caso di studio dell'immagine
+                    vengono rappresentati
+                    <strong>
+                        COMUNE, SCUOLA, CLASSE
+                        e STUDENTE
+                    </strong>.
+
+                    <br><br>
+
+                    Un buon database nasce prima su carta:
+                    non si parte direttamente dal codice.
+
+                </p>
+
+
+                <div class="color-line">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- =================================================
+             SEZIONE 06
+        ================================================== -->
+
+        <article
+            class="space reverse reveal"
+            id="space-06"
+            data-number="06"
+        >
+
+            <div class="space-image">
+
+                <img
+                    src="./img/sudamericaFoto6.jpg"
+                    alt="Oracle SQL Developer Data Modeler"
+                >
+
+            </div>
+
+
+            <div class="space-text">
+
+                <div class="space-number">
+
+                    06 · ORACLE DATA MODELER
+
+                </div>
+
+
+                <h2 class="space-title">
+
+                    Dal modello
+                    al diagramma
+
+                </h2>
+
+
+                <p class="space-description">
+
+                    <strong>
+                        Oracle SQL Developer Data Modeler
+                    </strong>
+                    permette di progettare graficamente
+                    entità, attributi e relazioni attraverso
+                    un diagramma.
+
+                    <br><br>
+
+                    Il tool supporta diversi livelli di
+                    modellazione, dal modello concettuale
+                    a quello fisico, e permette anche di
+                    generare il DDL, cioè le istruzioni SQL
+                    necessarie per creare tabelle,
+                    vincoli e indici.
+
+                    <br><br>
+
+                    Nel laboratorio viene creato un design
+                    contenente il modello relazionale.
+
+                    <br><br>
+
+                    Il modello obiettivo comprende:
+
+                    <br><br>
+
+                    <strong>
+                        COMUNE → SCUOLA → CLASSE → STUDENTE
+                    </strong>
+
+                    <br><br>
+
+                    Il diagramma diventa così il ponte
+                    tra l’analisi funzionale e il database reale.
+
+                </p>
+
+
+                <div class="color-line">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- =================================================
+             SEZIONE 07
+        ================================================== -->
+
+        <article
+            class="space reveal"
+            id="space-07"
+            data-number="07"
+        >
+
+            <div class="space-image">
+
+                <img
+                    src="./img/sudamericaFoto7.jpg"
+                    alt="Modello completo"
+                >
+
+            </div>
+
+
+            <div class="space-text">
+
+                <div class="space-number">
+
+                    07 · CASO DI STUDIO
+
+                </div>
+
+
+                <h2 class="space-title">
+
+                    COMUNE,
+                    SCUOLA,
+                    CLASSE,
+                    STUDENTE
+
+                </h2>
+
+
+                <p class="space-description">
+
+                    Il caso di studio della presentazione
+                    rappresenta la gestione delle scuole.
+
+                    <br><br>
+
+                    Un <strong>COMUNE</strong> può ospitare
+                    più <strong>SCUOLE</strong>.
+
+                    <br><br>
+
+                    Una <strong>SCUOLA</strong> appartiene
+                    a un solo comune e contiene
+                    più <strong>CLASSI</strong>.
+
+                    <br><br>
+
+                    Una <strong>CLASSE</strong> appartiene
+                    a una scuola e contiene
+                    più <strong>STUDENTI</strong>.
+
+                    <br><br>
+
+                    Ogni tabella possiede una Primary Key
+                    e le relazioni vengono realizzate
+                    attraverso Foreign Key.
+
+                    <br><br>
+
+                    Il risultato è un modello leggibile,
+                    coerente e utilizzabile per rispondere
+                    a domande reali sui dati.
+
+                </p>
+
+
+                <div class="color-line">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer>
+
+
+        <div class="footer-title">
+
+            <span>
+                Dal dato
+            </span>
+
+
+            <span class="outline">
+                al modello.
+            </span>
+
+        </div>
+
+
+        <div class="footer-info">
+
+            <br><br>
+
+            <br><br>
+
+            <strong>
+                NTT DATA
+            </strong>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         LIGHTBOX
+    ====================================================== -->
+
+    <div
+        class="lightbox"
+        id="lightbox"
+    >
+
+        <button
+            class="lightbox-close"
+            id="closeLightbox"
+        >
+
+            ×
+
+        </button>
+
+
+        <img
+            id="lightboxImage"
+            src=""
+            alt=""
+        >
+
+    </div>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script>
+
+
+        /* ==============================
+           ANIMAZIONI
+        ============================== */
+
+        const revealObserver =
+            new IntersectionObserver(
+
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if (
+                            entry.isIntersecting
+                        ) {
+
+                            entry.target.classList.add(
+                                "visible"
+                            );
+
+                        }
+
+                    });
+
+                },
+
+                {
+                    threshold: .12
+                }
+
+            );
+
+
+        document
+            .querySelectorAll(".reveal")
+            .forEach(element => {
+
+                revealObserver.observe(element);
+
+            });
+
+
+
+        /* ==============================
+           NUMERO SEZIONE
+        ============================== */
+
+        const sections =
+            document.querySelectorAll(".space");
+
+
+        const currentSection =
+            document.getElementById(
+                "current-section"
+            );
+
+
+        const sectionObserver =
+            new IntersectionObserver(
+
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if (
+                            entry.isIntersecting
+                        ) {
+
+                            currentSection.textContent =
+                                entry.target.dataset.number;
+
+                        }
+
+                    });
+
+                },
+
+                {
+                    threshold: .55
+                }
+
+            );
+
+
+        sections.forEach(section => {
+
+            sectionObserver.observe(section);
+
+        });
+
+
+
+        /* ==============================
+           LIGHTBOX
+        ============================== */
+
+        const lightbox =
+            document.getElementById(
+                "lightbox"
+            );
+
+
+        const lightboxImage =
+            document.getElementById(
+                "lightboxImage"
+            );
+
+
+        const closeLightbox =
+            document.getElementById(
+                "closeLightbox"
+            );
+
+
+        document
+            .querySelectorAll(".space-image img")
+            .forEach(image => {
+
+                image.addEventListener(
+                    "click",
+                    () => {
+
+                        lightboxImage.src =
+                            image.src;
+
+                        lightboxImage.alt =
+                            image.alt;
+
+                        lightbox.classList.add(
+                            "open"
+                        );
+
+                        document.body.style.overflow =
+                            "hidden";
+
+                    }
+                );
+
+            });
+
+
+        function closeImage() {
+
+            lightbox.classList.remove(
+                "open"
+            );
+
+            document.body.style.overflow =
+                "";
+
+        }
+
+
+        closeLightbox.addEventListener(
+            "click",
+            closeImage
+        );
+
+
+        lightbox.addEventListener(
+            "click",
+            event => {
+
+                if (
+                    event.target === lightbox
+                ) {
+
+                    closeImage();
+
+                }
+
+            }
+        );
+
+
+        document.addEventListener(
+            "keydown",
+            event => {
+
+                if (
+                    event.key === "Escape"
+                ) {
+
+                    closeImage();
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
