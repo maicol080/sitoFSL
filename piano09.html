@@ -1,0 +1,1643 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Cyber Security / Piano 09</title>
+
+<style>
+
+:root {
+    --bg: #e9e8e5;
+    --bg-soft: #f3f2ef;
+    --white: #f7f7f4;
+
+    --red: #a64f3f;
+    --red-dark: #7f3b30;
+
+    --charcoal: #292a28;
+    --charcoal-soft: #4e514e;
+
+    --grey: #8b8d89;
+    --grey-light: #c7c8c5;
+
+    --line: rgba(41,42,40,.16);
+
+    --side-padding: clamp(22px, 5vw, 80px);
+
+    --content-width: 1500px;
+
+    --header-height: 76px;
+}
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
+
+body {
+    background: var(--bg);
+    color: var(--charcoal);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    overflow-x: hidden;
+}
+
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+button {
+    font: inherit;
+}
+
+
+/* =====================================
+   HEADER
+===================================== */
+
+header {
+    position: fixed;
+
+    inset: 0 0 auto 0;
+
+    height: var(--header-height);
+
+    padding:
+        0
+        var(--side-padding);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    z-index: 100;
+
+    background:
+        rgba(233,232,229,.88);
+
+    backdrop-filter: blur(14px);
+
+    border-bottom:
+        1px solid
+        rgba(41,42,40,.09);
+}
+
+
+.brand {
+    font-size: 12px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: .12em;
+}
+
+
+.brand span {
+    color: var(--red);
+
+    font-weight: 400;
+}
+
+
+.header-info {
+    display: flex;
+
+    align-items: center;
+
+    gap: 24px;
+
+    color: var(--grey);
+
+    font-size: 9px;
+
+    text-transform: uppercase;
+
+    letter-spacing: .14em;
+}
+
+
+#current-section {
+    color: var(--red-dark);
+
+    font-weight: 700;
+}
+
+
+/* =====================================
+   HERO
+===================================== */
+
+.hero {
+    min-height: 100svh;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    padding:
+        calc(var(--header-height) + 60px)
+        var(--side-padding)
+        110px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.55),
+            transparent 48%
+        ),
+
+        repeating-linear-gradient(
+            90deg,
+            transparent 0 80px,
+            rgba(41,42,40,.035) 80px 81px
+        );
+}
+
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+
+    width: 360px;
+
+    height: 360px;
+
+    right: -120px;
+
+    top: -110px;
+
+    background:
+        rgba(166,79,63,.10);
+
+    border-radius: 50%;
+}
+
+
+.hero-inner {
+    width:
+        min(
+            100%,
+            var(--content-width)
+        );
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(280px, 31%);
+
+    gap: 70px;
+
+    align-items: end;
+
+    position: relative;
+
+    z-index: 1;
+}
+
+
+.hero-label {
+    margin-bottom: 26px;
+
+    color: var(--red);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: .17em;
+}
+
+
+.hero-title {
+    max-width: 1000px;
+
+    color: var(--charcoal);
+
+    font-size:
+        clamp(
+            70px,
+            11vw,
+            175px
+        );
+
+    line-height: .82;
+
+    letter-spacing: -.075em;
+
+    font-weight: 700;
+}
+
+
+.hero-title .outline {
+    display: block;
+
+    color: transparent;
+
+    -webkit-text-stroke:
+        1.4px
+        var(--red);
+}
+
+
+.hero-title .solid {
+    display: block;
+}
+
+
+.hero-description {
+    max-width: 420px;
+
+    color: var(--charcoal-soft);
+
+    font-size: 14px;
+
+    line-height: 1.85;
+}
+
+
+.hero-description strong {
+    color: var(--red-dark);
+}
+
+
+.hero-line {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-top: 36px;
+
+    color: var(--grey);
+
+    font-size: 9px;
+
+    text-transform: uppercase;
+
+    letter-spacing: .14em;
+}
+
+
+.hero-line span {
+    width: 42px;
+
+    height: 1px;
+
+    background:
+        var(--red);
+}
+
+
+.hero-scroll {
+    position: absolute;
+
+    left: var(--side-padding);
+
+    bottom: 30px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    color: var(--grey);
+
+    font-size: 9px;
+
+    text-transform: uppercase;
+
+    letter-spacing: .14em;
+}
+
+
+.hero-scroll span {
+    width: 38px;
+
+    height: 1px;
+
+    background:
+        var(--line);
+}
+
+
+/* =====================================
+   SPAZI
+===================================== */
+
+.spaces {
+    width:
+        min(
+            100%,
+            var(--content-width)
+        );
+
+    margin: auto;
+}
+
+
+.space {
+    min-height: 760px;
+
+    display: grid;
+
+    grid-template-columns:
+        1.05fr
+        .95fr;
+
+    align-items: center;
+
+    gap:
+        clamp(
+            55px,
+            8vw,
+            130px
+        );
+
+    padding:
+        115px
+        var(--side-padding);
+
+    border-top:
+        1px solid
+        var(--line);
+}
+
+
+.space.reverse {
+    grid-template-columns:
+        .95fr
+        1.05fr;
+}
+
+
+.space.reverse .space-image {
+    order: 2;
+}
+
+
+.space.reverse .space-text {
+    order: 1;
+}
+
+
+/* =====================================
+   FOTO
+===================================== */
+
+.space-image {
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio: 4 / 3;
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        var(--bg-soft);
+
+    border:
+        1px solid
+        rgba(41,42,40,.12);
+
+    cursor: zoom-in;
+}
+
+
+.space-image img {
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+
+    object-position: center center;
+
+    transition:
+        transform .8s
+        cubic-bezier(.2,.7,.2,1),
+
+        filter .4s ease;
+
+    filter:
+        saturate(.87)
+        contrast(.97);
+}
+
+
+.space-image:hover img {
+    transform:
+        scale(1.018);
+
+    filter:
+        saturate(.98)
+        contrast(1);
+}
+
+
+/* =====================================
+   ADATTAMENTO SPECIFICO FOTO 5-6-7
+===================================== */
+
+#space-05 .space-image img {
+    object-fit: contain;
+
+    object-position:
+        center center;
+}
+
+
+#space-06 .space-image img {
+    object-fit: contain;
+
+    object-position:
+        center center;
+}
+
+
+#space-07 .space-image img {
+    object-fit: contain;
+
+    object-position:
+        center center;
+}
+
+
+/* =====================================
+   NUMERO SULLA FOTO
+===================================== */
+
+.image-number {
+    position: absolute;
+
+    top: 16px;
+
+    left: 16px;
+
+    width: 40px;
+
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        rgba(
+            247,
+            247,
+            244,
+            .90
+        );
+
+    border:
+        1px solid
+        rgba(41,42,40,.12);
+
+    color:
+        var(--red-dark);
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+
+/* =====================================
+   TESTO
+===================================== */
+
+.space-text {
+    max-width: 580px;
+}
+
+
+.space-number {
+    margin-bottom: 26px;
+
+    color: var(--red);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: .16em;
+
+    text-transform: uppercase;
+}
+
+
+.space-title {
+    max-width: 620px;
+
+    color: var(--charcoal);
+
+    font-size:
+        clamp(
+            44px,
+            6vw,
+            86px
+        );
+
+    line-height: .9;
+
+    letter-spacing: -.065em;
+
+    font-weight: 700;
+}
+
+
+/* Colori specifici dei titoli */
+
+.space:nth-child(2)
+.space-title {
+    color:
+        var(--red-dark);
+}
+
+
+.space:nth-child(3)
+.space-title {
+    color:
+        #515857;
+}
+
+
+.space:nth-child(4)
+.space-title {
+    color:
+        #653b34;
+}
+
+
+.space-description {
+    max-width: 500px;
+
+    margin-top: 34px;
+
+    color: var(--charcoal-soft);
+
+    font-size: 14px;
+
+    line-height: 1.82;
+}
+
+
+.space-description strong {
+    color:
+        var(--charcoal);
+}
+
+
+/* =====================================
+   LINEA COLORATA
+===================================== */
+
+.color-line {
+    display: flex;
+
+    width:
+        min(
+            100%,
+            340px
+        );
+
+    height: 6px;
+
+    margin-top: 38px;
+}
+
+
+.color-line span:nth-child(1) {
+    width: 38%;
+
+    background:
+        var(--red);
+}
+
+
+.color-line span:nth-child(2) {
+    width: 20%;
+
+    background:
+        var(--charcoal);
+}
+
+
+.color-line span:nth-child(3) {
+    width: 17%;
+
+    background:
+        var(--grey-light);
+}
+
+
+.color-line span:nth-child(4) {
+    width: 25%;
+
+    background:
+        var(--white);
+
+    border:
+        1px solid
+        var(--line);
+}
+
+
+/* =====================================
+   FOOTER
+===================================== */
+
+footer {
+    min-height: 58vh;
+
+    padding:
+        100px
+        var(--side-padding)
+        50px;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    gap: 50px;
+
+    background:
+        var(--bg-soft);
+
+    border-top:
+        1px solid
+        var(--line);
+}
+
+
+.footer-title {
+    color:
+        var(--charcoal);
+
+    font-size:
+        clamp(
+            60px,
+            10vw,
+            150px
+        );
+
+    line-height: .82;
+
+    letter-spacing: -.075em;
+
+    font-weight: 700;
+}
+
+
+.footer-title span {
+    display: block;
+}
+
+
+.footer-title .outline {
+    color: transparent;
+
+    -webkit-text-stroke:
+        1px
+        var(--red);
+}
+
+
+.footer-info {
+    max-width: 320px;
+
+    color: var(--grey);
+
+    font-size: 10px;
+
+    line-height: 1.8;
+
+    text-transform: uppercase;
+
+    letter-spacing: .08em;
+}
+
+
+/* =====================================
+   ANIMAZIONI
+===================================== */
+
+.reveal {
+    opacity: 0;
+
+    transform:
+        translateY(34px);
+
+    transition:
+        opacity .8s ease,
+
+        transform .8s
+        cubic-bezier(.2,.7,.2,1);
+}
+
+
+.reveal.visible {
+    opacity: 1;
+
+    transform:
+        translateY(0);
+}
+
+
+/* =====================================
+   LIGHTBOX
+===================================== */
+
+.lightbox {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 400;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 30px;
+
+    background:
+        rgba(
+            23,
+            24,
+            23,
+            .92
+        );
+}
+
+
+.lightbox.open {
+    display: flex;
+}
+
+
+.lightbox img {
+    max-width: 94vw;
+
+    max-height: 90vh;
+
+    object-fit: contain;
+}
+
+
+.lightbox-close {
+    position: absolute;
+
+    top: 18px;
+
+    right: 28px;
+
+    border: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 38px;
+
+    cursor: pointer;
+}
+
+
+/* =====================================
+   TABLET
+===================================== */
+
+@media (max-width: 900px) {
+
+    :root {
+        --header-height: 68px;
+
+        --side-padding: 28px;
+    }
+
+
+    .header-info span:first-child {
+        display: none;
+    }
+
+
+    .hero {
+        min-height: 90svh;
+    }
+
+
+    .hero-inner {
+        grid-template-columns: 1fr;
+
+        gap: 50px;
+    }
+
+
+    .space,
+    .space.reverse {
+
+        min-height: auto;
+
+        grid-template-columns: 1fr;
+
+        gap: 48px;
+
+        padding:
+            90px
+            var(--side-padding);
+    }
+
+
+    .space.reverse .space-image {
+        order: 1;
+    }
+
+
+    .space.reverse .space-text {
+        order: 2;
+    }
+
+
+    footer {
+
+        min-height: 55vh;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        justify-content: flex-end;
+    }
+
+}
+
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media (max-width: 600px) {
+
+    :root {
+        --side-padding: 20px;
+    }
+
+
+    .brand {
+        font-size: 10px;
+    }
+
+
+    .hero {
+
+        padding-top: 105px;
+
+        padding-bottom: 90px;
+    }
+
+
+    .hero-title {
+        font-size:
+            clamp(
+                58px,
+                17vw,
+                100px
+            );
+    }
+
+
+    .hero-description,
+    .space-description {
+        font-size: 13px;
+    }
+
+
+    .space,
+    .space.reverse {
+
+        padding-top: 75px;
+
+        padding-bottom: 75px;
+    }
+
+
+    .space-title {
+
+        font-size:
+            clamp(
+                40px,
+                13vw,
+                68px
+            );
+    }
+
+
+    footer {
+
+        padding-top: 80px;
+    }
+
+
+    .footer-title {
+
+        font-size:
+            clamp(
+                52px,
+                18vw,
+                94px
+            );
+    }
+
+}
+
+
+/* =====================================
+   RIDUZIONE ANIMAZIONI
+===================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+
+    *,
+    *::before,
+    *::after {
+
+        transition-duration:
+            .01ms !important;
+
+        animation-duration:
+            .01ms !important;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<header>
+
+    <a
+        href="#top"
+        class="brand"
+    >
+
+        CYBER SECURITY
+
+        <span>
+            / PIANO 09
+        </span>
+
+    </a>
+
+
+    <div class="header-info">
+
+        <span>
+            NTT DATA / SECURITY
+        </span>
+
+        <span id="current-section">
+            01
+        </span>
+
+    </div>
+
+</header>
+
+
+
+<main id="top">
+
+
+<section class="hero reveal">
+
+    <div class="hero-inner">
+
+        <div>
+
+            <div class="hero-label">
+
+                PCTO · NTT DATA · SECURITY
+
+            </div>
+
+
+            <h1 class="hero-title">
+
+                <span class="solid">
+                    Cyber
+                </span>
+
+                <span class="outline">
+                    Security.
+                </span>
+
+            </h1>
+
+        </div>
+
+
+
+        <div>
+
+            <p class="hero-description">
+
+                
+
+            </p>
+
+
+            <div class="hero-line">
+
+                <span></span>
+
+                SECURITY · RISK · DEFENCE · INNOVATION
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-scroll">
+
+        <span></span>
+
+        SCROLL TO EXPLORE
+
+    </div>
+
+</section>
+
+
+
+
+
+    <!-- =================================================
+         SPAZIO 02
+    ================================================== -->
+
+    <article
+        class="space reverse reveal"
+        id="space-02"
+        data-number="02"
+    >
+
+        <div class="space-image">
+
+            <img
+                src="./img/Piano9immagine2.jpg"
+                alt="Area dedicata alla sicurezza strategica"
+            >
+
+            <div class="image-number">
+                01
+            </div>
+
+        </div>
+
+
+        <div class="space-text">
+
+            <div class="space-number">
+                01
+            </div>
+
+
+            <h2 class="space-title">
+
+                Strategy &amp;<br>
+                Governance
+
+            </h2>
+
+
+            <p class="space-description">
+
+                L'area <strong>Cyber Security Strategy &amp; Governance</strong>
+                comprende attività di Business Continuity Management, Policy Design,
+                Compliance &amp; Privacy Management, Awareness, Strategy e Governance.
+
+                <br><br>
+
+                Tra gli obiettivi rientrano la valutazione
+                del rischio, la definizione di framework e policy, la conformità a standard
+                internazionali e lo sviluppo di programmi e
+                modelli organizzativi per la gestione e la risposta ai cyber rischi.
+
+            </p>
+
+
+            <div class="color-line">
+
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </div>
+
+        </div>
+
+    </article>
+
+
+
+    <!-- =================================================
+         SPAZIO 03
+    ================================================== -->
+
+    <article
+        class="space reveal"
+        id="space-03"
+        data-number="03"
+    >
+
+        <div class="space-image">
+
+            <img
+                src="./img/Piano9immagine1.jpg"
+                alt="Area tecnica e operativa di sicurezza informatica"
+            >
+
+            <div class="image-number">
+                02
+            </div>
+
+        </div>
+
+
+        <div class="space-text">
+
+            <div class="space-number">
+                02
+            </div>
+
+
+            <h2 class="space-title">
+
+                Technical<br>
+                Consulting
+
+            </h2>
+
+
+            <p class="space-description">
+
+                La <strong>Cyber Security</strong> comprende
+                attività come Ethical Hacking, Red e Purple Teaming,
+                Software Security Assurance, DevSecOps, Vulnerability Management
+                Cyber Threat Intelligence, Cyber Risk Assurance e Security Process Automation.
+
+                <br><br>
+
+                l'approccio end-to-end: identificazione,
+                analisi, prioritizzazione e gestione delle vulnerabilità, valutazione
+                dell'esposizione ad attacchi cyber e supporto alla definizione delle
+                relative attività di remediation.
+
+            </p>
+
+
+            <div class="color-line">
+
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </div>
+
+        </div>
+
+    </article>
+
+
+
+    <!-- =================================================
+         SPAZIO 04
+    ================================================== -->
+
+    <article
+        class="space reverse reveal"
+        id="space-04"
+        data-number="04"
+    >
+
+        <div class="space-image">
+
+            <img
+                src="./img/Piano9immagine3.jpg"
+                alt="Cyber Defence e Security Operation Center"
+            >
+
+            <div class="image-number">
+                03
+            </div>
+
+        </div>
+
+
+        <div class="space-text">
+
+            <div class="space-number">
+                03
+            </div>
+
+
+            <h2 class="space-title">
+
+                Cyber<br>
+                Defence
+
+            </h2>
+
+
+            <p class="space-description">
+
+                La <strong>Cyber Defence</strong> comprende, tra gli altri elementi,
+                NG Anti-Malware, Secure Mail Gateway, NG Firewall &amp; WAF e SIEM.
+
+                 le attività del
+                <strong>Security Operation Center</strong>: progettazione
+                e realizzazione delle soluzioni, gestione operativa, migrazione,
+                threat detection, threat hunting, Incident Response e Threat Prevention.
+
+                <br><br>
+
+                L'approccio include inoltre servizi come SIEM as a Service e attività
+                di gestione delle tecnologie di protezione dalle minacce.
+
+            </p>
+
+
+            <div class="color-line">
+
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </div>
+
+        </div>
+
+    </article>
+
+
+</section>
+
+</main>
+
+
+
+<footer>
+
+    <div class="footer-title">
+
+        <span>
+            Cyber
+        </span>
+
+        <span class="outline">
+            Security.
+        </span>
+
+    </div>
+
+
+    <div class="footer-info">
+
+        PCTO · NTT DATA
+
+        <br>
+
+        Cyber Security
+
+        <br><br>
+
+        Strategy · Consulting · Defence · Engineering
+
+    </div>
+
+</footer>
+
+
+
+<div
+    class="lightbox"
+    id="lightbox"
+    aria-hidden="true"
+>
+
+    <button
+        class="lightbox-close"
+        id="closeLightbox"
+        type="button"
+        aria-label="Chiudi immagine"
+    >
+        ×
+    </button>
+
+
+    <img
+        id="lightboxImage"
+        src=""
+        alt=""
+    >
+
+</div>
+
+
+
+<script>
+
+
+const sections =
+    document.querySelectorAll(".space");
+
+
+const currentSection =
+    document.getElementById(
+        "current-section"
+    );
+
+
+/* =====================================
+   REVEAL
+===================================== */
+
+const revealObserver =
+    new IntersectionObserver(
+        (entries) => {
+
+            entries.forEach(
+                (entry) => {
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        entry.target.classList.add(
+                            "visible"
+                        );
+
+                    }
+
+                }
+            );
+
+        },
+        {
+            threshold: 0.12
+        }
+    );
+
+
+document
+    .querySelectorAll(".reveal")
+    .forEach(
+        (element) =>
+            revealObserver.observe(element)
+    );
+
+
+/* =====================================
+   NUMERO SEZIONE
+===================================== */
+
+const sectionObserver =
+    new IntersectionObserver(
+        (entries) => {
+
+            const visible =
+                entries
+
+                    .filter(
+                        (entry) =>
+                            entry.isIntersecting
+                    )
+
+                    .sort(
+                        (a, b) =>
+                            b.intersectionRatio -
+                            a.intersectionRatio
+                    );
+
+
+            if (
+                !visible.length
+            ) {
+                return;
+            }
+
+
+            currentSection.textContent =
+                visible[0]
+                    .target
+                    .dataset
+                    .number;
+
+        },
+        {
+            rootMargin:
+                "-35% 0px -35% 0px",
+
+            threshold: [
+                0.1,
+                0.25,
+                0.5,
+                0.75
+            ]
+        }
+    );
+
+
+sections.forEach(
+    (section) =>
+        sectionObserver.observe(section)
+);
+
+
+/* =====================================
+   LIGHTBOX
+===================================== */
+
+const lightbox =
+    document.getElementById(
+        "lightbox"
+    );
+
+
+const lightboxImage =
+    document.getElementById(
+        "lightboxImage"
+    );
+
+
+const closeLightbox =
+    document.getElementById(
+        "closeLightbox"
+    );
+
+
+document
+    .querySelectorAll(".space-image img")
+    .forEach(
+        (image) => {
+
+            image.addEventListener(
+                "click",
+                () => {
+
+                    lightboxImage.src =
+                        image.src;
+
+                    lightboxImage.alt =
+                        image.alt;
+
+                    lightbox.classList.add(
+                        "open"
+                    );
+
+                    lightbox.setAttribute(
+                        "aria-hidden",
+                        "false"
+                    );
+
+                    document.body.style.overflow =
+                        "hidden";
+
+                }
+            );
+
+        }
+    );
+
+
+function closeImage() {
+
+    lightbox.classList.remove(
+        "open"
+    );
+
+
+    lightbox.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+
+    lightboxImage.src = "";
+
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+closeLightbox.addEventListener(
+    "click",
+    closeImage
+);
+
+
+lightbox.addEventListener(
+    "click",
+    (event) => {
+
+        if (
+            event.target === lightbox
+        ) {
+
+            closeImage();
+
+        }
+
+    }
+);
+
+
+document.addEventListener(
+    "keydown",
+    (event) => {
+
+        if (
+            event.key === "Escape" &&
+            lightbox.classList.contains("open")
+        ) {
+
+            closeImage();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
